@@ -1,0 +1,111 @@
+﻿@model SOPS.Areas.Document.ViewModels.DocumentViewModel
+
+@{
+    ViewBag.Title = "Html";
+}
+
+<link type="text/css" href="~/Areas/Document/Content/Site.css" rel="stylesheet" />
+
+<div class="container body-content">
+    <div class="row header">
+        <div class="col-print-6">
+            <h2>@Html.DisplayFor(model => model.ProductName)</h2>
+            <h4>@Html.DisplayFor(model => model.CompanyName)</h4>
+        </div>
+        <div class="col-print-6" style="position: relative; top: 70px; left: 210px">
+            <dl class="listing">
+                <dt>
+                    @Html.DisplayNameFor(model => model.ProductId)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.ProductId)#@Html.DisplayFor(model => model.ExistingProductId)
+                </dd>
+            </dl>
+        </div>
+    </div>
+
+    <hr />
+
+    <div class="row">
+        <div class="col-print-8">
+            <dl class="listing">
+                <dt>
+                    @Html.DisplayNameFor(model => model.ProductExpirationDate)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.ProductExpirationDate)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.SuggestedPrice)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.SuggestedPrice) PLN
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.ProductCountryOfOrigin)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.ProductCountryOfOrigin)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-print-4 producer-col">
+            <h4>@Resources.Product.CompanyData</h4>
+            <dl class="listing">
+                <dt>
+                    @Html.DisplayNameFor(model => model.CompanyName)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.CompanyName)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.CompanyAddressStreet)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.CompanyAddressStreet)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.CompanyAddressZipCode)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.CompanyAddressZipCode)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.CompanyAddressCity)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.CompanyAddressCity)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.CompanyNIP)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.CompanyNIP)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.CompanyREGON)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.CompanyREGON)
+                </dd>
+
+            </dl>
+        </div>
+
+        <div class="row">
+            <div class="col-print-12">
+                <span class="qr-code">
+                    <img src="@ViewBag.QR_URL" />
+                </span>
+            </div>
+        </div>
+
+    </div>
+</div>

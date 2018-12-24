@@ -1,0 +1,67 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Web;
+using System.Web.Http;
+using System.Web.Http.Description;
+using System.Web.Http.Routing;
+using Codaxy.WkHtmlToPdf;
+using SOPS.Models;
+using TheArtOfDev.HtmlRenderer.PdfSharp;
+
+namespace SOPS.Controllers
+{
+    public class DocumentController : ApiController
+    {
+        private ApplicationDbContext db = new ApplicationDbContext();
+
+
+        // GET: api/Document/5
+        public HttpResponseMessage GetDocument(int id)
+        {
+            ExistingProduct existingProduct = db.ExistingProducts.Find(id);
+            if (existingProduct == null)
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound);
+            }
+
+
+            var baseUrl = Request.RequestUri.GetLeftPart(UriPartial.Authority);
+            var relativeUrl = Url.Route("Document_default",
+                new { id, controller="Default", action="Details" });
+
+            var ms = new MemoryStream();
+            PdfConvert.ConvertHtmlToPdf(new PdfDocument
+            {
+                Url = new Uri(new Uri(baseUrl), relativeUrl).ToString()
+
+            }, new PdfOutput
+            {
+                OutputStream = ms
+            });
+            ms.Position = 0;
+
+            var response = Request.CreateResponse();
+            response.Content = new StreamContent(ms);
+            response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/pdf");
+
+            return response;
+        }        
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+    }
+}

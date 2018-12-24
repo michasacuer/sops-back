@@ -18,6 +18,12 @@ namespace SOPS.Models
         }
     }
 
+    public class Employee : ApplicationUser
+    {
+        int CompanyId { get; set; }
+        Company Company { get; set; }
+    }
+
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
@@ -29,5 +35,13 @@ namespace SOPS.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<SOPS.Models.Product> Products { get; set; }
+
+        public System.Data.Entity.DbSet<SOPS.Models.Company> Companies { get; set; }
+
+        public System.Data.Entity.DbSet<SOPS.Models.ExistingProduct> ExistingProducts { get; set; }
+
+        public System.Data.Entity.DbSet<SOPS.Models.QR> QRs { get; set; }
     }
 }
