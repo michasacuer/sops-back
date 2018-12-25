@@ -10,7 +10,6 @@ namespace SOPS.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "SOPS.Models.ApplicationDbContext";
         }
 
         protected override void Seed(SOPS.Models.ApplicationDbContext context)
