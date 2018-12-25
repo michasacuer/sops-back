@@ -19,9 +19,9 @@ namespace SOPS.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: api/Products
-        public IQueryable<Product> GetProducts()
+        public IEnumerable<Product> GetProducts()
         {
-            return db.Products;
+            return db.Products.AsNoTracking(); 
         }
 
         // GET: api/Products/5
