@@ -314,7 +314,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\QRController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -326,6 +326,14 @@
     <Compile Include="Migrations\201812251750484_asdasd45.Designer.cs">
       <DependentUpon>201812251750484_asdasd45.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812252011586_as.cs" />
+    <Compile Include="Migrations\201812252011586_as.Designer.cs">
+      <DependentUpon>201812252011586_as.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812252102295_assdf.cs" />
+    <Compile Include="Migrations\201812252102295_assdf.Designer.cs">
+      <DependentUpon>201812252102295_assdf.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -336,6 +344,7 @@
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductRating.cs" />
     <Compile Include="Models\QR.cs" />
+    <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Models\WatchedProduct.cs" />
     <Compile Include="PdfConvert.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -468,6 +477,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812251750484_asdasd45.resx">
       <DependentUpon>201812251750484_asdasd45.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812252011586_as.resx">
+      <DependentUpon>201812252011586_as.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812252102295_assdf.resx">
+      <DependentUpon>201812252102295_assdf.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

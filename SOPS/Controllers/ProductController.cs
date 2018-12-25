@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
+using Microsoft.AspNet.Identity;
 using SOPS.Attributes;
 using SOPS.Models;
 
@@ -74,12 +75,20 @@ namespace SOPS.Controllers
         }
 
         // POST: api/Products
+        [Authorize]
         [ResponseType(typeof(Product))]
         public IHttpActionResult PostProduct(Product product)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
+            }
+
+            var userId = User.Identity.GetUserId();
+            var asEmployee = db.Employees.Find(userId);
+            if(asEmployee == null || asEmployee.Company.Id != product.CompanyId)
+            {
+                return StatusCode(HttpStatusCode.Forbidden);
             }
 
             db.Products.Add(product);

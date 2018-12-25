@@ -25,8 +25,8 @@ namespace SOPS.Models
 
     public class Employee : ApplicationUser
     {
-        int CompanyId { get; set; }
-        Company Company { get; set; }
+        public int CompanyId { get; set; }
+        public Company Company { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
@@ -34,13 +34,15 @@ namespace SOPS.Models
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
+            // Configuration.LazyLoadingEnabled = false;
         }
-        
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
         }
 
+        public DbSet<Employee> Employees { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Company> Companies { get; set; }
         public DbSet<ExistingProduct> ExistingProducts { get; set; }

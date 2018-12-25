@@ -13,6 +13,7 @@ using SOPS.Models;
 
 namespace SOPS.Controllers
 {
+    [RoutePrefix("api/Company")]
     public class CompanyController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -98,6 +99,25 @@ namespace SOPS.Controllers
 
             db.Companies.Remove(company);
             db.SaveChanges();
+
+            return Ok(company);
+        }
+
+        // GET: api/Company/Profile/5
+        [Route("Profile")]
+        [ResponseType(typeof(Company))]
+        public IHttpActionResult GetCompanyProfile(int id)
+        {
+            var company = db.Companies.Find(id);
+
+            if(company == null)
+            {
+                return NotFound();
+            }
+
+            db.Entry(company).Collection(c => c.Products).Load();
+            // db.Entry(company).Collection(c => c.CompanyReports).Load();
+            db.Entry(company).Collection(c => c.Employees).Load();
 
             return Ok(company);
         }
