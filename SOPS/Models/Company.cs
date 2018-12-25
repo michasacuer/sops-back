@@ -20,8 +20,8 @@ namespace SOPS.Models
         public string NIP { get; set; }
         public string REGON { get; set; }
 
-        //virtual public List<Product> Products { get; set; }
-        //virtual public List<CompanyReport> CompanyReports { get; set; }
-        //virtual public List<Employee> Employees { get; set; }
+        public List<Product> Products { get; set; }
+        public List<CompanyReport> CompanyReports { get; set; }
+        //public List<Employee> Employees { get; set; }
     }
 }

@@ -14,15 +14,18 @@ namespace SOPS.Models
         public string Name { get; set; }
         public string Barcode { get; set; }
         public string Description { get; set; }
+
         [Required]
-        public int CompanyId { get; set; }
         public string CountryOfOrigin { get; set; }
 
         [Column(TypeName = "money")]
         public decimal SuggestedPrice { get; set; }
 
-        virtual public Company Company { get; set; }
-        virtual public List<ProductRating> ProductRatings { get; set; }
-        virtual public List<ExistingProduct> ExistingProducts { get; set; }
+        [ForeignKey("Company")]
+        public int CompanyId { get; set; }
+        public Company Company { get; set; }
+
+        public List<ProductRating> ProductRatings { get; set; }
+        public List<ExistingProduct> ExistingProducts { get; set; }
     }
 }

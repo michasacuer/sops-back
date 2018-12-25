@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
+using System.Data.Entity;
 
 namespace SOPS.Models
 {
@@ -36,12 +37,9 @@ namespace SOPS.Models
             return new ApplicationDbContext();
         }
 
-        public System.Data.Entity.DbSet<SOPS.Models.Product> Products { get; set; }
-
-        public System.Data.Entity.DbSet<SOPS.Models.Company> Companies { get; set; }
-
-        public System.Data.Entity.DbSet<SOPS.Models.ExistingProduct> ExistingProducts { get; set; }
-
-        public System.Data.Entity.DbSet<SOPS.Models.QR> QRs { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Company> Companies { get; set; }
+        public DbSet<ExistingProduct> ExistingProducts { get; set; }
+        public DbSet<QR> QRs { get; set; }
     }
 }

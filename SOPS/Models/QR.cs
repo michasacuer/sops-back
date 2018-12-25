@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
@@ -12,11 +13,12 @@ namespace SOPS.Models
     public class QR
     {
         [Key]
-        public int ExistingProductId { get; set; }
         public int Version { get; set; }
         public byte[] Content { get; set; }
 
         [Required]
+        [ForeignKey("ExistingProduct")]
+        public int ExistingProductId { get; set; }
         public virtual ExistingProduct ExistingProduct { get; set; }
 
         public void UpdateQR()
