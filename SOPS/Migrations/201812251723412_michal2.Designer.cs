@@ -7,13 +7,13 @@ namespace SOPS.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class asdasd : IMigrationMetadata
+    public sealed partial class michal2 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(asdasd));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(michal2));
         
         string IMigrationMetadata.Id
         {
-            get { return "201812251503407_asdasd"; }
+            get { return "201812251723412_michal2"; }
         }
         
         string IMigrationMetadata.Source
