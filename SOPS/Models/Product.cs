@@ -23,9 +23,9 @@ namespace SOPS.Models
 
         [ForeignKey("Company")]
         public int CompanyId { get; set; }
-        public Company Company { get; set; }
+        public virtual Company Company { get; set; }
 
-        public List<ProductRating> ProductRatings { get; set; }
-        public List<ExistingProduct> ExistingProducts { get; set; }
+        public virtual List<ProductRating> ProductRatings { get; set; }
+        public virtual List<ExistingProduct> ExistingProducts { get; set; }
     }
 }
