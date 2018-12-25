@@ -13,11 +13,10 @@ namespace SOPS
     {
         public static void Register(HttpConfiguration config)
         {
-            string origin = "http://localhost:50164/IDGWebClient/";
+            /*var cors = new EnableCorsAttribute("http://localhost:4200", "*", "GET,POST,PUT,DELETE,OPTIONS");
+            cors.SupportsCredentials = true;
 
-            EnableCorsAttribute cors = new EnableCorsAttribute("*", "*", "GET,POST,PUT,DELETE");
-
-            config.EnableCors(cors);
+            config.EnableCors(cors);*/
 
             // Web API configuration and services
             // Configure Web API to use only bearer token authentication.
