@@ -42,9 +42,11 @@ namespace SOPS.Models
         }
 
         public DbSet<Product> Products { get; set; }
-        public DbSet<Company> Companies { get; set; }
+        public DbSet<ProductRating> ProductRatings { get; set; }
         public DbSet<ExistingProduct> ExistingProducts { get; set; }
         public DbSet<WatchedProduct> WatchedProducts { get; set; }
+        public DbSet<Company> Companies { get; set; }
+        public DbSet<CompanyReport> CompanyReports { get; set; }
         public DbSet<QR> QRs { get; set; }
     }
 }
