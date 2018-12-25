@@ -259,3 +259,9 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+/SOPS/Migrations/201812251657546_a1234544.resx
+/SOPS/Migrations/201812251657546_a1234544.Designer.cs
+/SOPS/Migrations/201812251657546_a1234544.cs
+/SOPS/Migrations/201812251656434_a1231.resx
+/SOPS/Migrations/201812251656434_a1231.Designer.cs
+/SOPS/Migrations/201812251656434_a1231.cs
