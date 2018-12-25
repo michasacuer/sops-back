@@ -27,5 +27,6 @@ namespace SOPS.Models
 
         public virtual List<ProductRating> ProductRatings { get; set; }
         public virtual List<ExistingProduct> ExistingProducts { get; set; }
+        public virtual List<WatchedProduct> WatchedProducts { get; set; }
     }
 }

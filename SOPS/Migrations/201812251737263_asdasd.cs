@@ -3,7 +3,7 @@ namespace SOPS.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class michal : DbMigration
+    public partial class asdasd : DbMigration
     {
         public override void Up()
         {
@@ -98,6 +98,20 @@ namespace SOPS.Migrations
                 .Index(t => t.RoleId);
             
             CreateTable(
+                "dbo.WatchedProducts",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        ProductId = c.Int(nullable: false),
+                        ApplicationUser_Id = c.String(maxLength: 128),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.AspNetUsers", t => t.ApplicationUser_Id)
+                .ForeignKey("dbo.Products", t => t.ProductId, cascadeDelete: true)
+                .Index(t => t.ProductId)
+                .Index(t => t.ApplicationUser_Id);
+            
+            CreateTable(
                 "dbo.Products",
                 c => new
                     {
@@ -179,7 +193,9 @@ namespace SOPS.Migrations
         public override void Down()
         {
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
+            DropForeignKey("dbo.WatchedProducts", "ProductId", "dbo.Products");
             DropForeignKey("dbo.ProductRatings", "User_Id", "dbo.AspNetUsers");
+            DropForeignKey("dbo.WatchedProducts", "ApplicationUser_Id", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
@@ -197,6 +213,8 @@ namespace SOPS.Migrations
             DropIndex("dbo.QRs", new[] { "ExistingProductId" });
             DropIndex("dbo.ExistingProducts", new[] { "ProductId" });
             DropIndex("dbo.Products", new[] { "CompanyId" });
+            DropIndex("dbo.WatchedProducts", new[] { "ApplicationUser_Id" });
+            DropIndex("dbo.WatchedProducts", new[] { "ProductId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
@@ -210,6 +228,7 @@ namespace SOPS.Migrations
             DropTable("dbo.QRs");
             DropTable("dbo.ExistingProducts");
             DropTable("dbo.Products");
+            DropTable("dbo.WatchedProducts");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");

@@ -318,21 +318,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812251540274_michal.cs" />
-    <Compile Include="Migrations\201812251540274_michal.Designer.cs">
-      <DependentUpon>201812251540274_michal.cs</DependentUpon>
+    <Compile Include="Migrations\201812251737263_asdasd.cs" />
+    <Compile Include="Migrations\201812251737263_asdasd.Designer.cs">
+      <DependentUpon>201812251737263_asdasd.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812251723412_michal2.cs" />
-    <Compile Include="Migrations\201812251723412_michal2.Designer.cs">
-      <DependentUpon>201812251723412_michal2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812251656434_a1231.cs" />
-    <Compile Include="Migrations\201812251656434_a1231.Designer.cs">
-      <DependentUpon>201812251656434_a1231.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812251657546_a1234544.cs" />
-    <Compile Include="Migrations\201812251657546_a1234544.Designer.cs">
-      <DependentUpon>201812251657546_a1234544.cs</DependentUpon>
+    <Compile Include="Migrations\201812251750484_asdasd45.cs" />
+    <Compile Include="Migrations\201812251750484_asdasd45.Designer.cs">
+      <DependentUpon>201812251750484_asdasd45.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -471,17 +463,11 @@
       <LastGenOutput>Product.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Resources</CustomToolNamespace>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812251540274_michal.resx">
-      <DependentUpon>201812251540274_michal.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812251737263_asdasd.resx">
+      <DependentUpon>201812251737263_asdasd.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812251723412_michal2.resx">
-      <DependentUpon>201812251723412_michal2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812251656434_a1231.resx">
-      <DependentUpon>201812251656434_a1231.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812251657546_a1234544.resx">
-      <DependentUpon>201812251657546_a1234544.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812251750484_asdasd45.resx">
+      <DependentUpon>201812251750484_asdasd45.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
