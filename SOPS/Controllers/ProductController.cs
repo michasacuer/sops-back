@@ -21,6 +21,7 @@ namespace SOPS.Controllers
         // GET: api/Products
         public IQueryable<Product> GetProducts()
         {
+            db.Configuration.LazyLoadingEnabled = false;
             return db.Products;
         }
 
