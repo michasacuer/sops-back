@@ -75,7 +75,6 @@ namespace SOPS.Controllers
         [ResponseType(typeof(Company))]
         public IHttpActionResult PostCompany(Company company)
         {
-            System.Diagnostics.Debug.WriteLine("SomeText");
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -101,6 +100,11 @@ namespace SOPS.Controllers
             db.SaveChanges();
 
             return Ok(company);
+        }
+
+        public string OptionsCompany()
+        {
+            return null; // HTTP 200 response with empty body
         }
 
         protected override void Dispose(bool disposing)
