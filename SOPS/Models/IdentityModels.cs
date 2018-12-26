@@ -34,7 +34,7 @@ namespace SOPS.Models
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
-            // Configuration.LazyLoadingEnabled = false;
+            Configuration.LazyLoadingEnabled = false;
         }
 
         public static ApplicationDbContext Create()
@@ -42,6 +42,7 @@ namespace SOPS.Models
             return new ApplicationDbContext();
         }
 
+        public DbSet<CompanyStatistics> CompanyStatistics { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Company> Companies { get; set; }

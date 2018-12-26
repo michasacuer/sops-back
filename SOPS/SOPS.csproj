@@ -106,6 +106,12 @@
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="OxyPlot, Version=1.0.0.0, Culture=neutral, PublicKeyToken=638079a8f0bd61e9, processorArchitecture=MSIL">
+      <HintPath>..\packages\OxyPlot.Core.1.0.0\lib\net45\OxyPlot.dll</HintPath>
+    </Reference>
+    <Reference Include="OxyPlot.WindowsForms, Version=1.0.0.0, Culture=neutral, PublicKeyToken=245eacd6b5d2d338, processorArchitecture=MSIL">
+      <HintPath>..\packages\OxyPlot.WindowsForms.1.0.0\lib\net45\OxyPlot.WindowsForms.dll</HintPath>
+    </Reference>
     <Reference Include="PdfSharp, Version=1.32.3057.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
       <HintPath>..\packages\PDFsharp.1.32.3057.0\lib\net20\PdfSharp.dll</HintPath>
     </Reference>
@@ -334,7 +340,16 @@
     <Compile Include="Migrations\201812252102295_assdf.Designer.cs">
       <DependentUpon>201812252102295_assdf.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812261242418_assdfasd.cs" />
+    <Compile Include="Migrations\201812261242418_assdfasd.Designer.cs">
+      <DependentUpon>201812261242418_assdfasd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812261312032_assdfasdfghsa.cs" />
+    <Compile Include="Migrations\201812261312032_assdfasdfghsa.Designer.cs">
+      <DependentUpon>201812261312032_assdfasdfghsa.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="ModelHelpers\CompanyStatisticsHelper.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Company.cs" />
@@ -343,6 +358,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductRating.cs" />
+    <Compile Include="Models\CompanyStatistics.cs" />
     <Compile Include="Models\QR.cs" />
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Models\WatchedProduct.cs" />
@@ -483,6 +499,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812252102295_assdf.resx">
       <DependentUpon>201812252102295_assdf.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812261242418_assdfasd.resx">
+      <DependentUpon>201812261242418_assdfasd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812261312032_assdfasdfghsa.resx">
+      <DependentUpon>201812261312032_assdfasdfghsa.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

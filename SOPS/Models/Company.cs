@@ -23,5 +23,6 @@ namespace SOPS.Models
         public virtual List<Product> Products { get; set; }
         public virtual List<CompanyReport> CompanyReports { get; set; }
         public virtual List<Employee> Employees { get; set; }
+        public virtual List<CompanyStatistics> CompanyStatistics { get; set; }
     }
 }
