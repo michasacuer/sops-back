@@ -16,8 +16,12 @@ namespace SOPS.Migrations
 
         protected override void Seed(SOPS.Models.ApplicationDbContext context)
         {
+            if (System.Diagnostics.Debugger.IsAttached == false)
+            {
+                //System.Diagnostics.Debugger.Launch();
+            }
             // This method will be called after migrating to the latest version.
-            
+
             // Generation configuration
             int companyCount = 10;
             int uniqueAddressStreetCount = 2;
@@ -32,8 +36,8 @@ namespace SOPS.Migrations
             int productRatingCount = 5;
             int companyReportCount = 10;
             int watchedProductCount = 10;
-            int existingProductCount = 5;
-            int qrCodeCount = 3;
+            int existingProductCount = 30;
+            int qrCodeCount = 20;
 
             Random random = new Random();
 
@@ -185,6 +189,7 @@ namespace SOPS.Migrations
             context.SaveChanges();
 
             context.QRs.RemoveRange(context.QRs);
+            context.SaveChanges();
             context.ExistingProducts.RemoveRange(context.ExistingProducts);
             context.SaveChanges();
             for (int i = 0; i < existingProductCount; i++)
@@ -198,6 +203,7 @@ namespace SOPS.Migrations
             }
             context.SaveChanges();
 
+            List<QR> qrs = new List<QR>(qrCodeCount);
             for (int i = 0; i < qrCodeCount; i++)
             {
                 QR qr = new QR
@@ -206,9 +212,27 @@ namespace SOPS.Migrations
                     Version = 1,
                     Content = new byte[10]
                 };
-                context.QRs.AddOrUpdate(q => q.ExistingProductId, qr);
+                qrs.Add(qr);
+                //context.QRs.AddOrUpdate(q => q.ExistingProductId, qr);
             }
+            var distinctQrs = qrs.Distinct(new QREqualityComparer()).ToArray();
+            context.QRs.AddOrUpdate(q => q.ExistingProductId, distinctQrs);
             context.SaveChanges();
         }
     }
+
+    class QREqualityComparer : IEqualityComparer<QR>
+    {
+        public bool Equals(QR x, QR y)
+        {
+            // Consider all even numbers the same, and all odd the same.
+            return x.ExistingProductId == y.ExistingProductId;
+        }
+
+        public int GetHashCode(QR obj)
+        {
+            return (obj.ExistingProductId % 2).GetHashCode();
+        }
+    }
 }
+

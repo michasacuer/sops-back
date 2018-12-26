@@ -51,6 +51,7 @@ namespace SOPS.Models
         public DbSet<WatchedProduct> WatchedProducts { get; set; }
         public DbSet<Company> Companies { get; set; }
         public DbSet<CompanyReport> CompanyReports { get; set; }
+        public DbSet<CompanyStatistics> CompanyStatistics { get; set; }
         public DbSet<QR> QRs { get; set; }
     }
 }
