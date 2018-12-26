@@ -184,7 +184,9 @@ namespace SOPS.Migrations
             }
             context.SaveChanges();
 
+            context.QRs.RemoveRange(context.QRs);
             context.ExistingProducts.RemoveRange(context.ExistingProducts);
+            context.SaveChanges();
             for (int i = 0; i < existingProductCount; i++)
             {
                 ExistingProduct existingProduct = new ExistingProduct
@@ -196,7 +198,6 @@ namespace SOPS.Migrations
             }
             context.SaveChanges();
 
-            context.QRs.RemoveRange(context.QRs);
             for (int i = 0; i < qrCodeCount; i++)
             {
                 QR qr = new QR
@@ -205,7 +206,7 @@ namespace SOPS.Migrations
                     Version = 1,
                     Content = new byte[10]
                 };
-                context.QRs.AddOrUpdate(qr);
+                context.QRs.AddOrUpdate(q => q.ExistingProductId, qr);
             }
             context.SaveChanges();
         }

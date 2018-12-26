@@ -13,7 +13,7 @@ namespace SOPS.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201812261438195_init"; }
+            get { return "201812261518206_init"; }
         }
         
         string IMigrationMetadata.Source
