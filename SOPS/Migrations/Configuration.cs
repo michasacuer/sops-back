@@ -41,7 +41,7 @@ namespace SOPS.Migrations
 
             Random random = new Random();
 
-            List<Company> companies = new List<Company>(companyCount);
+            // Company
             for (int i = 0; i < companyCount; ++i)
             {
                 List<int> nipDigits = new List<int>(new int[10]);
@@ -66,12 +66,11 @@ namespace SOPS.Migrations
                     NIP = String.Join("", nipDigits),
                     REGON = random.Next(999999999).ToString()
                 };
-                companies.Add(company);
+                context.Companies.AddOrUpdate(c => c.Name, company);
             }
-            context.Companies.AddOrUpdate(c => c.Name, companies.ToArray());
             context.SaveChanges();
 
-            List<ApplicationUser> users = new List<ApplicationUser>(userCount);
+            // User
             for (int i = 0; i < userCount; i++)
             {
                 List<int> phoneNumber = new List<int>(new int[10]);
@@ -93,12 +92,11 @@ namespace SOPS.Migrations
                     LockoutEnabled = false,
                     AccessFailedCount = 0
                 };
-                users.Add(user);
+                context.Users.AddOrUpdate(u => u.UserName, user);
             }
-            context.Users.AddOrUpdate(u => u.UserName, users.ToArray());
             context.SaveChanges();
 
-            List<Product> products = new List<Product>(productCount);
+            // Product
             for (int i = 0; i < productCount; i++)
             {
                 Product product = new Product
@@ -110,12 +108,11 @@ namespace SOPS.Migrations
                     SuggestedPrice = (decimal)random.Next(201),
                     CompanyId = context.Companies.ToList()[random.Next(context.Companies.Count())].Id
                 };
-                products.Add(product);
+                context.Products.AddOrUpdate(p => p.Name, product);
             }
-            context.Products.AddOrUpdate(p => p.Name, products.ToArray());
             context.SaveChanges();
 
-            List<Employee> employees = new List<Employee>(employeeCount);
+            // Employee
             for (int i = 0; i < employeeCount; i++)
             {
                 List<int> phoneNumber = new List<int>(new int[10]);
@@ -138,11 +135,11 @@ namespace SOPS.Migrations
                     AccessFailedCount = 0,
                     CompanyId = context.Companies.ToList()[random.Next(context.Companies.Count())].Id
                 };
-                employees.Add(employee);
+                context.Employees.AddOrUpdate(e => e.UserName, employee);
             }
-            context.Employees.AddOrUpdate(e => e.UserName, employees.ToArray());
             context.SaveChanges();
 
+            // ProductRating
             List<ProductRating> productRatings = new List<ProductRating>(productRatingCount);
             for (int i = 0; i < productRatingCount; i++)
             {
@@ -161,6 +158,7 @@ namespace SOPS.Migrations
             context.ProductRatings.AddOrUpdate(pr => pr.Id, productRatings.ToArray());
             context.SaveChanges();
 
+            // WatchedProduct
             context.WatchedProducts.RemoveRange(context.WatchedProducts);
             for (int i = 0; i < watchedProductCount; i++)
             {
@@ -176,7 +174,7 @@ namespace SOPS.Migrations
             }
             context.SaveChanges();
 
-            List<CompanyReport> companyReports = new List<CompanyReport>(companyReportCount);
+            // CompanyReport
             for (int i = 0; i < companyReportCount; i++)
             {
                 CompanyReport companyReport = new CompanyReport
@@ -188,6 +186,7 @@ namespace SOPS.Migrations
             }
             context.SaveChanges();
 
+            // ExistingProduct
             context.QRs.RemoveRange(context.QRs);
             context.SaveChanges();
             context.ExistingProducts.RemoveRange(context.ExistingProducts);
@@ -203,6 +202,7 @@ namespace SOPS.Migrations
             }
             context.SaveChanges();
 
+            // QR
             List<QR> qrs = new List<QR>(qrCodeCount);
             for (int i = 0; i < qrCodeCount; i++)
             {
