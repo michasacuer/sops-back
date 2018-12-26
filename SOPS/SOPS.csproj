@@ -265,6 +265,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationDbContext.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -320,33 +321,14 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\QRController.cs" />
+    <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812251737263_asdasd.cs" />
-    <Compile Include="Migrations\201812251737263_asdasd.Designer.cs">
-      <DependentUpon>201812251737263_asdasd.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812251750484_asdasd45.cs" />
-    <Compile Include="Migrations\201812251750484_asdasd45.Designer.cs">
-      <DependentUpon>201812251750484_asdasd45.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812252011586_as.cs" />
-    <Compile Include="Migrations\201812252011586_as.Designer.cs">
-      <DependentUpon>201812252011586_as.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812252102295_assdf.cs" />
-    <Compile Include="Migrations\201812252102295_assdf.Designer.cs">
-      <DependentUpon>201812252102295_assdf.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812261242418_assdfasd.cs" />
-    <Compile Include="Migrations\201812261242418_assdfasd.Designer.cs">
-      <DependentUpon>201812261242418_assdfasd.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812261312032_assdfasdfghsa.cs" />
-    <Compile Include="Migrations\201812261312032_assdfasdfghsa.Designer.cs">
-      <DependentUpon>201812261312032_assdfasdfghsa.cs</DependentUpon>
+    <Compile Include="Migrations\201812261659037_init.cs" />
+    <Compile Include="Migrations\201812261659037_init.Designer.cs">
+      <DependentUpon>201812261659037_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelHelpers\CompanyStatisticsHelper.cs" />
@@ -354,12 +336,14 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\CompanyReport.cs" />
+    <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\ExistingProduct.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductRating.cs" />
     <Compile Include="Models\CompanyStatistics.cs" />
     <Compile Include="Models\QR.cs" />
+    <Compile Include="Models\RoleBindingModels.cs" />
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Models\WatchedProduct.cs" />
     <Compile Include="PdfConvert.cs" />
@@ -488,23 +472,8 @@
       <LastGenOutput>Product.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Resources</CustomToolNamespace>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812251737263_asdasd.resx">
-      <DependentUpon>201812251737263_asdasd.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812251750484_asdasd45.resx">
-      <DependentUpon>201812251750484_asdasd45.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812252011586_as.resx">
-      <DependentUpon>201812252011586_as.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812252102295_assdf.resx">
-      <DependentUpon>201812252102295_assdf.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812261242418_assdfasd.resx">
-      <DependentUpon>201812261242418_assdfasd.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812261312032_assdfasdfghsa.resx">
-      <DependentUpon>201812261312032_assdfasdfghsa.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812261659037_init.resx">
+      <DependentUpon>201812261659037_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

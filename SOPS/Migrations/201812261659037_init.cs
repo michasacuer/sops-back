@@ -3,7 +3,7 @@ namespace SOPS.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class _as : DbMigration
+    public partial class init : DbMigration
     {
         public override void Up()
         {
