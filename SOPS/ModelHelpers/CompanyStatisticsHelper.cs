@@ -28,7 +28,8 @@ namespace SOPS.ModelHelpers
             }
             else
             {
-                currentStatistics.RegistredProducts += 1;
+
+                currentStatistics.RegistredProducts += 1;               
             }
         }
     }
