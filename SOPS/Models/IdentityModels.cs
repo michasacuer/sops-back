@@ -11,6 +11,8 @@ namespace SOPS.Models
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
+        public string Name { get; set; }
+        public string Surname { get; set; }
         public virtual List<WatchedProduct> WatchedProducts { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
@@ -26,7 +28,7 @@ namespace SOPS.Models
     public class Employee : ApplicationUser
     {
         public int CompanyId { get; set; }
-        public Company Company { get; set; }
+        public virtual Company Company { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
@@ -45,9 +47,11 @@ namespace SOPS.Models
         public DbSet<CompanyStatistics> CompanyStatistics { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Product> Products { get; set; }
-        public DbSet<Company> Companies { get; set; }
+        public DbSet<ProductRating> ProductRatings { get; set; }
         public DbSet<ExistingProduct> ExistingProducts { get; set; }
         public DbSet<WatchedProduct> WatchedProducts { get; set; }
+        public DbSet<Company> Companies { get; set; }
+        public DbSet<CompanyReport> CompanyReports { get; set; }
         public DbSet<QR> QRs { get; set; }
     }
 }

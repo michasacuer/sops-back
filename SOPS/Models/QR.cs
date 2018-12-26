@@ -13,13 +13,12 @@ namespace SOPS.Models
     public class QR
     {
         [Key]
-        [ForeignKey("ExistingProduct")]
+        [ForeignKey("ExistingProduct"), DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ExistingProductId { get; set; }
+        public virtual ExistingProduct ExistingProduct { get; set; }
 
         public int Version { get; set; }
         public byte[] Content { get; set; }
-
-        public virtual ExistingProduct ExistingProduct { get; set; }
 
         public void UpdateQR()
         {
