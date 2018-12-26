@@ -324,29 +324,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812251737263_asdasd.cs" />
-    <Compile Include="Migrations\201812251737263_asdasd.Designer.cs">
-      <DependentUpon>201812251737263_asdasd.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812251750484_asdasd45.cs" />
-    <Compile Include="Migrations\201812251750484_asdasd45.Designer.cs">
-      <DependentUpon>201812251750484_asdasd45.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812252011586_as.cs" />
-    <Compile Include="Migrations\201812252011586_as.Designer.cs">
-      <DependentUpon>201812252011586_as.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812252102295_assdf.cs" />
-    <Compile Include="Migrations\201812252102295_assdf.Designer.cs">
-      <DependentUpon>201812252102295_assdf.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812261242418_assdfasd.cs" />
-    <Compile Include="Migrations\201812261242418_assdfasd.Designer.cs">
-      <DependentUpon>201812261242418_assdfasd.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812261312032_assdfasdfghsa.cs" />
-    <Compile Include="Migrations\201812261312032_assdfasdfghsa.Designer.cs">
-      <DependentUpon>201812261312032_assdfasdfghsa.cs</DependentUpon>
+    <Compile Include="Migrations\201812261438195_init.cs" />
+    <Compile Include="Migrations\201812261438195_init.Designer.cs">
+      <DependentUpon>201812261438195_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelHelpers\CompanyStatisticsHelper.cs" />
@@ -488,23 +468,8 @@
       <LastGenOutput>Product.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Resources</CustomToolNamespace>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812251737263_asdasd.resx">
-      <DependentUpon>201812251737263_asdasd.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812251750484_asdasd45.resx">
-      <DependentUpon>201812251750484_asdasd45.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812252011586_as.resx">
-      <DependentUpon>201812252011586_as.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812252102295_assdf.resx">
-      <DependentUpon>201812252102295_assdf.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812261242418_assdfasd.resx">
-      <DependentUpon>201812261242418_assdfasd.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812261312032_assdfasdfghsa.resx">
-      <DependentUpon>201812261312032_assdfasdfghsa.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812261438195_init.resx">
+      <DependentUpon>201812261438195_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
