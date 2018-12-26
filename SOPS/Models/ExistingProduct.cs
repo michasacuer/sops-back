@@ -20,7 +20,7 @@ namespace SOPS.Models
         public int ProductId { get; set; }
         public virtual Product Product { get; set; }
 
-        //public int QrId { get; set; }
+        // public int QrId { get; set; }
         public virtual QR QR { get; set; }
     }
 }

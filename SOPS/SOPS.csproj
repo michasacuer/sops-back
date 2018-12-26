@@ -318,14 +318,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812251737263_asdasd.cs" />
-    <Compile Include="Migrations\201812251737263_asdasd.Designer.cs">
-      <DependentUpon>201812251737263_asdasd.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812251750484_asdasd45.cs" />
-    <Compile Include="Migrations\201812251750484_asdasd45.Designer.cs">
-      <DependentUpon>201812251750484_asdasd45.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -462,12 +454,6 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Product.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Resources</CustomToolNamespace>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812251737263_asdasd.resx">
-      <DependentUpon>201812251737263_asdasd.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812251750484_asdasd45.resx">
-      <DependentUpon>201812251750484_asdasd45.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
