@@ -65,6 +65,7 @@ namespace SOPS.Migrations
                 companies.Add(company);
             }
             context.Companies.AddOrUpdate(c => c.Name, companies.ToArray());
+            context.SaveChanges();
 
             List<ApplicationUser> users = new List<ApplicationUser>(userCount);
             for (int i = 0; i < userCount; i++)
@@ -91,6 +92,7 @@ namespace SOPS.Migrations
                 users.Add(user);
             }
             context.Users.AddOrUpdate(u => u.UserName, users.ToArray());
+            context.SaveChanges();
 
             List<Product> products = new List<Product>(productCount);
             for (int i = 0; i < productCount; i++)
@@ -107,6 +109,7 @@ namespace SOPS.Migrations
                 products.Add(product);
             }
             context.Products.AddOrUpdate(p => p.Name, products.ToArray());
+            context.SaveChanges();
 
             List<Employee> employees = new List<Employee>(employeeCount);
             for (int i = 0; i < employeeCount; i++)
@@ -134,6 +137,7 @@ namespace SOPS.Migrations
                 employees.Add(employee);
             }
             context.Employees.AddOrUpdate(e => e.UserName, employees.ToArray());
+            context.SaveChanges();
 
             List<ProductRating> productRatings = new List<ProductRating>(productRatingCount);
             for (int i = 0; i < productRatingCount; i++)
@@ -151,6 +155,7 @@ namespace SOPS.Migrations
             }
             context.ProductRatings.RemoveRange(context.ProductRatings);
             context.ProductRatings.AddOrUpdate(pr => pr.Id, productRatings.ToArray());
+            context.SaveChanges();
 
             context.WatchedProducts.RemoveRange(context.WatchedProducts);
             for (int i = 0; i < watchedProductCount; i++)
@@ -165,6 +170,7 @@ namespace SOPS.Migrations
                     context.WatchedProducts.AddOrUpdate(watchedProduct);
                 }
             }
+            context.SaveChanges();
 
             List<CompanyReport> companyReports = new List<CompanyReport>(companyReportCount);
             for (int i = 0; i < companyReportCount; i++)
@@ -176,6 +182,7 @@ namespace SOPS.Migrations
                 };
                 context.CompanyReports.AddOrUpdate(cr => cr.Content, companyReport);
             }
+            context.SaveChanges();
 
             context.ExistingProducts.RemoveRange(context.ExistingProducts);
             for (int i = 0; i < existingProductCount; i++)
@@ -187,6 +194,7 @@ namespace SOPS.Migrations
                 };
                 context.ExistingProducts.AddOrUpdate(existingProduct);
             }
+            context.SaveChanges();
 
             context.QRs.RemoveRange(context.QRs);
             for (int i = 0; i < qrCodeCount; i++)
@@ -199,7 +207,6 @@ namespace SOPS.Migrations
                 };
                 context.QRs.AddOrUpdate(qr);
             }
-
             context.SaveChanges();
         }
     }
