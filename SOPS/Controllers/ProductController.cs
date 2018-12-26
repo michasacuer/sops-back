@@ -10,7 +10,6 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using Microsoft.AspNet.Identity;
 using SOPS.Attributes;
-using SOPS.ModelHelpers;
 using SOPS.Models;
 
 namespace SOPS.Controllers
@@ -93,7 +92,6 @@ namespace SOPS.Controllers
             }
 
             db.Products.Add(product);
-            db.IncrementRegistredProducts(product.CompanyId);
             db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = product.Id }, product);
