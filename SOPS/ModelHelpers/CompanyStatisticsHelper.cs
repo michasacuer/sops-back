@@ -28,6 +28,7 @@ namespace SOPS.ModelHelpers
             }
             else
             {
+
                 currentStatistics.RegistredProducts += 1;               
             }
         }
