@@ -10,7 +10,7 @@ namespace SOPS.Models
     public class Employee
     {
         [Key]
-        [ForeignKey("User")]
+        [ForeignKey("User"), DatabaseGenerated(DatabaseGeneratedOption.None)]
         public string UserId { get; set; }
         public int CompanyId { get; set; }
 

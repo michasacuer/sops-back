@@ -36,6 +36,19 @@ namespace SOPS.Migrations
                 .Index(t => t.CompanyId);
             
             CreateTable(
+                "dbo.Employees",
+                c => new
+                    {
+                        UserId = c.String(nullable: false, maxLength: 128),
+                        CompanyId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.UserId)
+                .ForeignKey("dbo.Companies", t => t.CompanyId, cascadeDelete: true)
+                .ForeignKey("dbo.AspNetUsers", t => t.UserId)
+                .Index(t => t.UserId)
+                .Index(t => t.CompanyId);
+            
+            CreateTable(
                 "dbo.AspNetUsers",
                 c => new
                     {
@@ -53,13 +66,9 @@ namespace SOPS.Migrations
                         LockoutEnabled = c.Boolean(nullable: false),
                         AccessFailedCount = c.Int(nullable: false),
                         UserName = c.String(nullable: false, maxLength: 256),
-                        CompanyId = c.Int(),
-                        Discriminator = c.String(nullable: false, maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Companies", t => t.CompanyId, cascadeDelete: true)
-                .Index(t => t.UserName, unique: true, name: "UserNameIndex")
-                .Index(t => t.CompanyId);
+                .Index(t => t.UserName, unique: true, name: "UserNameIndex");
             
             CreateTable(
                 "dbo.AspNetUserClaims",
@@ -196,6 +205,7 @@ namespace SOPS.Migrations
         {
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
             DropForeignKey("dbo.CompanyStatistics", "CompanyId", "dbo.Companies");
+            DropForeignKey("dbo.Employees", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.WatchedProducts", "ProductId", "dbo.Products");
             DropForeignKey("dbo.ProductRatings", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.ProductRatings", "ProductId", "dbo.Products");
@@ -206,7 +216,7 @@ namespace SOPS.Migrations
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
-            DropForeignKey("dbo.AspNetUsers", "CompanyId", "dbo.Companies");
+            DropForeignKey("dbo.Employees", "CompanyId", "dbo.Companies");
             DropForeignKey("dbo.CompanyReports", "CompanyId", "dbo.Companies");
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
             DropIndex("dbo.CompanyStatistics", new[] { "CompanyId" });
@@ -221,8 +231,9 @@ namespace SOPS.Migrations
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
-            DropIndex("dbo.AspNetUsers", new[] { "CompanyId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
+            DropIndex("dbo.Employees", new[] { "CompanyId" });
+            DropIndex("dbo.Employees", new[] { "UserId" });
             DropIndex("dbo.CompanyReports", new[] { "CompanyId" });
             DropTable("dbo.AspNetRoles");
             DropTable("dbo.CompanyStatistics");
@@ -235,6 +246,7 @@ namespace SOPS.Migrations
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
+            DropTable("dbo.Employees");
             DropTable("dbo.CompanyReports");
             DropTable("dbo.Companies");
         }

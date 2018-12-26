@@ -27,7 +27,7 @@ namespace SOPS.Migrations
             int uniqueAddressStreetCount = 2;
             int uniqueAddressCityCount = 5;
 
-            int userCount = 10;
+            int userCount = 20;
             int uniqueUserNameCount = 5;
             int uniqueUserSurnameCount = 10;
 
@@ -96,6 +96,23 @@ namespace SOPS.Migrations
             }
             context.SaveChanges();
 
+            // Employee
+            context.Employees.RemoveRange(context.Employees);
+            context.SaveChanges();
+            List<Employee> employees = new List<Employee>(employeeCount);
+            for (int i = 0; i < employeeCount; i++)
+            {
+                Employee employee = new Employee
+                {
+                    UserId = context.Users.ToList()[random.Next(context.Users.Count())].Id,
+                    CompanyId = context.Companies.ToList()[random.Next(context.Companies.Count())].Id
+                };
+                employees.Add(employee);
+            }
+            var distinceEmployees = employees.Distinct(new EmployeeEqualityComparer()).ToArray();
+            context.Employees.AddOrUpdate(e => e.UserId, distinceEmployees);
+            context.SaveChanges();
+
             // Product
             for (int i = 0; i < productCount; i++)
             {
@@ -109,33 +126,6 @@ namespace SOPS.Migrations
                     CompanyId = context.Companies.ToList()[random.Next(context.Companies.Count())].Id
                 };
                 context.Products.AddOrUpdate(p => p.Name, product);
-            }
-            context.SaveChanges();
-
-            // Employee
-            for (int i = 0; i < employeeCount; i++)
-            {
-                List<int> phoneNumber = new List<int>(new int[10]);
-                for (int j = 0; j < phoneNumber.Count; j++)
-                {
-                    phoneNumber[j] = random.Next(10);
-                }
-                Employee employee = new Employee
-                {
-                    UserName = "employee" + i,
-                    Name = "name" + random.Next(uniqueUserNameCount),
-                    Surname = "surname" + random.Next(uniqueUserSurnameCount),
-                    Email = "employee" + i + "@email.com",
-                    EmailConfirmed = true,
-                    PasswordHash = ("employee" + i).GetHashCode().ToString(),
-                    SecurityStamp = "?",
-                    PhoneNumber = String.Join("", phoneNumber.ToArray()),
-                    TwoFactorEnabled = false,
-                    LockoutEnabled = false,
-                    AccessFailedCount = 0,
-                    CompanyId = context.Companies.ToList()[random.Next(context.Companies.Count())].Id
-                };
-                context.Employees.AddOrUpdate(e => e.UserName, employee);
             }
             context.SaveChanges();
 
@@ -221,17 +211,29 @@ namespace SOPS.Migrations
         }
     }
 
+    // Comparers for generator
     class QREqualityComparer : IEqualityComparer<QR>
     {
         public bool Equals(QR x, QR y)
         {
-            // Consider all even numbers the same, and all odd the same.
             return x.ExistingProductId == y.ExistingProductId;
         }
 
         public int GetHashCode(QR obj)
         {
-            return (obj.ExistingProductId % 2).GetHashCode();
+            return obj.ExistingProductId.GetHashCode();
+        }
+    }
+    class EmployeeEqualityComparer : IEqualityComparer<Employee>
+    {
+        public bool Equals(Employee x, Employee y)
+        {
+            return x.UserId.Equals(y.UserId);
+        }
+
+        public int GetHashCode(Employee obj)
+        {
+            return obj.UserId.GetHashCode();
         }
     }
 }

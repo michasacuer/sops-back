@@ -325,9 +325,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812261730432_init.cs" />
-    <Compile Include="Migrations\201812261730432_init.Designer.cs">
-      <DependentUpon>201812261730432_init.cs</DependentUpon>
+    <Compile Include="Migrations\201812261910538_init.cs" />
+    <Compile Include="Migrations\201812261910538_init.Designer.cs">
+      <DependentUpon>201812261910538_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelHelpers\CompanyStatisticsHelper.cs" />
@@ -470,8 +470,8 @@
       <LastGenOutput>Product.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Resources</CustomToolNamespace>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812261730432_init.resx">
-      <DependentUpon>201812261730432_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812261910538_init.resx">
+      <DependentUpon>201812261910538_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
