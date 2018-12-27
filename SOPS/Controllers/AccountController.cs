@@ -16,6 +16,7 @@ using Microsoft.Owin.Security.OAuth;
 using SOPS.Models;
 using SOPS.Providers;
 using SOPS.Results;
+using System.Linq;
 
 namespace SOPS.Controllers
 {
@@ -23,6 +24,7 @@ namespace SOPS.Controllers
     [RoutePrefix("api/Account")]
     public class AccountController : ApiController
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
         private const string LocalLoginProvider = "Local";
         private ApplicationUserManager _userManager;
 
@@ -384,6 +386,42 @@ namespace SOPS.Controllers
             base.Dispose(disposing);
         }
 
+        // POST api/Account/AddWatchedProduct/id
+        [Authorize]
+        [HttpPost]
+        [Route("AddWatchedProduct")]
+        public async Task<IHttpActionResult> AddWatchedProduct(int id)
+        {
+            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+            var product = await Task.Run(() => db.Products.Find(id));
+
+            if(user == null || product == null)
+                return NotFound();
+
+            db.WatchedProducts.Add(new WatchedProduct { ProductId = id, ApplicationUserId = user.Id });
+            db.SaveChanges();
+            return Ok();
+        }
+
+        // DELETE api/Account/DeleteWatchedProduct/id
+        [Authorize]
+        [HttpDelete]
+        [Route("DeleteWatchedProduct")]
+        public async Task<IHttpActionResult> DeleteWatchedProduct(int id)
+        {
+            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+            if (user == null)
+                return NotFound();
+
+            var product = await Task.Run(() => db.WatchedProducts.SingleOrDefault(u => u.ApplicationUserId == user.Id && u.ProductId == id));
+            if (product == null)
+                return NotFound();
+
+            db.WatchedProducts.Remove(product);
+            db.SaveChanges();
+            return Ok();
+        }
+
         #region Helpers
 
         private IAuthenticationManager Authentication
@@ -419,6 +457,8 @@ namespace SOPS.Controllers
 
             return null;
         }
+
+
 
         private class ExternalLoginData
         {
