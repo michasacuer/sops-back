@@ -40,21 +40,21 @@ namespace SOPS.Areas.Document.Controllers
             return View(vm);
         }
 
-        public ActionResult EmployeeReport(int? id)
+        public ActionResult EmployeeReport(int? companyId)
         {
-            if (id == null)
+            if (companyId == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ExistingProduct existingProduct = db.ExistingProducts.Find(id);
-            if (existingProduct == null)
+            Company company= db.Companies.Find(companyId);
+            if (company == null)
             {
                 return HttpNotFound();
             }
-            db.Entry(existingProduct).Reference(e => e.Product).Load();
-            db.Entry(existingProduct.Product).Reference(p => p.Company).Load();
+            // db.Entry(existingProduct).Reference(e => e.Product).Load();
+            // db.Entry(existingProduct.Product).Reference(p => p.Company).Load();
 
-            var vm = DocumentViewModel.CreateViewModel(existingProduct);
+            var vm = DocumentViewModel.CreateViewModel(company);
 
             return View(vm);
         }
