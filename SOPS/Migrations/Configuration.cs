@@ -63,11 +63,13 @@ namespace SOPS.Migrations
             context.SaveChanges();
             context.Companies.RemoveRange(context.Companies);
             context.SaveChanges();
+            ((DbSet<IdentityRole>)context.Roles).RemoveRange(context.Roles);
+            context.SaveChanges();
 
             // UserRoles
-            context.Roles.AddOrUpdate(new IdentityRole("User"));
-            context.Roles.AddOrUpdate(new IdentityRole("Employee"));
-            context.Roles.AddOrUpdate(new IdentityRole("Administrator"));
+            context.Roles.Add(new IdentityRole("User"));
+            context.Roles.Add(new IdentityRole("Employee"));
+            context.Roles.Add(new IdentityRole("Administrator"));
             context.SaveChanges();
 
             // Company

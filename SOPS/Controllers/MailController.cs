@@ -13,7 +13,7 @@ namespace SOPS.Controllers
     [RoutePrefix("api/Mail")]
     public class MailController : ApiController
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private ApplicationDbContext db = null;
         private SmtpClient smtpClient = new SmtpClient("ssl0.ovh.net", 587);
         private static CacheItemRemovedCallback OnCacheRemove = null;
         private static bool IsSendingActivated = false;
@@ -52,13 +52,15 @@ namespace SOPS.Controllers
             MailMessage mail = new MailMessage();
             mail.From = new MailAddress("sops@antoniuk.pl", "SOPS");
 
+            db = new ApplicationDbContext();
             var userEmployees = db.Users.Where(u => db.Employees.Any(e => e.UserId == u.Id));
             foreach (var userEmployee in userEmployees)
             {
                 if (userEmployee.EmailConfirmed)
                 {
-                    mail.To.Add(new MailAddress(userEmployee.Email));
+                    //mail.To.Add(new MailAddress(userEmployee.Email));
                 }
+                mail.To.Add(new MailAddress(userEmployee.Email));
             }
             // mail.To.Add(new MailAddress("skrzynkanof@gmail.com"));
             // mail.To.Add(new MailAddress("sops@antoniuk.pl"));
