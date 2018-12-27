@@ -31,12 +31,12 @@ namespace SOPS.Migrations
             int uniqueAddressStreetCount = 2;
             int uniqueAddressCityCount = 5;
 
-            int userCount = 20;
+            int userCount = 10;
             int uniqueUserNameCount = 5;
             int uniqueUserSurnameCount = 10;
 
             int productCount = 30;
-            int employeeCount = 10;
+            int employeeCount = 3;
             int productRatingCount = 5;
             int companyReportCount = 10;
             int watchedProductCount = 10;

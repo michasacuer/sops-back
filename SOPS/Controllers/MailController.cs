@@ -62,8 +62,6 @@ namespace SOPS.Controllers
                 }
                 mail.To.Add(new MailAddress(userEmployee.Email));
             }
-            // mail.To.Add(new MailAddress("skrzynkanof@gmail.com"));
-            // mail.To.Add(new MailAddress("sops@antoniuk.pl"));
             //("michasacuer3@gmail.com"));
             //("skrzynkanof@gmail.com"));
 
