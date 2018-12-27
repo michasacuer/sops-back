@@ -56,11 +56,16 @@ namespace SOPS.Controllers
                 {
                     return BadRequest();
                 }
+                if(db.Employees.Find(roleBindingModel.UserId) != null)
+                {
+                    return BadRequest();
+                }
                 db.Employees.Add(new Employee
                 {
                     UserId = roleBindingModel.UserId,
                     CompanyId = roleBindingModel.OptionalCompanyId
                 });
+                db.SaveChanges();
             } 
             else
             {
