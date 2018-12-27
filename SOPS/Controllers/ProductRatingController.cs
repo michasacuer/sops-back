@@ -14,31 +14,31 @@ using SOPS.Models;
 
 namespace SOPS.Controllers
 {
-    public class ProductRatingsController : ApiController
+    public class ProductRatingController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         private string loggedUserId = UserHelper.GetCurrentUserId();
 
-        // GET: api/ProductRatings/id
+        // GET: api/ProductRating/id
         [HttpGet]
-        public IQueryable<ProductRating> GetProductRatings(int id)
+        public IQueryable<ProductRating> GetProductRating(int id)
         {
             //we could use '=>' here, idk if necessery
             return db.ProductRatings.Where(pc => pc.ProductId == id);
         }
 
-        // POST: api/ProductRatings/id
+        // POST: api/ProductRating/id
         [Authorize]
         [HttpPost]
         [ResponseType(typeof(ProductRating))]
-        public IHttpActionResult PostProductRating(int id, [FromBody] int rate)
+        public IHttpActionResult PostProductRating(int id, ProductRatingBindingModel rateFromBody)
         {
             if (!db.Products.Any(p => p.Id == id) || loggedUserId == null)
                 return NotFound();
 
             db.ProductRatings.Add(new ProductRating
             {
-                Rating = rate,
+                Rating = rateFromBody.Rating,
                 UserId = loggedUserId,
                 ProductId = id
             });
@@ -46,7 +46,7 @@ namespace SOPS.Controllers
             return Ok();
         }
 
-        // GET: api/ProductRatings/Avarage/id
+        // GET: api/ProductRating/Avarage/id
         [Route("Avarage/{id:int}")]
         [HttpGet]
         [ResponseType(typeof(ProductRatingViewModel))]
