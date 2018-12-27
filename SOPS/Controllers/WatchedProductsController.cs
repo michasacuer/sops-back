@@ -76,9 +76,9 @@ namespace SOPS.Controllers
             base.Dispose(disposing);
         }
 
-        private bool WatchedProductExists(int id)
-        {
-            return db.WatchedProducts.Count(e => e.Id == id) > 0;
-        }
+        //private bool WatchedProductExists(int id)
+        //{
+        //    return db.WatchedProducts.Count(e => e.Id == id) > 0;
+        //}
     }
 }
