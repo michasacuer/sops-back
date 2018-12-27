@@ -31,7 +31,7 @@ namespace SOPS.Controllers
 
 
         // POST: api/WatchedProduct/5
-        //[Authorize]
+        [Authorize]
         [HttpPost]
         [ResponseType(typeof(WatchedProduct))]
         public IHttpActionResult PostWatchedProduct(int id)
