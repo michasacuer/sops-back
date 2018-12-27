@@ -20,36 +20,13 @@ namespace SOPS.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        private ApplicationUserManager _userManager;
-        private ApplicationRoleManager _roleManager;
-        public ApplicationUserManager UserManager
-        {
-            get
-            {
-                return _userManager ?? Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            }
-            private set
-            {
-                _userManager = value;
-            }
-        }
-
-        public ApplicationRoleManager RoleManager
-        {
-            get
-            {
-                return _roleManager ?? Request.GetOwinContext().GetUserManager<ApplicationRoleManager>();
-            }
-            private set
-            {
-                _roleManager = value;
-            }
-        }
+        public ApplicationUserManager UserManager => Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
+        public ApplicationRoleManager RoleManager => Request.GetOwinContext().GetUserManager<ApplicationRoleManager>();
 
         // POST: api/Role
         [Authorize(Roles = "Administrator,Employee")]
         [ResponseType(typeof(RoleBindingModel))]
-        public IHttpActionResult PostApplicationUser(RoleBindingModel roleBindingModel)
+        public IHttpActionResult PostRole(RoleBindingModel roleBindingModel)
         {
             if (!ModelState.IsValid)
             {

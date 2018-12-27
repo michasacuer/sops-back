@@ -319,18 +319,22 @@
     <Compile Include="Controllers\DocumentController.cs" />
     <Compile Include="Controllers\ExistingProductController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PlotController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\QRController.cs" />
+    <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812261910538_init.cs" />
-    <Compile Include="Migrations\201812261910538_init.Designer.cs">
-      <DependentUpon>201812261910538_init.cs</DependentUpon>
+    <Compile Include="Migrations\201812261930164_init.cs" />
+    <Compile Include="Migrations\201812261930164_init.Designer.cs">
+      <DependentUpon>201812261930164_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="ModelHelpers\EmployeeHelper.cs" />
     <Compile Include="ModelHelpers\CompanyStatisticsHelper.cs" />
+    <Compile Include="ModelHelpers\UserManagerHelper.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Company.cs" />
@@ -342,6 +346,7 @@
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductRating.cs" />
     <Compile Include="Models\QR.cs" />
+    <Compile Include="Models\RoleBindingModels.cs" />
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Models\WatchedProduct.cs" />
     <Compile Include="PdfConvert.cs" />
@@ -470,8 +475,8 @@
       <LastGenOutput>Product.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Resources</CustomToolNamespace>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812261910538_init.resx">
-      <DependentUpon>201812261910538_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812261930164_init.resx">
+      <DependentUpon>201812261930164_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
