@@ -326,6 +326,7 @@
     <Compile Include="Controllers\ProductRatingsController.cs" />
     <Compile Include="Controllers\QRController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\ShortUrlController.cs" />
     <Compile Include="Controllers\StatisticsController.cs" />
     <Compile Include="Controllers\UserProfileController.cs" />
     <Compile Include="Controllers\WatchedProductsController.cs" />
@@ -355,6 +356,7 @@
     <Compile Include="Models\QR.cs" />
     <Compile Include="Models\RoleBindingModels.cs" />
     <Compile Include="Models\StatisticGetAllCountViewModel.cs" />
+    <Compile Include="Models\ShortUrl.cs" />
     <Compile Include="Models\UserProfileBindingModels.cs" />
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Models\WatchedProduct.cs" />
@@ -484,8 +486,11 @@
       <LastGenOutput>Product.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Resources</CustomToolNamespace>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812271733262_init.resx">
-      <DependentUpon>201812271733262_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812271707294_init.resx">
+      <DependentUpon>201812271707294_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812271647569_mig1.resx">
+      <DependentUpon>201812271647569_mig1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

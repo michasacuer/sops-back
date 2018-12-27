@@ -31,5 +31,7 @@ namespace SOPS
         public DbSet<CompanyReport> CompanyReports { get; set; }
         public DbSet<CompanyStatistics> CompanyStatistics { get; set; }
         public DbSet<QR> QRs { get; set; }
+
+        public System.Data.Entity.DbSet<SOPS.Models.ShortUrl> ShortUrls { get; set; }
     }
 }
