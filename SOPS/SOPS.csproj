@@ -351,6 +351,7 @@
     <Compile Include="Models\ProductRating.cs" />
     <Compile Include="Models\QR.cs" />
     <Compile Include="Models\RoleBindingModels.cs" />
+    <Compile Include="Models\ShortUrl.cs" />
     <Compile Include="Models\UserProfileBindingModels.cs" />
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Models\WatchedProduct.cs" />
