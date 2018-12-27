@@ -321,15 +321,15 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PlotController.cs" />
     <Compile Include="Controllers\MailController.cs" />
-    <Compile Include="Controllers\ProductCommentsController.cs" />
+    <Compile Include="Controllers\ProductCommentController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
-    <Compile Include="Controllers\ProductRatingsController.cs" />
+    <Compile Include="Controllers\ProductRatingController.cs" />
     <Compile Include="Controllers\QRController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\ShortUrlController.cs" />
-    <Compile Include="Controllers\StatisticsController.cs" />
+    <Compile Include="Controllers\StatisticController.cs" />
     <Compile Include="Controllers\UserProfileController.cs" />
-    <Compile Include="Controllers\WatchedProductsController.cs" />
+    <Compile Include="Controllers\WatchedProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -351,7 +351,9 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductComment.cs" />
+    <Compile Include="Models\ProductCommentBindingModel.cs" />
     <Compile Include="Models\ProductRating.cs" />
+    <Compile Include="Models\ProductRatingBindingModel.cs" />
     <Compile Include="Models\ProductRatingViewModel.cs" />
     <Compile Include="Models\QR.cs" />
     <Compile Include="Models\RoleBindingModels.cs" />

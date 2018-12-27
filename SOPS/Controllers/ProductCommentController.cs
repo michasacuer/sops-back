@@ -14,14 +14,14 @@ using SOPS.Models;
 
 namespace SOPS.Controllers
 {
-    public class ProductCommentsController : ApiController
+    public class ProductCommentController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         private string loggedUserId = UserHelper.GetCurrentUserId();
 
-        // GET: api/ProductComments/id
+        // GET: api/ProductComment/id
         [HttpGet]
-        public IQueryable<ProductComment> GetProductComments(int id)
+        public IQueryable<ProductComment> GetProductComment(int id)
         {
             //we could use '=>' here, idk if necessery
             return db.ProductComments.Where(pc => pc.ProductId == id);
@@ -31,14 +31,14 @@ namespace SOPS.Controllers
         [Authorize]
         [HttpPost]
         [ResponseType(typeof(ProductComment))]
-        public IHttpActionResult PostProductComment(int id, [FromBody] string comment)
+        public IHttpActionResult PostProductComment(int id, ProductCommentBindingModel commentFromBody)
         {
-            if (!db.Products.Any(p => p.Id == id) || comment == null || loggedUserId == null)
+            if (!db.Products.Any(p => p.Id == id) || commentFromBody == null || loggedUserId == null)
                 return NotFound();
 
             db.ProductComments.Add(new ProductComment
             {
-                Comment = comment,
+                Comment = commentFromBody.Comment,
                 ApplicationUserId = loggedUserId,
                 ProductId = id
             });
@@ -46,7 +46,7 @@ namespace SOPS.Controllers
             return Ok();
         }
 
-        // DELETE: api/ProductComments/5
+        // DELETE: api/ProductComment/5
         [ResponseType(typeof(ProductComment))]
         [HttpDelete]
         public IHttpActionResult DeleteProductComment(int id)

@@ -9,8 +9,8 @@ using SOPS.Models;
 
 namespace SOPS.Controllers
 {
-    [RoutePrefix("api/Statistics")]
-    public class StatisticsController : ApiController
+    [RoutePrefix("api/Statistic")]
+    public class StatisticController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
