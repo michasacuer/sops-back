@@ -8,14 +8,18 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
+using Microsoft.AspNet.Identity.Owin;
+using SOPS.ModelHelpers;
 using SOPS.Models;
 
 namespace SOPS.Controllers
 {
     [RoutePrefix("api/User")]
-    public class UserController : ApiController
+    public class UserProfileController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+
+        public ApplicationUserManager UserManager => Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
 
         // GET: api/User
         /*public IQueryable<ApplicationUser> GetApplicationUsers()
@@ -25,8 +29,8 @@ namespace SOPS.Controllers
 
         // GET: api/User/Profile/5
         [Route("Profile")]
-        [ResponseType(typeof(ApplicationUser))]
-        public IHttpActionResult GetApplicationUserProfile(string id)
+        [ResponseType(typeof(UserProfileViewModel))]
+        public IHttpActionResult GetUserProfile(string id)
         {
             ApplicationUser applicationUser = db.Users.Find(id);
             if (applicationUser == null)
@@ -36,7 +40,7 @@ namespace SOPS.Controllers
 
             var asEmployee = db.Employees.Find(id);
             Company employeeCompany = null;
-            if(asEmployee != null)
+            if (asEmployee != null)
             {
                 employeeCompany = asEmployee.Company;
             }
@@ -44,10 +48,34 @@ namespace SOPS.Controllers
             return Ok(new UserProfileViewModel()
             {
                 Name = applicationUser.UserName,
+                Surname = applicationUser.Surname,
+                PhoneNumber = applicationUser.PhoneNumber,
+                Email = applicationUser.Email,
                 WatcherProducts = null,
                 IsEmployee = asEmployee != null,
                 Company = employeeCompany,
             });
+        }
+
+        // PUT: api/User/Profile/asdasd
+        [Authorize]
+        [Route("Profile")]
+        [ResponseType(typeof(void))]
+        public IHttpActionResult PutUserProfile(string id, UserProfileBindingModel userProfile)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var user = UserHelper.GetCurrentUser();
+            user.Name = userProfile.Name;
+            user.Surname = userProfile.Surname;
+            user.Email = userProfile.Email;
+            user.PhoneNumber = userProfile.PhoneNumber;
+            UserManager.UpdateAsync(user).Wait();
+
+            return StatusCode(HttpStatusCode.NoContent);
         }
 
         protected override void Dispose(bool disposing)
