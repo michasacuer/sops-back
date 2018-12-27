@@ -49,8 +49,8 @@ namespace SOPS.Controllers
             {
                 // ???
             }
-            else if (roleBindingModel.Role == "Employee" && userRoles.Any(r => r == "Administrator") 
-                && userRoles.Any(r => r == "Employee"))
+            else if (roleBindingModel.Role == "Employee" && (userRoles.Any(r => r == "Administrator") 
+                || userRoles.Any(r => r == "Employee")))
             {
                 if(db.Companies.Find(roleBindingModel.OptionalCompanyId) == null)
                 {
