@@ -188,7 +188,7 @@ namespace SOPS.Migrations
                     productRatings.Add(productRating);
                 }
             }
-            context.ProductRatings.AddOrUpdate(pr => pr.Id, productRatings.ToArray());
+            context.ProductRatings.AddOrUpdate(pr => pr.UserId, productRatings.ToArray());
             context.SaveChanges();
 
             // WatchedProduct
