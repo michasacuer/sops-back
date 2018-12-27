@@ -322,13 +322,15 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PlotController.cs" />
     <Compile Include="Controllers\MailController.cs" />
-    <Compile Include="Controllers\ProductCommentsController.cs" />
+    <Compile Include="Controllers\ProductCommentController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
-    <Compile Include="Controllers\ProductRatingsController.cs" />
+    <Compile Include="Controllers\ProductRatingController.cs" />
     <Compile Include="Controllers\QRController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\ShortUrlController.cs" />
+    <Compile Include="Controllers\StatisticController.cs" />
     <Compile Include="Controllers\UserProfileController.cs" />
-    <Compile Include="Controllers\WatchedProductsController.cs" />
+    <Compile Include="Controllers\WatchedProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -354,10 +356,14 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductComment.cs" />
+    <Compile Include="Models\ProductCommentBindingModel.cs" />
     <Compile Include="Models\ProductRating.cs" />
+    <Compile Include="Models\ProductRatingBindingModel.cs" />
     <Compile Include="Models\ProductRatingViewModel.cs" />
     <Compile Include="Models\QR.cs" />
     <Compile Include="Models\RoleBindingModels.cs" />
+    <Compile Include="Models\StatisticGetAllCountViewModel.cs" />
+    <Compile Include="Models\ShortUrl.cs" />
     <Compile Include="Models\UserProfileBindingModels.cs" />
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Models\WatchedProduct.cs" />
@@ -488,8 +494,11 @@
       <LastGenOutput>Product.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Resources</CustomToolNamespace>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812271733262_init.resx">
-      <DependentUpon>201812271733262_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812271707294_init.resx">
+      <DependentUpon>201812271707294_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812271647569_mig1.resx">
+      <DependentUpon>201812271647569_mig1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812272043456_mig1.resx">
       <DependentUpon>201812272043456_mig1.cs</DependentUpon>

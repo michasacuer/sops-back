@@ -15,7 +15,7 @@ using SOPS.ModelHelpers;
 
 namespace SOPS.Controllers
 {
-    public class WatchedProductsController : ApiController
+    public class WatchedProductController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         private string loggedUserId = UserHelper.GetCurrentUserId();
@@ -23,21 +23,21 @@ namespace SOPS.Controllers
         // GET: api/WatchedProducts
         [Authorize]
         [HttpGet]
-        public IEnumerable<WatchedProduct> GetWatchedProducts()
+        public IEnumerable<WatchedProduct> GetWatchedProduct()
         {
             //we could use '=>' here, idk if necessery
             return db.WatchedProducts.Where(u => u.ApplicationUserId == loggedUserId).ToList();
         }
 
 
-        // POST: api/WatchedProducts/5
+        // POST: api/WatchedProduct/5
         [Authorize]
         [HttpPost]
         [ResponseType(typeof(WatchedProduct))]
-        public async Task<IHttpActionResult> PostWatchedProduct(int id)
+        public IHttpActionResult PostWatchedProduct(int id)
         {
             //get product's id to add to user's watched products
-            var product = await Task.Run(() => db.Products.Find(id));
+            var product = db.Products.Find(id);
 
             if (loggedUserId == null || product == null)
                 return NotFound();
@@ -48,16 +48,16 @@ namespace SOPS.Controllers
             return Ok();
         }
 
-        // DELETE: api/WatchedProducts/5
+        // DELETE: api/WatchedProduct/5
         [Authorize]
         [HttpDelete]
         [ResponseType(typeof(WatchedProduct))]
-        public async Task<IHttpActionResult> DeleteWatchedProduct(int id)
+        public IHttpActionResult DeleteWatchedProduct(int id)
         {
             if (loggedUserId == null)
                 return NotFound();
 
-            var product = await Task.Run(() => db.WatchedProducts.SingleOrDefault(u => u.ApplicationUserId == loggedUserId && u.ProductId == id));
+            var product =  db.WatchedProducts.SingleOrDefault(u => u.ApplicationUserId == loggedUserId && u.ProductId == id);
             if (product == null)
                 return NotFound();
 
