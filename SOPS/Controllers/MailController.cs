@@ -11,6 +11,7 @@ using System.Web.Http;
 namespace SOPS.Controllers
 {
     [RoutePrefix("api/Mail")]
+    [Authorize(Roles = "Administrator")]
     public class MailController : ApiController
     {
         private ApplicationDbContext db = null;
