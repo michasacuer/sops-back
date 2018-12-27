@@ -22,7 +22,7 @@ namespace SOPS.Migrations
         {
             if (System.Diagnostics.Debugger.IsAttached == false)
             {
-                System.Diagnostics.Debugger.Launch();
+                // System.Diagnostics.Debugger.Launch();
             }
             // This method will be called after migrating to the latest version.
 
@@ -62,6 +62,12 @@ namespace SOPS.Migrations
             ((DbSet<ApplicationUser>)context.Users).RemoveRange(context.Users);
             context.SaveChanges();
             context.Companies.RemoveRange(context.Companies);
+            context.SaveChanges();
+
+            // UserRoles
+            context.Roles.AddOrUpdate(new IdentityRole("User"));
+            context.Roles.AddOrUpdate(new IdentityRole("Employee"));
+            context.Roles.AddOrUpdate(new IdentityRole("Administrator"));
             context.SaveChanges();
 
             // Company
