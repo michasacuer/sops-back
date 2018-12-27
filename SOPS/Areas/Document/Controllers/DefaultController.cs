@@ -24,10 +24,12 @@ namespace SOPS.Areas.Document.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             ExistingProduct existingProduct = db.ExistingProducts.Find(id);
+            db.Entry(existingProduct).Reference(e => e.Product).Load();
+            db.Entry(existingProduct.Product).Reference(p => p.Company).Load();
             if (existingProduct == null)
             {
                 return HttpNotFound();
-            }
+            }           
 
             var vm = DocumentViewModel.CreateViewModel(existingProduct);
 
