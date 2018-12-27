@@ -54,7 +54,7 @@ namespace SOPS.Areas.Document.Controllers
             // db.Entry(existingProduct).Reference(e => e.Product).Load();
             // db.Entry(existingProduct.Product).Reference(p => p.Company).Load();
 
-            var vm = DocumentViewModel.CreateViewModel(company);
+            var vm = EmployeeReportViewModel.CreateViewModel(company);
 
             return View(vm);
         }
