@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
+using SOPS.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Web;
 
 namespace SOPS.ModelHelpers
 {
-    public static class UserManagerHelper
+    public static class UserHelper
     {
         public static string GetCurrentUserId()
         {
@@ -39,6 +40,13 @@ namespace SOPS.ModelHelpers
         public static bool IsCurrentUserEmployedInCompanyOrAdministrator(this ApplicationDbContext context, int companyId)
         {
             return context.IsCurrentUserEmployedInCompany(companyId) || IsCurrentUserInRole("Administrator");
+        }
+
+        public static ApplicationUser GetCurrentUser()
+        {
+            var userManager = HttpContext.Current.Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            var currentId = HttpContext.Current.User.Identity.GetUserId();
+            return userManager.FindById(currentId);
         }
     }
 }
