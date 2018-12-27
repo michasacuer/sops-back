@@ -326,6 +326,7 @@
     <Compile Include="Controllers\ProductRatingsController.cs" />
     <Compile Include="Controllers\QRController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\ShortUrlController.cs" />
     <Compile Include="Controllers\UserProfileController.cs" />
     <Compile Include="Controllers\WatchedProductsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -335,9 +336,9 @@
     <Compile Include="Migrations\201812271707294_init.Designer.cs">
       <DependentUpon>201812271707294_init.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812271647569_mig1.cs" />
-    <Compile Include="Migrations\201812271647569_mig1.Designer.cs">
-      <DependentUpon>201812271647569_mig1.cs</DependentUpon>
+    <Compile Include="Migrations\201812271823402_init2.cs" />
+    <Compile Include="Migrations\201812271823402_init2.Designer.cs">
+      <DependentUpon>201812271823402_init2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelHelpers\EmployeeHelper.cs" />
@@ -490,8 +491,8 @@
     <EmbeddedResource Include="Migrations\201812271707294_init.resx">
       <DependentUpon>201812271707294_init.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812271647569_mig1.resx">
-      <DependentUpon>201812271647569_mig1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812271823402_init2.resx">
+      <DependentUpon>201812271823402_init2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
