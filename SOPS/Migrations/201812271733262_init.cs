@@ -181,14 +181,13 @@ namespace SOPS.Migrations
                 "dbo.ProductRatings",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
-                        Rating = c.Single(nullable: false),
-                        UserId = c.String(maxLength: 128),
+                        UserId = c.String(nullable: false, maxLength: 128),
                         ProductId = c.Int(nullable: false),
+                        Rating = c.Single(nullable: false),
                     })
-                .PrimaryKey(t => t.Id)
+                .PrimaryKey(t => new { t.UserId, t.ProductId })
                 .ForeignKey("dbo.Products", t => t.ProductId, cascadeDelete: true)
-                .ForeignKey("dbo.AspNetUsers", t => t.UserId)
+                .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
                 .Index(t => t.UserId)
                 .Index(t => t.ProductId);
             
