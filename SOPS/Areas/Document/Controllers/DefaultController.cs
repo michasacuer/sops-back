@@ -25,17 +25,36 @@ namespace SOPS.Areas.Document.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             ExistingProduct existingProduct = db.ExistingProducts.Find(id);
-            db.Entry(existingProduct).Reference(e => e.Product).Load();
-            db.Entry(existingProduct.Product).Reference(p => p.Company).Load();
             if (existingProduct == null)
             {
                 return HttpNotFound();
-            }           
+            }
+            db.Entry(existingProduct).Reference(e => e.Product).Load();
+            db.Entry(existingProduct.Product).Reference(p => p.Company).Load();
 
             var vm = DocumentViewModel.CreateViewModel(existingProduct);
 
             ViewBag.QR_URL = Url.Content("~/api/QR/" + id);
             //ViewBag.PlotURL = Url.Content("~/api/Plot?CompanyId=" + id);
+
+            return View(vm);
+        }
+
+        public ActionResult EmployeeReport(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ExistingProduct existingProduct = db.ExistingProducts.Find(id);
+            if (existingProduct == null)
+            {
+                return HttpNotFound();
+            }
+            db.Entry(existingProduct).Reference(e => e.Product).Load();
+            db.Entry(existingProduct.Product).Reference(p => p.Company).Load();
+
+            var vm = DocumentViewModel.CreateViewModel(existingProduct);
 
             return View(vm);
         }
