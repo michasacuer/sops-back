@@ -45,3 +45,4 @@ namespace SOPS.Areas.Document.ViewModels
         */
         }
     }
+}

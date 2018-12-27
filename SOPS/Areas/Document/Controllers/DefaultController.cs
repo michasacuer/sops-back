@@ -16,8 +16,7 @@ namespace SOPS.Areas.Document.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Document/ExistingProductSummary/5
-        [Route("ExistingProductSummary")]
+        // GET: Document/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -40,13 +39,14 @@ namespace SOPS.Areas.Document.Controllers
             return View(vm);
         }
 
-        public ActionResult EmployeeReport(int? companyId)
+        // GET: Document/EmployeeReport/{id}
+        public ActionResult EmployeeReport(int? id)
         {
-            if (companyId == null)
+            if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Company company= db.Companies.Find(companyId);
+            Company company= db.Companies.Find(id);
             if (company == null)
             {
                 return HttpNotFound();
