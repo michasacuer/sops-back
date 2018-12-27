@@ -18,7 +18,7 @@ namespace SOPS.Controllers
     public class WatchedProductsController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-        string loggedUserId = UserHelper.GetCurrentUserId();
+        private string loggedUserId = UserHelper.GetCurrentUserId();
 
         // GET: api/WatchedProducts
         [Authorize]

@@ -24,6 +24,7 @@ namespace SOPS
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductRating> ProductRatings { get; set; }
+        public DbSet<ProductComment> ProductComments { get; set; }
         public DbSet<ExistingProduct> ExistingProducts { get; set; }
         public DbSet<WatchedProduct> WatchedProducts { get; set; }
         public DbSet<Company> Companies { get; set; }
