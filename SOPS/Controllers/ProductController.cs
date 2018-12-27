@@ -15,10 +15,19 @@ using SOPS.Models;
 
 namespace SOPS.Controllers
 {
+    [RoutePrefix("api/Product")]
     [AllowCrossSiteJson]
     public class ProductController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+
+        // GET: api/Product/search?str=kaarol
+        [Route("search")]
+        public IEnumerable<Product> GetSearch(string str)
+        {
+            List<Product> filteredProducts = db.Products.Where(p => p.Name.Contains(str)).ToList();
+            return filteredProducts;
+        }
 
         // GET: api/Products
         public IQueryable<Product> GetProducts()
