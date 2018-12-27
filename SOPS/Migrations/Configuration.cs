@@ -38,6 +38,7 @@ namespace SOPS.Migrations
             int productCount = 30;
             int employeeCount = 3;
             int productRatingCount = 5;
+            int productCommentCount = 10;
             int companyReportCount = 10;
             int watchedProductCount = 10;
             int existingProductCount = 30;
@@ -51,6 +52,8 @@ namespace SOPS.Migrations
             context.SaveChanges();
             context.QRs.RemoveRange(context.QRs);
             context.SaveChanges();
+            context.ProductComments.RemoveRange(context.ProductComments);
+            context.SaveChanges();
             context.ExistingProducts.RemoveRange(context.ExistingProducts);
             context.SaveChanges();
             context.ProductRatings.RemoveRange(context.ProductRatings);
@@ -62,6 +65,8 @@ namespace SOPS.Migrations
             ((DbSet<ApplicationUser>)context.Users).RemoveRange(context.Users);
             context.SaveChanges();
             context.Companies.RemoveRange(context.Companies);
+            context.SaveChanges();
+            context.Products.RemoveRange(context.Products);
             context.SaveChanges();
             ((DbSet<IdentityRole>)context.Roles).RemoveRange(context.Roles);
             context.SaveChanges();
@@ -205,6 +210,18 @@ namespace SOPS.Migrations
                 }
             }
             context.SaveChanges();
+
+            // ProductComment
+            for (int i = 0; i < productCommentCount; i++)
+            {
+                var productComment = new ProductComment
+                {
+                    ApplicationUserId = context.Users.ToList()[random.Next(context.Users.Count())].Id,
+                    ProductId = context.Products.ToList()[random.Next(context.Products.Count())].Id,
+                    Comment = "Comment" + i
+                };
+                context.ProductComments.AddOrUpdate(productComment);
+            }
 
             // CompanyReport
             for (int i = 0; i < companyReportCount; i++)
