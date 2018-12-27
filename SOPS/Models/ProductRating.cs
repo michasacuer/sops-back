@@ -10,13 +10,18 @@ namespace SOPS.Models
     public class ProductRating
     {
         [Key]
-        public int Id { get; set; }
-        public float Rating { get; set; }
+        [Column(Order = 1)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [ForeignKey("User")]
         public string UserId { get; set; }
-        public virtual ApplicationUser User { get; set; }
-
+        [Key]
+        [Column(Order = 2)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [ForeignKey("Product")]
         public int ProductId { get; set; }
+        public float Rating { get; set; }
+
+        public virtual ApplicationUser User { get; set; }
         public virtual Product Product { get; set; }
     }
 }
