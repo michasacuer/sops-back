@@ -27,7 +27,7 @@ namespace SOPS.Controllers
             return db.ProductComments.Where(pc => pc.ProductId == id);
         }
 
-        // POST: api/ProductComments
+        // POST: api/ProductComments/id
         [Authorize]
         [HttpPost]
         [ResponseType(typeof(ProductComment))]

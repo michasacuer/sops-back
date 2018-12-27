@@ -26,8 +26,7 @@ namespace SOPS.Controllers
         [Route("search")]
         public IEnumerable<Product> GetSearch(string str)
         {
-            List<Product> filteredProducts = db.Products.Where(p => p.Name.Contains(str)).ToList();
-            return filteredProducts;
+            return db.Products.Where(p => p.Name.Contains(str)).ToList();
         }
 
         // GET: api/Products

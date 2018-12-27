@@ -323,6 +323,7 @@
     <Compile Include="Controllers\MailController.cs" />
     <Compile Include="Controllers\ProductCommentsController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\ProductRatingsController.cs" />
     <Compile Include="Controllers\QRController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\UserProfileController.cs" />
@@ -333,6 +334,10 @@
     <Compile Include="Migrations\201812271707294_init.cs" />
     <Compile Include="Migrations\201812271707294_init.Designer.cs">
       <DependentUpon>201812271707294_init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812271647569_mig1.cs" />
+    <Compile Include="Migrations\201812271647569_mig1.Designer.cs">
+      <DependentUpon>201812271647569_mig1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelHelpers\EmployeeHelper.cs" />
@@ -349,6 +354,7 @@
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductComment.cs" />
     <Compile Include="Models\ProductRating.cs" />
+    <Compile Include="Models\ProductRatingViewModel.cs" />
     <Compile Include="Models\QR.cs" />
     <Compile Include="Models\RoleBindingModels.cs" />
     <Compile Include="Models\ShortUrl.cs" />
@@ -483,6 +489,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812271707294_init.resx">
       <DependentUpon>201812271707294_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812271647569_mig1.resx">
+      <DependentUpon>201812271647569_mig1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
