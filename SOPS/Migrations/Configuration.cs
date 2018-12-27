@@ -1,11 +1,15 @@
 namespace SOPS.Migrations
 {
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
+    using Microsoft.AspNet.Identity.Owin;
     using SOPS.Models;
     using System;
     using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
+    using System.Web;
 
     internal sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext>
     {
@@ -18,7 +22,7 @@ namespace SOPS.Migrations
         {
             if (System.Diagnostics.Debugger.IsAttached == false)
             {
-                //System.Diagnostics.Debugger.Launch();
+                System.Diagnostics.Debugger.Launch();
             }
             // This method will be called after migrating to the latest version.
 
@@ -38,8 +42,27 @@ namespace SOPS.Migrations
             int watchedProductCount = 10;
             int existingProductCount = 30;
             int qrCodeCount = 20;
+            int companyStatisticsCountPerCompany = 10;
 
             Random random = new Random();
+
+            // delete everything
+            context.CompanyStatistics.RemoveRange(context.CompanyStatistics);
+            context.SaveChanges();
+            context.QRs.RemoveRange(context.QRs);
+            context.SaveChanges();
+            context.ExistingProducts.RemoveRange(context.ExistingProducts);
+            context.SaveChanges();
+            context.ProductRatings.RemoveRange(context.ProductRatings);
+            context.SaveChanges();
+            context.Employees.RemoveRange(context.Employees);
+            context.SaveChanges();
+            context.WatchedProducts.RemoveRange(context.WatchedProducts);
+            context.SaveChanges();
+            ((DbSet<ApplicationUser>)context.Users).RemoveRange(context.Users);
+            context.SaveChanges();
+            context.Companies.RemoveRange(context.Companies);
+            context.SaveChanges();
 
             // Company
             for (int i = 0; i < companyCount; ++i)
@@ -71,6 +94,16 @@ namespace SOPS.Migrations
             context.SaveChanges();
 
             // User
+            var store = new UserStore<ApplicationUser>(context);
+            var manager = new ApplicationUserManager(store);
+            manager.PasswordValidator = new PasswordValidator
+            {
+                RequiredLength = 1,
+                RequireNonLetterOrDigit = false,
+                RequireDigit = false,
+                RequireLowercase = false,
+                RequireUppercase = false,
+            };
             for (int i = 0; i < userCount; i++)
             {
                 List<int> phoneNumber = new List<int>(new int[10]);
@@ -92,13 +125,15 @@ namespace SOPS.Migrations
                     LockoutEnabled = false,
                     AccessFailedCount = 0
                 };
-                context.Users.AddOrUpdate(u => u.UserName, user);
-            }
-            context.SaveChanges();
+                manager.CreateAsync(user, user.UserName).Wait(); 
 
-            // Employee
-            context.Employees.RemoveRange(context.Employees);
-            context.SaveChanges();
+                if(i == 0)
+                {
+                    manager.AddToRoleAsync(user.Id, "Administrator").Wait();
+                }
+            }
+
+            // Employee            
             List<Employee> employees = new List<Employee>(employeeCount);
             for (int i = 0; i < employeeCount; i++)
             {
@@ -108,6 +143,7 @@ namespace SOPS.Migrations
                     CompanyId = context.Companies.ToList()[random.Next(context.Companies.Count())].Id
                 };
                 employees.Add(employee);
+                manager.AddToRoleAsync(employee.UserId, "Employee").Wait();
             }
             var distinceEmployees = employees.Distinct(new EmployeeEqualityComparer()).ToArray();
             context.Employees.AddOrUpdate(e => e.UserId, distinceEmployees);
@@ -144,12 +180,10 @@ namespace SOPS.Migrations
                     productRatings.Add(productRating);
                 }
             }
-            context.ProductRatings.RemoveRange(context.ProductRatings);
             context.ProductRatings.AddOrUpdate(pr => pr.Id, productRatings.ToArray());
             context.SaveChanges();
 
             // WatchedProduct
-            context.WatchedProducts.RemoveRange(context.WatchedProducts);
             for (int i = 0; i < watchedProductCount; i++)
             {
                 WatchedProduct watchedProduct = new WatchedProduct
@@ -177,10 +211,6 @@ namespace SOPS.Migrations
             context.SaveChanges();
 
             // ExistingProduct
-            context.QRs.RemoveRange(context.QRs);
-            context.SaveChanges();
-            context.ExistingProducts.RemoveRange(context.ExistingProducts);
-            context.SaveChanges();
             for (int i = 0; i < existingProductCount; i++)
             {
                 ExistingProduct existingProduct = new ExistingProduct
@@ -207,6 +237,24 @@ namespace SOPS.Migrations
             }
             var distinctQrs = qrs.Distinct(new QREqualityComparer()).ToArray();
             context.QRs.AddOrUpdate(q => q.ExistingProductId, distinctQrs);
+            context.SaveChanges();
+
+            // CompanyStatistics
+            var companyStatistics = new List<CompanyStatistics>(companyCount * companyStatisticsCountPerCompany);
+            foreach (var company in context.Companies)
+            {
+                for (int j = 0; j < companyStatisticsCountPerCompany; j++)
+                {
+                    var statistics = new CompanyStatistics()
+                    {
+                        CompanyId = company.Id,
+                        Date = DateTime.Now.AddDays(-j).Date,
+                        RegistredProducts = random.Next(10),
+                    };
+                    companyStatistics.Add(statistics);
+                }
+            }
+            context.CompanyStatistics.AddRange(companyStatistics);
             context.SaveChanges();
         }
     }

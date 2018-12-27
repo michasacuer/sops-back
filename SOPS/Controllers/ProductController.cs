@@ -11,6 +11,7 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using Microsoft.AspNet.Identity;
 using SOPS.Attributes;
+using SOPS.ModelHelpers;
 using SOPS.Models;
 
 namespace SOPS.Controllers
@@ -50,6 +51,7 @@ namespace SOPS.Controllers
         }
 
         // PUT: api/Products/5
+        [Authorize(Roles = "Employee, Administrator")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutProduct(int id, Product product)
         {
@@ -61,6 +63,11 @@ namespace SOPS.Controllers
             if (id != product.Id)
             {
                 return BadRequest();
+            }
+
+            if (!db.IsCurrentUserEmployedInCompanyOrAdministrator(product.CompanyId))
+            {
+                return StatusCode(HttpStatusCode.Forbidden);
             }
 
             db.Entry(product).State = EntityState.Modified;
@@ -85,7 +92,7 @@ namespace SOPS.Controllers
         }
 
         // POST: api/Products
-        [Authorize]
+        [Authorize(Roles = "Employee, Administrator")]
         [ResponseType(typeof(Product))]
         public IHttpActionResult PostProduct(Product product)
         {
@@ -94,9 +101,7 @@ namespace SOPS.Controllers
                 return BadRequest(ModelState);
             }
 
-            var userId = User.Identity.GetUserId();
-            var asEmployee = db.Employees.Find(userId);
-            if(asEmployee == null || asEmployee.Company.Id != product.CompanyId)
+            if (!db.IsCurrentUserEmployedInCompanyOrAdministrator(product.CompanyId))
             {
                 return StatusCode(HttpStatusCode.Forbidden);
             }
@@ -108,6 +113,7 @@ namespace SOPS.Controllers
         }
 
         // DELETE: api/Products/5
+        [Authorize(Roles = "Employee, Administrator")]
         [ResponseType(typeof(Product))]
         public IHttpActionResult DeleteProduct(int id)
         {
@@ -115,6 +121,11 @@ namespace SOPS.Controllers
             if (product == null)
             {
                 return NotFound();
+            }
+
+            if (!db.IsCurrentUserEmployedInCompanyOrAdministrator(product.CompanyId))
+            {
+                return StatusCode(HttpStatusCode.Forbidden);
             }
 
             db.Products.Remove(product);

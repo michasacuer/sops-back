@@ -32,6 +32,7 @@ namespace SOPS.Areas.Document.Controllers
             var vm = DocumentViewModel.CreateViewModel(existingProduct);
 
             ViewBag.QR_URL = Url.Content("~/api/QR/" + id);
+            //ViewBag.PlotURL = Url.Content("~/api/Plot?CompanyId=" + id);
 
             return View(vm);
         }
