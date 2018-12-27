@@ -319,6 +319,7 @@
     <Compile Include="Controllers\DocumentController.cs" />
     <Compile Include="Controllers\ExistingProductController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MailController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\QRController.cs" />
     <Compile Include="Controllers\UserController.cs" />
