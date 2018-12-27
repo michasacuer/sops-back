@@ -335,6 +335,10 @@
     <Compile Include="Migrations\201812271733262_init.Designer.cs">
       <DependentUpon>201812271733262_init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812272043456_mig1.cs" />
+    <Compile Include="Migrations\201812272043456_mig1.Designer.cs">
+      <DependentUpon>201812272043456_mig1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelHelpers\EmployeeHelper.cs" />
     <Compile Include="ModelHelpers\CompanyStatisticsHelper.cs" />
@@ -484,6 +488,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812271733262_init.resx">
       <DependentUpon>201812271733262_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812272043456_mig1.resx">
+      <DependentUpon>201812272043456_mig1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

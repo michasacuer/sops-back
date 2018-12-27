@@ -16,7 +16,7 @@ namespace SOPS.Areas.Document
         {
             context.MapRoute(
                 "Document_default",
-                "Document/{controller}/{action}/{id}",
+                "Document/{action}/{id}",
                 new { controller="Default", action = "Details", id = 5 }
             );
         }

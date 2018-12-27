@@ -12,11 +12,13 @@ using SOPS.Models;
 
 namespace SOPS.Areas.Document.Controllers
 {
+    //[RoutePrefix("Document")]
     public class DefaultController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Document/Default/5
+        //[Route("Details")]
         public ActionResult Details(int? id)
         {
             if (id == null)
