@@ -22,7 +22,7 @@ namespace SOPS.Migrations
         {
             if (System.Diagnostics.Debugger.IsAttached == false)
             {
-                System.Diagnostics.Debugger.Launch();
+                // System.Diagnostics.Debugger.Launch();
             }
             // This method will be called after migrating to the latest version.
 
@@ -31,12 +31,12 @@ namespace SOPS.Migrations
             int uniqueAddressStreetCount = 2;
             int uniqueAddressCityCount = 5;
 
-            int userCount = 20;
+            int userCount = 10;
             int uniqueUserNameCount = 5;
             int uniqueUserSurnameCount = 10;
 
             int productCount = 30;
-            int employeeCount = 10;
+            int employeeCount = 3;
             int productRatingCount = 5;
             int companyReportCount = 10;
             int watchedProductCount = 10;
@@ -62,6 +62,14 @@ namespace SOPS.Migrations
             ((DbSet<ApplicationUser>)context.Users).RemoveRange(context.Users);
             context.SaveChanges();
             context.Companies.RemoveRange(context.Companies);
+            context.SaveChanges();
+            ((DbSet<IdentityRole>)context.Roles).RemoveRange(context.Roles);
+            context.SaveChanges();
+
+            // UserRoles
+            context.Roles.Add(new IdentityRole("User"));
+            context.Roles.Add(new IdentityRole("Employee"));
+            context.Roles.Add(new IdentityRole("Administrator"));
             context.SaveChanges();
 
             // Company

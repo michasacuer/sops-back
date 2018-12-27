@@ -320,6 +320,7 @@
     <Compile Include="Controllers\ExistingProductController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PlotController.cs" />
+    <Compile Include="Controllers\MailController.cs" />
     <Compile Include="Controllers\ProductCommentsController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\QRController.cs" />
@@ -329,9 +330,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812261930164_init.cs" />
-    <Compile Include="Migrations\201812261930164_init.Designer.cs">
-      <DependentUpon>201812261930164_init.cs</DependentUpon>
+    <Compile Include="Migrations\201812271354041_init.cs" />
+    <Compile Include="Migrations\201812271354041_init.Designer.cs">
+      <DependentUpon>201812271354041_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelHelpers\EmployeeHelper.cs" />
@@ -479,8 +480,8 @@
       <LastGenOutput>Product.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Resources</CustomToolNamespace>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812261930164_init.resx">
-      <DependentUpon>201812261930164_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812271354041_init.resx">
+      <DependentUpon>201812271354041_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
