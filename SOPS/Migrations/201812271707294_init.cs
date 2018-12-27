@@ -163,6 +163,21 @@ namespace SOPS.Migrations
                 .Index(t => t.ExistingProductId);
             
             CreateTable(
+                "dbo.ProductComments",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Comment = c.String(),
+                        ApplicationUserId = c.String(maxLength: 128),
+                        ProductId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.AspNetUsers", t => t.ApplicationUserId)
+                .ForeignKey("dbo.Products", t => t.ProductId, cascadeDelete: true)
+                .Index(t => t.ApplicationUserId)
+                .Index(t => t.ProductId);
+            
+            CreateTable(
                 "dbo.ProductRatings",
                 c => new
                     {
@@ -209,6 +224,8 @@ namespace SOPS.Migrations
             DropForeignKey("dbo.WatchedProducts", "ProductId", "dbo.Products");
             DropForeignKey("dbo.ProductRatings", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.ProductRatings", "ProductId", "dbo.Products");
+            DropForeignKey("dbo.ProductComments", "ProductId", "dbo.Products");
+            DropForeignKey("dbo.ProductComments", "ApplicationUserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.QRs", "ExistingProductId", "dbo.ExistingProducts");
             DropForeignKey("dbo.ExistingProducts", "ProductId", "dbo.Products");
             DropForeignKey("dbo.Products", "CompanyId", "dbo.Companies");
@@ -222,6 +239,8 @@ namespace SOPS.Migrations
             DropIndex("dbo.CompanyStatistics", new[] { "CompanyId" });
             DropIndex("dbo.ProductRatings", new[] { "ProductId" });
             DropIndex("dbo.ProductRatings", new[] { "UserId" });
+            DropIndex("dbo.ProductComments", new[] { "ProductId" });
+            DropIndex("dbo.ProductComments", new[] { "ApplicationUserId" });
             DropIndex("dbo.QRs", new[] { "ExistingProductId" });
             DropIndex("dbo.ExistingProducts", new[] { "ProductId" });
             DropIndex("dbo.Products", new[] { "CompanyId" });
@@ -238,6 +257,7 @@ namespace SOPS.Migrations
             DropTable("dbo.AspNetRoles");
             DropTable("dbo.CompanyStatistics");
             DropTable("dbo.ProductRatings");
+            DropTable("dbo.ProductComments");
             DropTable("dbo.QRs");
             DropTable("dbo.ExistingProducts");
             DropTable("dbo.Products");
