@@ -31,7 +31,7 @@ namespace SOPS.Controllers
 
 
         // POST: api/WatchedProduct/5
-        [Authorize]
+        //[Authorize]
         [HttpPost]
         [ResponseType(typeof(WatchedProduct))]
         public IHttpActionResult PostWatchedProduct(int id)
@@ -48,7 +48,7 @@ namespace SOPS.Controllers
             return Ok();
         }
 
-        // DELETE: api/WatchedProducts/5
+        // DELETE: api/WatchedProduct/5
         [Authorize]
         [HttpDelete]
         [ResponseType(typeof(WatchedProduct))]
