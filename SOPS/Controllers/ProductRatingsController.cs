@@ -27,7 +27,7 @@ namespace SOPS.Controllers
             return db.ProductRatings.Where(pc => pc.ProductId == id);
         }
 
-        // POST: api/ProductRatings
+        // POST: api/ProductRatings/id
         [Authorize]
         [HttpPost]
         [ResponseType(typeof(ProductRating))]
@@ -49,16 +49,17 @@ namespace SOPS.Controllers
         // GET: api/ProductRatings/Avarage/id
         [Route("Avarage/{id:int}")]
         [HttpGet]
-        [ResponseType(typeof(ProductRating))]
+        [ResponseType(typeof(ProductRatingViewModel))]
         public IHttpActionResult GetAvarage(int id)
         {
             if (!db.Products.Any(p => p.Id == id))
                 return NotFound();
 
-            //we could use '=>' here, idk if necessery
-            return Ok((float)db.ProductRatings
-                .Where(p => p.ProductId == id)
-                .Average(p => p.Rating));               
+            return Ok(new ProductRatingViewModel
+            {
+                ProductId = id,
+                AvarageRating = db.ProductRatings.Where(p => p.ProductId == id).Average(p => p.Rating)
+            });               
         }
 
         protected override void Dispose(bool disposing)
@@ -70,9 +71,9 @@ namespace SOPS.Controllers
             base.Dispose(disposing);
         }
 
-        private bool ProductRatingExists(int id)
-        {
-            return db.ProductRatings.Count(e => e.Id == id) > 0;
-        }
+        //private bool ProductRatingExists(int id)
+        //{
+        //    return db.ProductRatings.Count(e => e.Id == id) > 0;
+        //}
     }
 }
