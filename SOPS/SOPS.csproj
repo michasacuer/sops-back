@@ -323,6 +323,7 @@
     <Compile Include="Controllers\MailController.cs" />
     <Compile Include="Controllers\ProductCommentsController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\ProductRatingsController.cs" />
     <Compile Include="Controllers\QRController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\UserProfileController.cs" />
@@ -349,6 +350,7 @@
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductComment.cs" />
     <Compile Include="Models\ProductRating.cs" />
+    <Compile Include="Models\ProductRatingViewModel.cs" />
     <Compile Include="Models\QR.cs" />
     <Compile Include="Models\RoleBindingModels.cs" />
     <Compile Include="Models\UserProfileBindingModels.cs" />
