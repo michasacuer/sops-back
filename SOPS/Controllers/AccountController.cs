@@ -398,7 +398,7 @@ namespace SOPS.Controllers
             if(user == null || product == null)
                 return NotFound();
 
-            db.WatchedProducts.Add(new WatchedProduct(id, user.Id));
+            db.WatchedProducts.Add(new WatchedProduct { ProductId = id, ApplicationUserId = user.Id });
             db.SaveChanges();
             return Ok();
         }
