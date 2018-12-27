@@ -9,6 +9,12 @@ namespace SOPS.Models
 {
     public class WatchedProduct
     {
+        public WatchedProduct(int productId, string userId)
+        {
+            ProductId = productId;
+            ApplicationUserId = userId;
+        }
+
         [Key]
         public int Id { get; set; }
 
