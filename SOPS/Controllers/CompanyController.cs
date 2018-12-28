@@ -66,6 +66,12 @@ namespace SOPS.Controllers
                 return BadRequest();
             }
 
+            var local = db.Set<Company>().Local.FirstOrDefault(f => f.Id == company.Id);
+            if (local != null)
+            {
+                db.Entry(local).State = EntityState.Detached;
+            }
+
             db.Entry(company).State = EntityState.Modified;
 
             try
@@ -136,6 +142,7 @@ namespace SOPS.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [Authorize]
+        [HttpGet]
         [Route("Profile")]
         [ResponseType(typeof(Company))]
         public IHttpActionResult GetCompanyProfile(int id)
