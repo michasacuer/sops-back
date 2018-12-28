@@ -20,6 +20,7 @@ namespace SOPS.Models
         [ForeignKey("Product")]
         public int ProductId { get; set; }
         public float Rating { get; set; }
+        public DateTime Date { get; set; }
 
         public virtual ApplicationUser User { get; set; }
         public virtual Product Product { get; set; }
