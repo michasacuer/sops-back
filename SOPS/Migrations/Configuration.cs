@@ -219,7 +219,8 @@ namespace SOPS.Migrations
                 {
                     ApplicationUserId = context.Users.ToList()[random.Next(context.Users.Count())].Id,
                     ProductId = context.Products.ToList()[random.Next(context.Products.Count())].Id,
-                    Comment = "Comment" + i
+                    Comment = "Comment" + i,
+                    Date = DateTime.Now
                 };
                 context.ProductComments.AddOrUpdate(productComment);
             }
