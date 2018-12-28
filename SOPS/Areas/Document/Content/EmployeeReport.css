@@ -1,0 +1,33 @@
+﻿body
+{
+}
+
+header
+{
+    margin-bottom: 0px;
+}
+
+header #company-name
+{
+    display: inline;
+    font-size: 40px;
+}
+
+header #date-info
+{
+    display: inline;
+    float: right;
+    font-size: 20px;
+}
+
+header #title
+{
+    padding-top: 10px;
+    font-size: 42px;
+}
+
+hr
+{
+    margin: 0px;
+    border-top: 1px solid #aaa;
+}

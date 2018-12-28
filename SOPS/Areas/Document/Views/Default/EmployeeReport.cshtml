@@ -1,19 +1,26 @@
 ﻿@model SOPS.Areas.Document.ViewModels.EmployeeReportViewModel
 
 @{
-    Layout = null;
+    ViewBag.Title = "Html";
 }
 
-<!DOCTYPE html>
+<link type="text/css" href="~/Areas/Document/Content/EmployeeReport.css" rel="stylesheet" />
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>EmployeeReport</title>
-</head>
-<body>
-    <div>
-        <h1>@Model.CompanyName</h1>
-    </div>
-</body>
-</html>
+<div>
+    <header>
+        <div id="company-name">
+            @Model.CompanyName
+        </div>
+        <div id="date-info">
+            @Model.DateTime.ToString("dd.MM.yy")
+        </div>
+        <div id="title">
+            Okresowy Raport o Działalności Firmy
+        </div>
+    </header>
+
+    <hr />
+
+    <main>
+    </main>
+</div>
