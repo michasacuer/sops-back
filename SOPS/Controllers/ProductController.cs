@@ -71,7 +71,7 @@ namespace SOPS.Controllers
         /// <param name="id"></param>
         /// <param name="product"></param>
         /// <returns></returns>
-        //[Authorize(Roles = "Employee, Administrator")]
+        [Authorize(Roles = "Employee, Administrator")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutProduct(int id, Product product)
         {
