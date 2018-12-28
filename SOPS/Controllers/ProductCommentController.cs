@@ -53,7 +53,8 @@ namespace SOPS.Controllers
             {
                 Comment = commentFromBody.Comment,
                 ApplicationUserId = userId,
-                ProductId = id
+                ProductId = id,
+                Date = DateTime.Now
             });
             db.SaveChanges();
 

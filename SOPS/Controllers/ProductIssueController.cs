@@ -40,7 +40,8 @@ namespace SOPS.Controllers
             { 
                 Issue = issueFromBody.Issue,
                 ApplicationUserId = userId,
-                ProductId = id
+                ProductId = id,
+                Date = DateTime.Now
             });
             db.SaveChanges();
 
