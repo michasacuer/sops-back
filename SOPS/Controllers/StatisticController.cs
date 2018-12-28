@@ -15,7 +15,7 @@ namespace SOPS.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         /// <summary>
-        /// daj wszystkie firmy i wszystkie produkty
+        /// Zwraca liczność produktów i firm
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -27,6 +27,22 @@ namespace SOPS.Controllers
             {
                 CompaniesCount = db.Companies.Count(),
                 AllProductsCount = db.Products.Count()
+            });
+        }
+
+        /// <summary>
+        /// Zwraca liste produktów i firm
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("getalllists")]
+        [ResponseType(typeof(StatisticGetAllListViewModel))]
+        public IHttpActionResult GetAllList()
+        {
+            return Ok(new StatisticGetAllListViewModel
+            {
+                Companies = db.Companies.ToList(),
+                Products = db.Products.ToList()
             });
         }
     }

@@ -336,13 +336,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812272352522_init.cs" />
-    <Compile Include="Migrations\201812272352522_init.Designer.cs">
-      <DependentUpon>201812272352522_init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812280147502_init2.cs" />
-    <Compile Include="Migrations\201812280147502_init2.Designer.cs">
-      <DependentUpon>201812280147502_init2.cs</DependentUpon>
+    <Compile Include="Migrations\201812281009507_init.cs" />
+    <Compile Include="Migrations\201812281009507_init.Designer.cs">
+      <DependentUpon>201812281009507_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelHelpers\EmployeeHelper.cs" />
@@ -355,6 +351,7 @@
     <Compile Include="Models\CompanyStatistics.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\ExistingProduct.cs" />
+    <Compile Include="Models\ExistingProductViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductComment.cs" />
@@ -368,6 +365,7 @@
     <Compile Include="Models\ScanBindingModel.cs" />
     <Compile Include="Models\StatisticGetAllCountViewModel.cs" />
     <Compile Include="Models\ShortUrl.cs" />
+    <Compile Include="Models\StatisticGetAllListViewModel.cs" />
     <Compile Include="Models\UserProfileBindingModels.cs" />
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Models\WatchedProduct.cs" />
@@ -498,11 +496,8 @@
       <LastGenOutput>Product.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Resources</CustomToolNamespace>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812272352522_init.resx">
-      <DependentUpon>201812272352522_init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812280147502_init2.resx">
-      <DependentUpon>201812280147502_init2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812281009507_init.resx">
+      <DependentUpon>201812281009507_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

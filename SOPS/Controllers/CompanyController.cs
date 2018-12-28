@@ -135,6 +135,7 @@ namespace SOPS.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        [Authorize]
         [Route("Profile")]
         [ResponseType(typeof(Company))]
         public IHttpActionResult GetCompanyProfile(int id)

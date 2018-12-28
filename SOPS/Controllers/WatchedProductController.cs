@@ -15,24 +15,24 @@ using SOPS.ModelHelpers;
 
 namespace SOPS.Controllers
 {
+    [RoutePrefix("api/WatchedProduct")]
     public class WatchedProductController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         private string loggedUserId = UserHelper.GetCurrentUserId();
 
-        // GET: api/WatchedProducts
+        // GET: api/WatchedProduct/get?id=42b8ccb0-4911-458f-a066-36b057954157
         /// <summary>
         /// daj wszystkie obserwowane produkty dla aktualnego uzytkownika
-        /// dac mozliwosc podawania oberjzenia obserwowanych produktow innych uzytkonikow
         /// </summary>
         /// <returns></returns>
         [Authorize]
         [HttpGet]
-        public IEnumerable<WatchedProduct> GetWatchedProduct()
-        {
-            //we could use '=>' here, idk if necessery
-            return db.WatchedProducts.Where(u => u.ApplicationUserId == loggedUserId).ToList();
-        }
+        [Route("get")]
+        public IEnumerable<WatchedProduct> GetWatchedProduct(string id) => id == null ?
+                db.WatchedProducts.Where(u => u.ApplicationUserId == loggedUserId).ToList() :
+                db.WatchedProducts.Where(u => u.ApplicationUserId == id).ToList();
+
 
 
         // POST: api/WatchedProduct/5

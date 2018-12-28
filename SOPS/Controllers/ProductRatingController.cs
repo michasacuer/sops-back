@@ -14,6 +14,7 @@ using SOPS.Models;
 
 namespace SOPS.Controllers
 {
+    [RoutePrefix("api/ProductRating")]
     public class ProductRatingController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -34,7 +35,7 @@ namespace SOPS.Controllers
 
         // POST: api/ProductRating/id
         /// <summary>
-        /// wstaw produkt
+        /// wstaw ocene produktu
         /// </summary>
         /// <param name="id"></param>
         /// <param name="rateFromBody"></param>
@@ -44,7 +45,7 @@ namespace SOPS.Controllers
         [ResponseType(typeof(ProductRating))]
         public IHttpActionResult PostProductRating(int id, ProductRatingBindingModel rateFromBody)
         {
-            if (!db.Products.Any(p => p.Id == id) || loggedUserId == null)
+            if (!db.Products.Any(p => p.Id == id))
                 return NotFound();
 
             db.ProductRatings.Add(new ProductRating
@@ -54,6 +55,7 @@ namespace SOPS.Controllers
                 ProductId = id,
                 Date = DateTime.Now
             });
+            db.SaveChanges();
 
             return Ok();
         }

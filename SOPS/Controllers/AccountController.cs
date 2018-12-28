@@ -122,7 +122,7 @@ namespace SOPS.Controllers
 
         // POST api/Account/ChangePassword
         /// <summary>
-        /// zmien haslo
+        /// Zmień hasło
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>

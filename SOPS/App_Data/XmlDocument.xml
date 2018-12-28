@@ -493,7 +493,7 @@
         </member>
         <member name="M:SOPS.Controllers.AccountController.ChangePassword(SOPS.Models.ChangePasswordBindingModel)">
             <summary>
-            zmien haslo
+            Zmień hasło
             </summary>
             <param name="model"></param>
             <returns></returns>
@@ -715,7 +715,7 @@
         </member>
         <member name="M:SOPS.Controllers.ProductRatingController.PostProductRating(System.Int32,SOPS.Models.ProductRatingBindingModel)">
             <summary>
-            wstaw produkt
+            wstaw ocene produktu
             </summary>
             <param name="id"></param>
             <param name="rateFromBody"></param>
@@ -772,7 +772,13 @@
         </member>
         <member name="M:SOPS.Controllers.StatisticController.GetAllCount">
             <summary>
-            daj wszystkie firmy i wszystkie produkty
+            Zwraca liczność produktów i firm
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SOPS.Controllers.StatisticController.GetAllList">
+            <summary>
+            Zwraca liste produktów i firm
             </summary>
             <returns></returns>
         </member>
@@ -792,10 +798,9 @@
             <param name="userProfile"></param>
             <returns></returns>
         </member>
-        <member name="M:SOPS.Controllers.WatchedProductController.GetWatchedProduct">
+        <member name="M:SOPS.Controllers.WatchedProductController.GetWatchedProduct(System.String)">
             <summary>
             daj wszystkie obserwowane produkty dla aktualnego uzytkownika
-            dac mozliwosc podawania oberjzenia obserwowanych produktow innych uzytkonikow
             </summary>
             <returns></returns>
         </member>

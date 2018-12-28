@@ -32,7 +32,7 @@ namespace SOPS.Controllers
             return db.ProductComments.Where(pc => pc.ProductId == id);
         }
 
-        // POST: api/ProductComments/id
+        // POST: api/ProductComment/id
         /// <summary>
         /// postaw komentarz
         /// sprawdzic czy dziala autoryzacja (loggedUserId)
@@ -54,6 +54,7 @@ namespace SOPS.Controllers
                 ApplicationUserId = loggedUserId,
                 ProductId = id
             });
+            db.SaveChanges();
 
             return Ok();
         }
@@ -64,6 +65,7 @@ namespace SOPS.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        [Authorize]
         [ResponseType(typeof(ProductComment))]
         [HttpDelete]
         public IHttpActionResult DeleteProductComment(int id)

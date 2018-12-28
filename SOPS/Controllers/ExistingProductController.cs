@@ -109,7 +109,7 @@ namespace SOPS.Controllers
         /// <param name="existingProduct"></param>
         /// <returns></returns>
         [Authorize(Roles = "Employee, Administrator")]
-        [ResponseType(typeof(ExistingProduct))]
+        [ResponseType(typeof(ExistingProductViewModel))]
         public IHttpActionResult PostExistingProduct(ExistingProduct existingProduct)
         {
             if (!ModelState.IsValid)
@@ -126,7 +126,12 @@ namespace SOPS.Controllers
             db.ExistingProducts.Add(existingProduct);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = existingProduct.Id }, existingProduct);
+            return Ok(new ExistingProductViewModel
+            {
+                ProductId = existingProduct.ProductId,
+                CreationDate = existingProduct.CreationDate,
+                Secrete = existingProduct.Secret              
+            });
         }
 
         // DELETE: api/ExistingProducts/5
