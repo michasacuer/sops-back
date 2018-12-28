@@ -10,9 +10,9 @@ namespace SOPS.Models
     public class Product
     {
         [Key]
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Barcode { get; set; }
+        public int Id             { get; set; }
+        public string Name        { get; set; }
+        public string Barcode     { get; set; }
         public string Description { get; set; }
 
         [Required]
@@ -22,12 +22,13 @@ namespace SOPS.Models
         public decimal SuggestedPrice { get; set; }
 
         [ForeignKey("Company")]
-        public int CompanyId { get; set; }
-        public virtual Company Company { get; set; }
+        public int             CompanyId { get; set; }
+        public virtual Company Company   { get; set; }
 
-        public virtual List<ProductRating> ProductRatings { get; set; }
-        public virtual List<ProductComment> ProductComments { get; set; }
+        public virtual List<ProductRating>   ProductRatings   { get; set; }
+        public virtual List<ProductComment>  ProductComments  { get; set; }
+        public virtual List<ProductIssue>    ProductIssues    { get; set; }
         public virtual List<ExistingProduct> ExistingProducts { get; set; }
-        public virtual List<WatchedProduct> WatchedProducts { get; set; }
+        public virtual List<WatchedProduct>  WatchedProducts  { get; set; }
     }
 }

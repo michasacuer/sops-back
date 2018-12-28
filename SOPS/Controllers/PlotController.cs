@@ -24,6 +24,13 @@ namespace SOPS.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        /// <summary>
+        /// wygeneruj wykres ze statystykami firmy
+        /// </summary>
+        /// <param name="companyId">id firmy</param>
+        /// <param name="width">szerokosc wykresu</param>
+        /// <param name="height">wysokosc wykresy</param>
+        /// <returns></returns>
         [Route("Company")]
         [Authorize(Roles = "Administrator,Employee")]
         public HttpResponseMessage GetCompanyStatistics(int companyId, int width, int height)
@@ -41,7 +48,7 @@ namespace SOPS.Controllers
 
             if (!db.IsCurrentUserEmployedInCompanyOrAdministrator(companyId))
             {
-                return Request.CreateResponse(HttpStatusCode.Forbidden);
+                return Request.CreateResponse(HttpStatusCode.Unauthorized);
             }
 
             var minValue = DateTime.Now.AddDays(-20);
@@ -87,6 +94,13 @@ namespace SOPS.Controllers
             return response;
         }
 
+        /// <summary>
+        /// wygneruj wykres statystyk produktu
+        /// </summary>
+        /// <param name="productId">id produktu</param>
+        /// <param name="width">szerokosc wykresu</param>
+        /// <param name="height">wysokosc wykresu</param>
+        /// <returns></returns>
         [Route("Product")]
         [Authorize(Roles = "Administrator,Employee")]
         public HttpResponseMessage GetProductRatings(int productId, int width, int height)
@@ -104,7 +118,7 @@ namespace SOPS.Controllers
 
             if (!db.IsCurrentUserEmployedInCompanyOrAdministrator(product.CompanyId))
             {
-                return Request.CreateResponse(HttpStatusCode.Forbidden);
+                return Request.CreateResponse(HttpStatusCode.Unauthorized);
             }
 
             var minValue = DateTime.Now.AddDays(-20);

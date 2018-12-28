@@ -28,6 +28,12 @@ namespace SOPS.Controllers
         }*/
 
         // GET: api/User/Profile/5
+        /// <summary>
+        /// daj profil uzytkownika imie, nazwisko, numer, mail itd
+        /// dodac obserwowane produkty
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [Route("Profile")]
         [ResponseType(typeof(UserProfileViewModel))]
         public IHttpActionResult GetUserProfile(string id)
@@ -51,13 +57,19 @@ namespace SOPS.Controllers
                 Surname = applicationUser.Surname,
                 PhoneNumber = applicationUser.PhoneNumber,
                 Email = applicationUser.Email,
-                WatcherProducts = null,
+                WatchedProducts = null,
                 IsEmployee = asEmployee != null,
                 Company = employeeCompany,
             });
         }
 
         // PUT: api/User/Profile/asdasd
+        /// <summary>
+        /// zmodyfikuj profil uzytkownika (oczywisciej est autoryzacja)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="userProfile"></param>
+        /// <returns></returns>
         [Authorize]
         [Route("Profile")]
         [ResponseType(typeof(void))]

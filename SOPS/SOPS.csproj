@@ -34,6 +34,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>App_Data/XmlDocument.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -324,9 +325,11 @@
     <Compile Include="Controllers\MailController.cs" />
     <Compile Include="Controllers\ProductCommentController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\ProductIssueController.cs" />
     <Compile Include="Controllers\ProductRatingController.cs" />
     <Compile Include="Controllers\QRController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\ScanController.cs" />
     <Compile Include="Controllers\ShortUrlController.cs" />
     <Compile Include="Controllers\StatisticController.cs" />
     <Compile Include="Controllers\UserProfileController.cs" />
@@ -349,17 +352,23 @@
     <Compile Include="Models\CompanyStatistics.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\ExistingProduct.cs" />
+    <Compile Include="Models\ExistingProductViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductComment.cs" />
     <Compile Include="Models\ProductCommentBindingModel.cs" />
+    <Compile Include="Models\ProductIssue.cs" />
+    <Compile Include="Models\ProductIssueBindingModel.cs" />
     <Compile Include="Models\ProductRating.cs" />
     <Compile Include="Models\ProductRatingBindingModel.cs" />
     <Compile Include="Models\ProductRatingViewModel.cs" />
     <Compile Include="Models\QR.cs" />
     <Compile Include="Models\RoleBindingModels.cs" />
+    <Compile Include="Models\Scan.cs" />
+    <Compile Include="Models\ScanBindingModel.cs" />
     <Compile Include="Models\StatisticGetAllCountViewModel.cs" />
     <Compile Include="Models\ShortUrl.cs" />
+    <Compile Include="Models\StatisticGetAllListViewModel.cs" />
     <Compile Include="Models\UserProfileBindingModels.cs" />
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Models\WatchedProduct.cs" />

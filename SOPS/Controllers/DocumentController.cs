@@ -24,6 +24,12 @@ namespace SOPS.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // Get: api/Document/report
+        /// <summary>
+        /// wygeneruj raport pdf
+        /// potrzebna autoryzacja
+        /// </summary>
+        /// <param name="id">id firmy</param>
+        /// <returns></returns>
         [Route("report/{id}")]
         public HttpResponseMessage GetReport(int id)
         {
@@ -32,7 +38,6 @@ namespace SOPS.Controllers
             {
                 return Request.CreateResponse(HttpStatusCode.NotFound);
             }
-
 
             var baseUrl = Request.RequestUri.GetLeftPart(UriPartial.Authority);
             var relativeUrl = Url.Route("Document_default",
@@ -57,6 +62,12 @@ namespace SOPS.Controllers
         }
 
         // GET: api/Document/5
+        /// <summary>
+        /// wygeneruj dokument existingproduct pdf
+        /// potrzebna autoryzacja
+        /// </summary>
+        /// <param name="id">id existingproduct</param>
+        /// <returns></returns>
         public HttpResponseMessage GetDocument(int id)
         {
             ExistingProduct existingProduct = db.ExistingProducts.Find(id);

@@ -23,12 +23,22 @@ namespace SOPS.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: api/Product/search?str=kaarol
+        /// <summary>
+        /// wyszukiwanie na podstawie nazwy
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
         [Route("search")]
         public IEnumerable<Product> GetSearch(string str)
         {
             return db.Products.Where(p => p.Name.Contains(str)).ToList();
         }
 
+        /// <summary>
+        /// daj wszystkie produktu
+        /// raczej tylko dla administratora, niebezpieczne
+        /// </summary>
+        /// <returns></returns>
         // GET: api/Products
         public IQueryable<Product> GetProducts()
         {
@@ -37,6 +47,11 @@ namespace SOPS.Controllers
         }
 
         // GET: api/Products/5
+        /// <summary>
+        /// pobierz produkt o podanym id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [ResponseType(typeof(Product))]
         public IHttpActionResult GetProduct(int id)
         {
@@ -50,6 +65,12 @@ namespace SOPS.Controllers
         }
 
         // PUT: api/Products/5
+        /// <summary>
+        /// modyfikacja produktu
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="product"></param>
+        /// <returns></returns>
         [Authorize(Roles = "Employee, Administrator")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutProduct(int id, Product product)
@@ -66,7 +87,7 @@ namespace SOPS.Controllers
 
             if (!db.IsCurrentUserEmployedInCompanyOrAdministrator(product.CompanyId))
             {
-                return StatusCode(HttpStatusCode.Forbidden);
+                return StatusCode(HttpStatusCode.Unauthorized);
             }
 
             db.Entry(product).State = EntityState.Modified;
@@ -90,6 +111,11 @@ namespace SOPS.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+        /// <summary>
+        /// dodaj produkt
+        /// </summary>
+        /// <param name="product"></param>
+        /// <returns></returns>
         // POST: api/Products
         [Authorize(Roles = "Employee, Administrator")]
         [ResponseType(typeof(Product))]
@@ -102,7 +128,7 @@ namespace SOPS.Controllers
 
             if (!db.IsCurrentUserEmployedInCompanyOrAdministrator(product.CompanyId))
             {
-                return StatusCode(HttpStatusCode.Forbidden);
+                return StatusCode(HttpStatusCode.Unauthorized);
             }
 
             db.Products.Add(product);
@@ -111,6 +137,11 @@ namespace SOPS.Controllers
             return CreatedAtRoute("DefaultApi", new { id = product.Id }, product);
         }
 
+        /// <summary>
+        /// usun produkt
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         // DELETE: api/Products/5
         [Authorize(Roles = "Employee, Administrator")]
         [ResponseType(typeof(Product))]
@@ -124,7 +155,7 @@ namespace SOPS.Controllers
 
             if (!db.IsCurrentUserEmployedInCompanyOrAdministrator(product.CompanyId))
             {
-                return StatusCode(HttpStatusCode.Forbidden);
+                return StatusCode(HttpStatusCode.Unauthorized);
             }
 
             db.Products.Remove(product);

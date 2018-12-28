@@ -52,6 +52,9 @@ namespace SOPS.Controllers
         public ISecureDataFormat<AuthenticationTicket> AccessTokenFormat { get; private set; }
 
         // GET api/Account/UserInfo
+        /// <summary>
+        /// Podstawowe informacje na temat użytkownika
+        /// </summary>
         [HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
         [Route("UserInfo")]
         public UserInfoViewModel GetUserInfo()
@@ -64,9 +67,12 @@ namespace SOPS.Controllers
                 HasRegistered = externalLogin == null,
                 LoginProvider = externalLogin != null ? externalLogin.LoginProvider : null
             };
-        }
+        }       
 
         // POST api/Account/Logout
+        /// <summary>
+        /// Wyloguj
+        /// </summary>
         [Route("Logout")]
         public IHttpActionResult Logout()
         {
@@ -115,7 +121,12 @@ namespace SOPS.Controllers
         }
 
         // POST api/Account/ChangePassword
-        [Route("ChangePassword")]
+        /// <summary>
+        /// Zmień hasło
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [Route("ChangePassword")]        
         public async Task<IHttpActionResult> ChangePassword(ChangePasswordBindingModel model)
         {
             if (!ModelState.IsValid)
@@ -135,6 +146,11 @@ namespace SOPS.Controllers
         }
 
         // POST api/Account/SetPassword
+        /// <summary>
+        /// zmien haslo
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [Route("SetPassword")]
         public async Task<IHttpActionResult> SetPassword(SetPasswordBindingModel model)
         {
@@ -319,6 +335,11 @@ namespace SOPS.Controllers
         }
 
         // POST api/Account/Register
+        /// <summary>
+        /// rejestracja
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [AllowAnonymous]
         [Route("Register")]
         public async Task<IHttpActionResult> Register(RegisterBindingModel model)

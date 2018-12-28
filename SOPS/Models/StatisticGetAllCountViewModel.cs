@@ -7,7 +7,7 @@ namespace SOPS.Models
 {
     public class StatisticGetAllCountViewModel
     {
-        public int CompaniesCount { get; set; }
+        public int CompaniesCount   { get; set; }
         public int AllProductsCount { get; set; }
     }
 }

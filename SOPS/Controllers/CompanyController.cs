@@ -19,12 +19,21 @@ namespace SOPS.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: api/Companies
+        /// <summary>
+        /// pobierz wszystkie firmy
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<Company> GetCompanies()
         {
             return db.Companies.ToList();
         }
 
         // GET: api/Companies/5
+        /// <summary>
+        /// pobierz firme
+        /// </summary>
+        /// <param name="id">id firmy</param>
+        /// <returns></returns>
         [ResponseType(typeof(Company))]
         public IHttpActionResult GetCompany(int id)
         {
@@ -38,6 +47,12 @@ namespace SOPS.Controllers
         }
 
         // PUT: api/Companies/5
+        /// <summary>
+        /// zmodyfikuj firme - trzeba dodac autoryzacje
+        /// </summary>
+        /// <param name="id">id firmy</param>
+        /// <param name="company">nowe dane firmy</param>
+        /// <returns></returns>
         [ResponseType(typeof(void))]
         public IHttpActionResult PutCompany(int id, Company company)
         {
@@ -73,6 +88,11 @@ namespace SOPS.Controllers
         }
 
         // POST: api/Companies
+        /// <summary>
+        /// dodaj firme - potrzebna autoryzacja
+        /// </summary>
+        /// <param name="company"></param>
+        /// <returns></returns>
         [ResponseType(typeof(Company))]
         public IHttpActionResult PostCompany(Company company)
         {
@@ -88,6 +108,11 @@ namespace SOPS.Controllers
         }
 
         // DELETE: api/Companies/5
+        /// <summary>
+        /// usun firme - potrzebna autoryzacja
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [ResponseType(typeof(Company))]
         public IHttpActionResult DeleteCompany(int id)
         {
@@ -104,6 +129,13 @@ namespace SOPS.Controllers
         }
 
         // GET: api/Company/Profile/5
+        /// <summary>
+        /// pobierz profil firmy - dane firmy+produkty i jej pracownicy
+        /// potrzebna autoryzacja
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [Authorize]
         [Route("Profile")]
         [ResponseType(typeof(Company))]
         public IHttpActionResult GetCompanyProfile(int id)
@@ -120,11 +152,6 @@ namespace SOPS.Controllers
             db.Entry(company).Collection(c => c.Employees).Load();
 
             return Ok(company);
-        }
-
-        public string OptionsCompany()
-        {
-            return null; // HTTP 200 response with empty body
         }
 
         protected override void Dispose(bool disposing)

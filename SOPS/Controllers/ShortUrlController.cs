@@ -17,15 +17,12 @@ namespace SOPS.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        private static Random random = new Random();
-        public static string RandomString(int length)
-        {
-            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            return new string(Enumerable.Repeat(chars, length)
-              .Select(s => s[random.Next(s.Length)]).ToArray());
-        }
-
         // GET: api/ShortUrl/5
+        /// <summary>
+        /// daj docelowy link dla skroconego linku
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [ResponseType(typeof(ShortUrl))]
         public IHttpActionResult GetShortUrl(string id)
         {
@@ -39,6 +36,11 @@ namespace SOPS.Controllers
         }
 
         // POST: api/ShortUrl
+        /// <summary>
+        /// daj skrocny link dla docleowego linku
+        /// </summary>
+        /// <param name="destinationUrl"></param>
+        /// <returns></returns>
         [ResponseType(typeof(ShortUrl))]
         public IHttpActionResult PostShortUrl(string destinationUrl)
         {
@@ -49,9 +51,9 @@ namespace SOPS.Controllers
             var shortUrl = new ShortUrl()
             {
                 DestinationUrl = destinationUrl,
-                Url = RandomString(5),
                 Added = DateTime.Now
             };
+            shortUrl.GenerateShortUrl();
             db.ShortUrls.Add(shortUrl);
 
             return Ok(shortUrl);

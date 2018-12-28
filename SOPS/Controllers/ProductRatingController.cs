@@ -14,12 +14,17 @@ using SOPS.Models;
 
 namespace SOPS.Controllers
 {
+    [RoutePrefix("api/ProductRating")]
     public class ProductRatingController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-        private string loggedUserId = UserHelper.GetCurrentUserId();
 
         // GET: api/ProductRating/id
+        /// <summary>
+        /// pobierz oceny dla produktu
+        /// </summary>
+        /// <param name="id">id produktu</param>
+        /// <returns></returns>
         [HttpGet]
         public IQueryable<ProductRating> GetProductRating(int id)
         {
@@ -28,32 +33,44 @@ namespace SOPS.Controllers
         }
 
         // POST: api/ProductRating/id
+        /// <summary>
+        /// wstaw ocene produktu
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="rateFromBody"></param>
+        /// <returns></returns>
         [Authorize]
         [HttpPost]
         [ResponseType(typeof(ProductRating))]
         public IHttpActionResult PostProductRating(int id, ProductRatingBindingModel rateFromBody)
         {
-            if (!db.Products.Any(p => p.Id == id) || loggedUserId == null)
+            if (!db.Products.Any(p => p.Id == id))
                 return NotFound();
 
             db.ProductRatings.Add(new ProductRating
             {
                 Rating = rateFromBody.Rating,
-                UserId = loggedUserId,
+                UserId = UserHelper.GetCurrentUserId(),
                 ProductId = id,
                 Date = DateTime.Now
             });
+            db.SaveChanges();
 
             return Ok();
         }
 
         // GET: api/ProductRating/Avarage/id
+        /// <summary>
+        /// pobierz srednia ocen dla daego produktu
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [Route("Avarage/{id:int}")]
         [HttpGet]
         [ResponseType(typeof(ProductRatingViewModel))]
         public IHttpActionResult GetAvarage(int id)
         {
-            if (!db.Products.Any(p => p.Id == id))
+            if (!db.Products.Any(p => p.Id == id) || UserHelper.GetCurrentUserId() == null)
                 return NotFound();
 
             return Ok(new ProductRatingViewModel

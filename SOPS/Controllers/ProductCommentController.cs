@@ -17,9 +17,13 @@ namespace SOPS.Controllers
     public class ProductCommentController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-        private string loggedUserId = UserHelper.GetCurrentUserId();
 
         // GET: api/ProductComment/id
+        /// <summary>
+        /// daj komentarze dla wskazanego produktu
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         public IQueryable<ProductComment> GetProductComment(int id)
         {
@@ -27,26 +31,43 @@ namespace SOPS.Controllers
             return db.ProductComments.Where(pc => pc.ProductId == id);
         }
 
-        // POST: api/ProductComments/id
+        // POST: api/ProductComment/id
+        /// <summary>
+        /// postaw komentarz
+        /// sprawdzic czy dziala autoryzacja (loggedUserId)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="commentFromBody"></param>
+        /// <returns></returns>
         [Authorize]
         [HttpPost]
         [ResponseType(typeof(ProductComment))]
         public IHttpActionResult PostProductComment(int id, ProductCommentBindingModel commentFromBody)
         {
-            if (!db.Products.Any(p => p.Id == id) || commentFromBody == null || loggedUserId == null)
+            var userId = UserHelper.GetCurrentUserId();
+
+            if (!db.Products.Any(p => p.Id == id) || commentFromBody == null || userId == null)
                 return NotFound();
 
             db.ProductComments.Add(new ProductComment
             {
                 Comment = commentFromBody.Comment,
-                ApplicationUserId = loggedUserId,
-                ProductId = id
+                ApplicationUserId = userId,
+                ProductId = id,
+                Date = DateTime.Now
             });
+            db.SaveChanges();
 
             return Ok();
         }
 
         // DELETE: api/ProductComment/5
+        /// <summary>
+        /// usun komentarz
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [Authorize]
         [ResponseType(typeof(ProductComment))]
         [HttpDelete]
         public IHttpActionResult DeleteProductComment(int id)
