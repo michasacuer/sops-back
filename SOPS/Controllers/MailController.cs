@@ -49,21 +49,26 @@ namespace SOPS.Controllers
         [Route("deactivate")]
         public async void PostStopSendingAsync()
         {
-            IsSendingActivated = false;
+            //IsSendingActivated = false;
+            var dateTime = DateTime.Now;
 
             MailMessage mail = new MailMessage();
             mail.From = new MailAddress("sops@antoniuk.pl", "SOPS");
-
             mail.To.Add(new MailAddress("sops@antoniuk.pl"));
             
-            mail.Subject = "Temat";
-            mail.Body = "Ala ma dłonie";
+            mail.Subject = "Okresowy raport";
+            mail.Body = "W załączniku znajduje się automatycznie wygenerowany raport dotyczący działalności firmy, której otrzymujący wiadomość jest pracownikiem.\n\n" +
+                "Mail został napisany i wysłany automatycznie. Proszę na niego nie odpowiadać.\n\n" +
+                "Pozdrawiamy,\n" +
+                "©System Rejestracji Produktów Sporzywczych";
+
+            var attachmentName = "Raport(" + dateTime.ToString("dd.MM.yy") + ").pdf"; 
 
             var controller = new DocumentController();
             controller.ControllerContext = ControllerContext;
 
-            Stream stream = await controller.GetReport(71).Content.ReadAsStreamAsync();
-            mail.Attachments.Add(new Attachment(stream, "Raport.pdf", null));
+            Stream stream = await controller.GetReport(1).Content.ReadAsStreamAsync();
+            mail.Attachments.Add(new Attachment(stream, attachmentName, "application/pdf"));
 
             smtpClient.Send(mail);
         }

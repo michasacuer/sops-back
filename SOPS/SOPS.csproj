@@ -340,6 +340,9 @@
     <Compile Include="Migrations\201812281735501_init.cs" />
     <Compile Include="Migrations\201812281735501_init.Designer.cs">
       <DependentUpon>201812281735501_init.cs</DependentUpon>
+    <Compile Include="Migrations\201812281733469_init.cs" />
+    <Compile Include="Migrations\201812281733469_init.Designer.cs">
+      <DependentUpon>201812281733469_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelHelpers\EmployeeHelper.cs" />
@@ -379,6 +382,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Document\Content\EmployeeReport.css" />
     <Content Include="Areas\Document\Content\Site.css" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap-grid.css" />
@@ -501,6 +505,8 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812281735501_init.resx">
       <DependentUpon>201812281735501_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812281733469_init.resx">
+      <DependentUpon>201812281733469_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
