@@ -170,6 +170,7 @@ namespace SOPS.Migrations
                     Name = "product" + i,
                     Barcode = random.Next(9999999).ToString() + random.Next(999999),
                     Description = "description" + i,
+                    CreationDate = new DateTime(random.Next(2016, 2018), random.Next(12) + 1, random.Next(25) + 1),
                     CountryOfOrigin = "country" + random.Next(10),
                     SuggestedPrice = (decimal)random.Next(201),
                     CompanyId = context.Companies.ToList()[random.Next(context.Companies.Count())].Id
@@ -219,10 +220,12 @@ namespace SOPS.Migrations
                 {
                     ApplicationUserId = context.Users.ToList()[random.Next(context.Users.Count())].Id,
                     ProductId = context.Products.ToList()[random.Next(context.Products.Count())].Id,
-                    Comment = "Comment" + i
+                    Comment = "Comment" + i,
+                    Date = new DateTime(random.Next(2016, 2018), random.Next(12) + 1, random.Next(25) + 1)
                 };
                 context.ProductComments.AddOrUpdate(productComment);
             }
+            context.SaveChanges();
 
             // CompanyReport
             for (int i = 0; i < companyReportCount; i++)
@@ -242,7 +245,7 @@ namespace SOPS.Migrations
                 ExistingProduct existingProduct = new ExistingProduct
                 {
                     ExpirationDate = new DateTime(random.Next(2018, 2030), random.Next(12) + 1, random.Next(25) + 1),
-                    CreationDate = new DateTime(random.Next(2018, 2030), random.Next(12) + 1, random.Next(25) + 1),
+                    CreationDate = new DateTime(random.Next(2017, 2018), random.Next(12) + 1, random.Next(25) + 1),
                     ProductId = context.Products.ToList()[random.Next(context.Products.Count())].Id                   
                 };
                 existingProduct.GenerateSecret();
