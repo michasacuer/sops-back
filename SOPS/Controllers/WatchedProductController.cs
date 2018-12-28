@@ -19,7 +19,6 @@ namespace SOPS.Controllers
     public class WatchedProductController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-        private string loggedUserId = UserHelper.GetCurrentUserId();
 
         // GET: api/WatchedProduct/get?id=42b8ccb0-4911-458f-a066-36b057954157
         /// <summary>
@@ -30,7 +29,7 @@ namespace SOPS.Controllers
         [HttpGet]
         [Route("get")]
         public IEnumerable<WatchedProduct> GetWatchedProduct(string id) => id == null ?
-                db.WatchedProducts.Where(u => u.ApplicationUserId == loggedUserId).ToList() :
+                db.WatchedProducts.Where(u => u.ApplicationUserId == UserHelper.GetCurrentUserId()).ToList() :
                 db.WatchedProducts.Where(u => u.ApplicationUserId == id).ToList();
 
 
@@ -49,10 +48,10 @@ namespace SOPS.Controllers
             //get product's id to add to user's watched products
             var product = db.Products.Find(id);
 
-            if (loggedUserId == null || product == null)
+            if (UserHelper.GetCurrentUserId() == null || product == null)
                 return NotFound();
 
-            db.WatchedProducts.Add(new WatchedProduct { ProductId = id, ApplicationUserId = loggedUserId });
+            db.WatchedProducts.Add(new WatchedProduct { ProductId = id, ApplicationUserId = UserHelper.GetCurrentUserId() });
             db.SaveChanges();
 
             return Ok();
@@ -69,10 +68,10 @@ namespace SOPS.Controllers
         [ResponseType(typeof(WatchedProduct))]
         public IHttpActionResult DeleteWatchedProduct(int id)
         {
-            if (loggedUserId == null)
+            if (UserHelper.GetCurrentUserId() == null)
                 return NotFound();
 
-            var product = db.WatchedProducts.SingleOrDefault(u => u.ApplicationUserId == loggedUserId && u.ProductId == id);
+            var product = db.WatchedProducts.SingleOrDefault(u => u.ApplicationUserId == UserHelper.GetCurrentUserId() && u.ProductId == id);
             if (product == null)
                 return NotFound();
 

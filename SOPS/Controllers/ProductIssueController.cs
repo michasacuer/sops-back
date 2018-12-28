@@ -17,7 +17,6 @@ namespace SOPS.Controllers
     public class ProductIssueController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-        private string loggedUserId = UserHelper.GetCurrentUserId();
 
         // GET: api/ProductIssue/id
         [HttpGet]
@@ -32,13 +31,13 @@ namespace SOPS.Controllers
         [ResponseType(typeof(ProductIssue))]
         public IHttpActionResult PostProductIssue(int id, ProductIssueBindingModel issueFromBody)
         {
-            if (!db.Products.Any(p => p.Id == id) || issueFromBody == null || loggedUserId == null)
+            if (!db.Products.Any(p => p.Id == id) || issueFromBody == null || UserHelper.GetCurrentUserId() == null)
                 return NotFound();
 
             db.ProductIssues.Add(new ProductIssue
             { 
                 Issue = issueFromBody.Issue,
-                ApplicationUserId = loggedUserId,
+                ApplicationUserId = UserHelper.GetCurrentUserId(),
                 ProductId = id
             });
             db.SaveChanges();

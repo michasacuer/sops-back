@@ -17,7 +17,6 @@ namespace SOPS.Controllers
     public class ProductCommentController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-        private string loggedUserId = UserHelper.GetCurrentUserId();
 
         // GET: api/ProductComment/id
         /// <summary>
@@ -45,13 +44,13 @@ namespace SOPS.Controllers
         [ResponseType(typeof(ProductComment))]
         public IHttpActionResult PostProductComment(int id, ProductCommentBindingModel commentFromBody)
         {
-            if (!db.Products.Any(p => p.Id == id) || commentFromBody == null || loggedUserId == null)
+            if (!db.Products.Any(p => p.Id == id) || commentFromBody == null || UserHelper.GetCurrentUserId() == null)
                 return NotFound();
 
             db.ProductComments.Add(new ProductComment
             {
                 Comment = commentFromBody.Comment,
-                ApplicationUserId = loggedUserId,
+                ApplicationUserId = UserHelper.GetCurrentUserId(),
                 ProductId = id
             });
             db.SaveChanges();
