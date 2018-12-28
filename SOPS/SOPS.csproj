@@ -285,6 +285,7 @@
       <DependentUpon>Product.pl.resx</DependentUpon>
     </Compile>
     <Compile Include="Areas\Document\ViewModels\DocumentViewModel.cs" />
+    <Compile Include="Areas\Document\ViewModels\EmployeeReportViewModel.cs" />
     <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
     <Compile Include="Areas\HelpPage\App_Start\HelpPageConfig.cs" />
     <Compile Include="Areas\HelpPage\Controllers\HelpController.cs" />
@@ -336,6 +337,10 @@
     <Compile Include="Migrations\201812272352522_init.cs" />
     <Compile Include="Migrations\201812272352522_init.Designer.cs">
       <DependentUpon>201812272352522_init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812272043456_mig1.cs" />
+    <Compile Include="Migrations\201812272043456_mig1.Designer.cs">
+      <DependentUpon>201812272043456_mig1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelHelpers\EmployeeHelper.cs" />
@@ -417,6 +422,7 @@
     <Content Include="Scripts\bootstrap.bundle.min.js.map" />
     <Content Include="Scripts\bootstrap.js.map" />
     <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Areas\Document\Views\Default\EmployeeReport.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -490,6 +496,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812272352522_init.resx">
       <DependentUpon>201812272352522_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812272043456_mig1.resx">
+      <DependentUpon>201812272043456_mig1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

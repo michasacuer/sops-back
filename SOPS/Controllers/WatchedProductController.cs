@@ -48,7 +48,7 @@ namespace SOPS.Controllers
             return Ok();
         }
 
-        // DELETE: api/WatchedProducts/5
+        // DELETE: api/WatchedProduct/5
         [Authorize]
         [HttpDelete]
         [ResponseType(typeof(WatchedProduct))]
