@@ -7,11 +7,11 @@ using System.Web;
 
 namespace SOPS.Models
 {
-    public class ProductComment
+    public class ProductIssue
     {
         [Key]
         public int Id { get; set; }
-        public string Comment { get; set; }
+        public string Issue { get; set; }
 
         [ForeignKey("ApplicationUser")]
         public string ApplicationUserId { get; set; }

@@ -20,18 +20,19 @@ namespace SOPS
         {
             return new ApplicationDbContext();
         }
-
-        public DbSet<Employee> Employees { get; set; }
-        public DbSet<Product> Products { get; set; }
-        public DbSet<ProductRating> ProductRatings { get; set; }
-        public DbSet<ProductComment> ProductComments { get; set; }
-        public DbSet<ExistingProduct> ExistingProducts { get; set; }
-        public DbSet<WatchedProduct> WatchedProducts { get; set; }
-        public DbSet<Company> Companies { get; set; }
-        public DbSet<CompanyReport> CompanyReports { get; set; }
+                                      
+        public DbSet<Employee>          Employees         { get; set; }
+        public DbSet<Product>           Products          { get; set; }
+        public DbSet<ProductRating>     ProductRatings    { get; set; }
+        public DbSet<ProductComment>    ProductComments   { get; set; }
+        public DbSet<ProductIssue>      ProductIssues     { get; set; }
+        public DbSet<ExistingProduct>   ExistingProducts  { get; set; }
+        public DbSet<WatchedProduct>    WatchedProducts   { get; set; }
+        public DbSet<Company>           Companies         { get; set; }
+        public DbSet<CompanyReport>     CompanyReports    { get; set; }
         public DbSet<CompanyStatistics> CompanyStatistics { get; set; }
-        public DbSet<QR> QRs { get; set; }
-        public DbSet<ShortUrl> ShortUrls { get; set; }
-        public DbSet<Scan> Scans { get; set; }
+        public DbSet<QR>                QRs               { get; set; }
+        public DbSet<ShortUrl>          ShortUrls         { get; set; }
+        public DbSet<Scan>              Scans             { get; set; }
     }
 }
