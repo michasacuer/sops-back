@@ -17,7 +17,7 @@ namespace SOPS.Controllers
         /// <summary>
         /// Zwraca liczność produktów i firm
         /// </summary>
-        /// <returns></returns>
+        /// <returns></returns>tam w d
         [HttpGet]
         [Route("getallcount")]
         [ResponseType(typeof(StatisticGetAllCountViewModel))]

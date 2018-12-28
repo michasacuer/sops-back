@@ -47,11 +47,12 @@ namespace SOPS.Controllers
         {
             //get product's id to add to user's watched products
             var product = db.Products.Find(id);
+            var userId = UserHelper.GetCurrentUserId();
 
-            if (UserHelper.GetCurrentUserId() == null || product == null)
+            if (userId == null || product == null)
                 return NotFound();
 
-            db.WatchedProducts.Add(new WatchedProduct { ProductId = id, ApplicationUserId = UserHelper.GetCurrentUserId() });
+            db.WatchedProducts.Add(new WatchedProduct { ProductId = id, ApplicationUserId = userId });
             db.SaveChanges();
 
             return Ok();
@@ -68,10 +69,12 @@ namespace SOPS.Controllers
         [ResponseType(typeof(WatchedProduct))]
         public IHttpActionResult DeleteWatchedProduct(int id)
         {
-            if (UserHelper.GetCurrentUserId() == null)
+            var userId = UserHelper.GetCurrentUserId();
+
+            if (userId == null)
                 return NotFound();
 
-            var product = db.WatchedProducts.SingleOrDefault(u => u.ApplicationUserId == UserHelper.GetCurrentUserId() && u.ProductId == id);
+            var product = db.WatchedProducts.SingleOrDefault(u => u.ApplicationUserId == userId && u.ProductId == id);
             if (product == null)
                 return NotFound();
 

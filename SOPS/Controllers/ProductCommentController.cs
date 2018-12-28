@@ -44,13 +44,15 @@ namespace SOPS.Controllers
         [ResponseType(typeof(ProductComment))]
         public IHttpActionResult PostProductComment(int id, ProductCommentBindingModel commentFromBody)
         {
-            if (!db.Products.Any(p => p.Id == id) || commentFromBody == null || UserHelper.GetCurrentUserId() == null)
+            var userId = UserHelper.GetCurrentUserId();
+
+            if (!db.Products.Any(p => p.Id == id) || commentFromBody == null || userId == null)
                 return NotFound();
 
             db.ProductComments.Add(new ProductComment
             {
                 Comment = commentFromBody.Comment,
-                ApplicationUserId = UserHelper.GetCurrentUserId(),
+                ApplicationUserId = userId,
                 ProductId = id
             });
             db.SaveChanges();

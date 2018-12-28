@@ -31,13 +31,15 @@ namespace SOPS.Controllers
         [ResponseType(typeof(ProductIssue))]
         public IHttpActionResult PostProductIssue(int id, ProductIssueBindingModel issueFromBody)
         {
-            if (!db.Products.Any(p => p.Id == id) || issueFromBody == null || UserHelper.GetCurrentUserId() == null)
+            var userId = UserHelper.GetCurrentUserId();
+
+            if (!db.Products.Any(p => p.Id == id) || issueFromBody == null || userId == null)
                 return NotFound();
 
             db.ProductIssues.Add(new ProductIssue
             { 
                 Issue = issueFromBody.Issue,
-                ApplicationUserId = UserHelper.GetCurrentUserId(),
+                ApplicationUserId = userId,
                 ProductId = id
             });
             db.SaveChanges();
