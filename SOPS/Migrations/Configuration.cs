@@ -242,8 +242,10 @@ namespace SOPS.Migrations
                 ExistingProduct existingProduct = new ExistingProduct
                 {
                     ExpirationDate = new DateTime(random.Next(2018, 2030), random.Next(12) + 1, random.Next(25) + 1),
-                    ProductId = context.Products.ToList()[random.Next(context.Products.Count())].Id
+                    CreationDate = new DateTime(random.Next(2018, 2030), random.Next(12) + 1, random.Next(25) + 1),
+                    ProductId = context.Products.ToList()[random.Next(context.Products.Count())].Id                   
                 };
+                existingProduct.GenerateSecret();
                 context.ExistingProducts.AddOrUpdate(existingProduct);
             }
             context.SaveChanges();

@@ -24,6 +24,11 @@ namespace SOPS.Controllers
         public ApplicationRoleManager RoleManager => Request.GetOwinContext().GetUserManager<ApplicationRoleManager>();
 
         // POST: api/Role
+        /// <summary>
+        /// nadaj role (uprawnienia uzytkownikowi): Employee, Administrator (moze miec kilka)
+        /// </summary>
+        /// <param name="roleBindingModel"></param>
+        /// <returns></returns>
         [Authorize(Roles = "Administrator,Employee")]
         [ResponseType(typeof(RoleBindingModel))]
         public IHttpActionResult PostRole(RoleBindingModel roleBindingModel)
@@ -69,7 +74,7 @@ namespace SOPS.Controllers
             } 
             else
             {
-                return StatusCode(HttpStatusCode.Forbidden);
+                return StatusCode(HttpStatusCode.Unauthorized);
             }
 
             UserManager.AddToRoleAsync(roleBindingModel.UserId, roleBindingModel.Role).Wait();

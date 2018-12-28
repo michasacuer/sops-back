@@ -20,6 +20,11 @@ namespace SOPS.Controllers
         private string loggedUserId = UserHelper.GetCurrentUserId();
 
         // GET: api/ProductComment/id
+        /// <summary>
+        /// daj komentarze dla wskazanego produktu
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         public IQueryable<ProductComment> GetProductComment(int id)
         {
@@ -28,6 +33,13 @@ namespace SOPS.Controllers
         }
 
         // POST: api/ProductComments/id
+        /// <summary>
+        /// postaw komentarz
+        /// sprawdzic czy dziala autoryzacja (loggedUserId)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="commentFromBody"></param>
+        /// <returns></returns>
         [Authorize]
         [HttpPost]
         [ResponseType(typeof(ProductComment))]
@@ -47,6 +59,11 @@ namespace SOPS.Controllers
         }
 
         // DELETE: api/ProductComment/5
+        /// <summary>
+        /// usun komentarz
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [ResponseType(typeof(ProductComment))]
         [HttpDelete]
         public IHttpActionResult DeleteProductComment(int id)

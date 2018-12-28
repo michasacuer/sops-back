@@ -24,12 +24,23 @@ namespace SOPS.Controllers
         public ApplicationUserManager UserManager => Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
 
         // GET: api/ExistingProducts
+        /// <summary>
+        /// daj wszystkie istniejace produkty
+        /// raczej do wywalenia - potencjalnie niebezpieczne
+        /// </summary>
+        /// <returns></returns>
         public IQueryable<ExistingProduct> GetExistingProducts()
         {
             return db.ExistingProducts;
         }
 
         // GET: api/ExistingProducts/5
+        /// <summary>
+        /// pobierz existingproduct o zadanym id
+        /// raczej do wywalenia - pootencjalnie niebezpieczne
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [ResponseType(typeof(ExistingProduct))]
         public IHttpActionResult GetExistingProduct(int id)
         {
@@ -43,6 +54,13 @@ namespace SOPS.Controllers
         }
 
         // PUT: api/ExistingProducts/5
+        /// <summary>
+        /// modyfikacja istniejacego produktu
+        /// raczej do wywalenia - niebezpieczne, potrzebna autoryzacja
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="existingProduct"></param>
+        /// <returns></returns>
         [Authorize(Roles = "Employee, Administrator")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutExistingProduct(int id, ExistingProduct existingProduct)
@@ -59,7 +77,7 @@ namespace SOPS.Controllers
 
             if (!db.IsCurrentUserEmployedInCompanyOrAdministrator(existingProduct.Product.CompanyId))
             {
-                return StatusCode(HttpStatusCode.Forbidden);
+                return StatusCode(HttpStatusCode.Unauthorized);
             }
 
             db.Entry(existingProduct).State = EntityState.Modified;
@@ -84,6 +102,12 @@ namespace SOPS.Controllers
         }
 
         // POST: api/ExistingProducts
+        /// <summary>
+        /// dodaj existingproduct
+        /// dodac viewmodel
+        /// </summary>
+        /// <param name="existingProduct"></param>
+        /// <returns></returns>
         [Authorize(Roles = "Employee, Administrator")]
         [ResponseType(typeof(ExistingProduct))]
         public IHttpActionResult PostExistingProduct(ExistingProduct existingProduct)
@@ -95,9 +119,10 @@ namespace SOPS.Controllers
 
             if (!db.IsCurrentUserEmployedInCompanyOrAdministrator(existingProduct.Product.CompanyId))
             {
-                return StatusCode(HttpStatusCode.Forbidden);
+                return StatusCode(HttpStatusCode.Unauthorized);
             }
-
+            existingProduct.CreationDate = DateTime.Now;
+            existingProduct.GenerateSecret();
             db.ExistingProducts.Add(existingProduct);
             db.SaveChanges();
 
@@ -105,6 +130,11 @@ namespace SOPS.Controllers
         }
 
         // DELETE: api/ExistingProducts/5
+        /// <summary>
+        /// usun existingproduct
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [Authorize(Roles = "Employee, Administrator")]
         [ResponseType(typeof(ExistingProduct))]
         public IHttpActionResult DeleteExistingProduct(int id)
@@ -115,9 +145,11 @@ namespace SOPS.Controllers
                 return NotFound();
             }
 
+            db.Entry(existingProduct).Reference(p => p.Product).Load();
+
             if (!db.IsCurrentUserEmployedInCompanyOrAdministrator(existingProduct.Product.CompanyId))
             {
-                return StatusCode(HttpStatusCode.Forbidden);
+                return StatusCode(HttpStatusCode.Unauthorized);
             }
 
             db.ExistingProducts.Remove(existingProduct);

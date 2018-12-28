@@ -14,12 +14,20 @@ namespace SOPS.Models
         [Key]
         public int Id { get; set; }
         public DateTime ExpirationDate { get; set; }
-
+        public DateTime CreationDate { get; set; }
         [Required]
-        [ForeignKey("Product")]
         public int ProductId { get; set; }
-        public virtual Product Product { get; set; }
+        public string Secret { get; set; }
 
+        public virtual Product Product { get; set; }
         public virtual QR QR { get; set; }
+
+        public void GenerateSecret()
+        {
+            var random = new Random();
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            Secret = new string(Enumerable.Repeat(chars, 8)
+              .Select(s => s[random.Next(s.Length)]).ToArray());
+        }
     }
 }

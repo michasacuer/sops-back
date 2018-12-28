@@ -12,7 +12,7 @@ namespace SOPS.Models
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
         public bool IsEmployee { get; set; }
-        public List<Product> WatcherProducts { get; set; }
+        public List<Product> WatchedProducts { get; set; }
         public Company Company { get; set; }
     }
 }

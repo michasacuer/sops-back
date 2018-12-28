@@ -30,6 +30,10 @@ namespace SOPS.Controllers
         }
 
         // POST: api/Mail/activate
+        /// <summary>
+        /// wlacz wysylanie maili
+        /// niebezpieczne
+        /// </summary>
         [Route("activate")]
         public void PostScheduleSending()
         {
@@ -38,6 +42,10 @@ namespace SOPS.Controllers
         }
 
         // POST: api/Mail/deactivate
+        /// <summary>
+        /// wylacz wylsanie maili
+        /// niebezpieczne
+        /// </summary>
         [Route("deactivate")]
         public async void PostStopSendingAsync()
         {

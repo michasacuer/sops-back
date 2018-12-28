@@ -20,6 +20,11 @@ namespace SOPS.Controllers
         private string loggedUserId = UserHelper.GetCurrentUserId();
 
         // GET: api/ProductRating/id
+        /// <summary>
+        /// pobierz oceny dla produktu
+        /// </summary>
+        /// <param name="id">id produktu</param>
+        /// <returns></returns>
         [HttpGet]
         public IQueryable<ProductRating> GetProductRating(int id)
         {
@@ -28,6 +33,12 @@ namespace SOPS.Controllers
         }
 
         // POST: api/ProductRating/id
+        /// <summary>
+        /// wstaw produkt
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="rateFromBody"></param>
+        /// <returns></returns>
         [Authorize]
         [HttpPost]
         [ResponseType(typeof(ProductRating))]
@@ -48,6 +59,11 @@ namespace SOPS.Controllers
         }
 
         // GET: api/ProductRating/Avarage/id
+        /// <summary>
+        /// pobierz srednia ocen dla daego produktu
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [Route("Avarage/{id:int}")]
         [HttpGet]
         [ResponseType(typeof(ProductRatingViewModel))]

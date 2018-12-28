@@ -14,6 +14,10 @@ namespace SOPS.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        /// <summary>
+        /// daj wszystkie firmy i wszystkie produkty
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("getallcount")]
         [ResponseType(typeof(StatisticGetAllCountViewModel))]

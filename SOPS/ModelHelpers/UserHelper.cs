@@ -14,7 +14,7 @@ namespace SOPS.ModelHelpers
         public static string GetCurrentUserId()
         {
             var userManager = HttpContext.Current.Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            var currentId = HttpContext.Current.User.Identity.GetUserId();
+            var currentId = HttpContext.Current.User?.Identity?.GetUserId();
             return currentId;
         }
 

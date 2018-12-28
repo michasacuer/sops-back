@@ -21,6 +21,11 @@ namespace SOPS.Controllers
         private string loggedUserId = UserHelper.GetCurrentUserId();
 
         // GET: api/WatchedProducts
+        /// <summary>
+        /// daj wszystkie obserwowane produkty dla aktualnego uzytkownika
+        /// dac mozliwosc podawania oberjzenia obserwowanych produktow innych uzytkonikow
+        /// </summary>
+        /// <returns></returns>
         [Authorize]
         [HttpGet]
         public IEnumerable<WatchedProduct> GetWatchedProduct()
@@ -31,6 +36,11 @@ namespace SOPS.Controllers
 
 
         // POST: api/WatchedProduct/5
+        /// <summary>
+        /// dodaj obserwowany produkt (dla aktualnego uzytkownika)
+        /// </summary>
+        /// <param name="id">id produktu</param>
+        /// <returns></returns>
         [Authorize]
         [HttpPost]
         [ResponseType(typeof(WatchedProduct))]
@@ -49,6 +59,11 @@ namespace SOPS.Controllers
         }
 
         // DELETE: api/WatchedProduct/5
+        /// <summary>
+        /// usun obserwowany produkt
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [Authorize]
         [HttpDelete]
         [ResponseType(typeof(WatchedProduct))]
@@ -57,7 +72,7 @@ namespace SOPS.Controllers
             if (loggedUserId == null)
                 return NotFound();
 
-            var product =  db.WatchedProducts.SingleOrDefault(u => u.ApplicationUserId == loggedUserId && u.ProductId == id);
+            var product = db.WatchedProducts.SingleOrDefault(u => u.ApplicationUserId == loggedUserId && u.ProductId == id);
             if (product == null)
                 return NotFound();
 

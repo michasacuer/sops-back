@@ -20,6 +20,11 @@ namespace SOPS.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: api/QR/5
+        /// <summary>
+        /// wygeneruj kod qr dla existinigproduct
+        /// </summary>
+        /// <param name="id">existingproduct id</param>
+        /// <returns></returns>
         public HttpResponseMessage GetQR(int id)
         {
             var existingProduct = db.ExistingProducts.Find(id);
