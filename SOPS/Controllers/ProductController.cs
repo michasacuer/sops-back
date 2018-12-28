@@ -71,7 +71,7 @@ namespace SOPS.Controllers
         /// <param name="id"></param>
         /// <param name="product"></param>
         /// <returns></returns>
-        [Authorize(Roles = "Employee, Administrator")]
+        //[Authorize(Roles = "Employee, Administrator")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutProduct(int id, Product product)
         {
@@ -88,6 +88,11 @@ namespace SOPS.Controllers
             if (!db.IsCurrentUserEmployedInCompanyOrAdministrator(product.CompanyId))
             {
                 return StatusCode(HttpStatusCode.Unauthorized);
+            }
+            var local = db.Set<Product>().Local.FirstOrDefault(f => f.Id == product.Id);
+            if (local != null)
+            {
+                db.Entry(local).State = EntityState.Detached;
             }
 
             db.Entry(product).State = EntityState.Modified;
