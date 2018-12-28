@@ -18,10 +18,43 @@ using TheArtOfDev.HtmlRenderer.PdfSharp;
 
 namespace SOPS.Controllers
 {
+    [RoutePrefix("api/Document")]
     public class DocumentController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        // Get: api/Document/report
+        [Route("report/{id}")]
+        public HttpResponseMessage GetReport(int id)
+        {
+            Company company = db.Companies.Find(id);
+            if (company == null)
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound);
+            }
+
+
+            var baseUrl = Request.RequestUri.GetLeftPart(UriPartial.Authority);
+            var relativeUrl = Url.Route("Document_default",
+                new { id, controller = "Default", action = "EmployeeReport" });
+
+            var ms = new MemoryStream();
+            PdfConvert.ConvertHtmlToPdf(new PdfDocument
+            {
+                Url = new Uri(new Uri(baseUrl), relativeUrl).ToString()
+
+            }, new PdfOutput
+            {
+                OutputStream = ms
+            });
+            ms.Position = 0;
+
+            var response = Request.CreateResponse();
+            response.Content = new StreamContent(ms);
+            response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/pdf");
+
+            return response;
+        }
 
         // GET: api/Document/5
         public HttpResponseMessage GetDocument(int id)

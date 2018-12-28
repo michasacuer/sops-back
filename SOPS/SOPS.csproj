@@ -342,6 +342,10 @@
     <Compile Include="Migrations\201812272043456_mig1.Designer.cs">
       <DependentUpon>201812272043456_mig1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812272233162_mig2.cs" />
+    <Compile Include="Migrations\201812272233162_mig2.Designer.cs">
+      <DependentUpon>201812272233162_mig2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelHelpers\EmployeeHelper.cs" />
     <Compile Include="ModelHelpers\CompanyStatisticsHelper.cs" />
@@ -494,14 +498,11 @@
       <LastGenOutput>Product.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Resources</CustomToolNamespace>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812271707294_init.resx">
-      <DependentUpon>201812271707294_init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812271647569_mig1.resx">
-      <DependentUpon>201812271647569_mig1.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812272043456_mig1.resx">
       <DependentUpon>201812272043456_mig1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812272233162_mig2.resx">
+      <DependentUpon>201812272233162_mig2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

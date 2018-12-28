@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -11,7 +12,7 @@ using System.Web.Http;
 namespace SOPS.Controllers
 {
     [RoutePrefix("api/Mail")]
-    [Authorize(Roles = "Administrator")]
+    //[Authorize(Roles = "Administrator")]
     public class MailController : ApiController
     {
         private ApplicationDbContext db = null;
@@ -38,9 +39,22 @@ namespace SOPS.Controllers
 
         // POST: api/Mail/deactivate
         [Route("deactivate")]
-        public void PostStopSending()
+        public async void PostStopSendingAsync()
         {
             IsSendingActivated = false;
+
+            MailMessage mail = new MailMessage();
+            mail.From = new MailAddress("sops@antoniuk.pl", "SOPS");
+
+            mail.To.Add(new MailAddress("sops@antoniuk.pl"));
+            
+            mail.Subject = "Temat";
+            mail.Body = "Ala ma dłonie";
+
+            Stream stream = await new DocumentController().GetReport(31).Content.ReadAsStreamAsync();
+            mail.Attachments.Add(new Attachment(stream, null, null));
+
+            smtpClient.Send(mail);
         }
 
         private void AddTask(string name, int seconds)
@@ -61,13 +75,15 @@ namespace SOPS.Controllers
                 {
                     //mail.To.Add(new MailAddress(userEmployee.Email));
                 }
-                mail.To.Add(new MailAddress(userEmployee.Email));
+                // mail.To.Add(new MailAddress(userEmployee.Email));
             }
+            mail.To.Add(new MailAddress("sops@antoniuk.pl"));
             //("michasacuer3@gmail.com"));
             //("skrzynkanof@gmail.com"));
 
             mail.Subject = "Temat";
             mail.Body = "Ala ma dłonie";
+            // mail.Attachments.Add()
 
             smtpClient.Send(mail);
 
