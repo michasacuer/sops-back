@@ -51,8 +51,11 @@ namespace SOPS.Controllers
             mail.Subject = "Temat";
             mail.Body = "Ala ma dłonie";
 
-            Stream stream = await new DocumentController().GetReport(31).Content.ReadAsStreamAsync();
-            mail.Attachments.Add(new Attachment(stream, null, null));
+            var controller = new DocumentController();
+            controller.ControllerContext = ControllerContext;
+
+            Stream stream = await controller.GetReport(71).Content.ReadAsStreamAsync();
+            mail.Attachments.Add(new Attachment(stream, "Raport.pdf", null));
 
             smtpClient.Send(mail);
         }
