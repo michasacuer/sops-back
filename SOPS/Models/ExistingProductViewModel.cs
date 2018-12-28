@@ -7,8 +7,8 @@ namespace SOPS.Models
 {
     public class ExistingProductViewModel
     {
-        public int ProductId { get; set; }
+        public int      ProductId    { get; set; }
         public DateTime CreationDate { get; set; }
-        public string Secrete { get; set; }
+        public string   Secrete      { get; set; }
     }
 }

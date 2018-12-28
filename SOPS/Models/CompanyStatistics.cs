@@ -12,12 +12,12 @@ namespace SOPS.Models
         [Key]
         [Column(Order = 1)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public DateTime Date { get; set; }
+        public DateTime Date           { get; set; }
         [Key]
         [Column(Order = 2)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int CompanyId { get; set; }
-        public int RegistredProducts { get; set; }
+        public int CompanyId           { get; set; }
+        public int RegistredProducts   { get; set; }
 
 
         public virtual Company Company { get; set; }

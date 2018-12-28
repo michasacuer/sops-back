@@ -7,7 +7,7 @@ namespace SOPS.Models
 {
     public class ScanBindingModel
     {
-        public int ExistingProductId { get; set; }
+        public int    ExistingProductId     { get; set; }
         public string ExistingProductSecret { get; set; }
     }
 }

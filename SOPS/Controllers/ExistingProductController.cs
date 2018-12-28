@@ -19,7 +19,7 @@ namespace SOPS.Controllers
     [AllowCrossSiteJson]
     public class ExistingProductController : ApiController
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private ApplicationDbContext  db = new ApplicationDbContext();
         public ApplicationRoleManager RoleManager => Request.GetOwinContext().GetUserManager<ApplicationRoleManager>();
         public ApplicationUserManager UserManager => Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
 

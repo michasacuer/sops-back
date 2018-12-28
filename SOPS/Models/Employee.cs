@@ -14,7 +14,7 @@ namespace SOPS.Models
         public string UserId { get; set; }
         public int CompanyId { get; set; }
 
-        public virtual Company Company { get; set; }
-        public virtual ApplicationUser User { get; set; }
+        public virtual Company         Company { get; set; }
+        public virtual ApplicationUser User    { get; set; }
     }
 }

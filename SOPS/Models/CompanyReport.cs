@@ -10,12 +10,12 @@ namespace SOPS.Models
     public class CompanyReport
     {
         [Key]
-        public int Id { get; set; }
+        public int    Id      { get; set; }
         public string Content { get; set; }
 
         [Required]
         [ForeignKey("Company")]
-        public int CompanyId { get; set; }
-        public virtual Company Company { get; set; }
+        public int             CompanyId { get; set; }
+        public virtual Company Company   { get; set; }
     }
 }
