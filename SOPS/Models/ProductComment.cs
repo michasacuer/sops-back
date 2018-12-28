@@ -12,7 +12,7 @@ namespace SOPS.Models
         [Key]
         public int      Id      { get; set; }
         public string   Comment { get; set; }
-        public DateTime Date    { get; set; }
+        //public DateTime Date    { get; set; }
 
         [ForeignKey("ApplicationUser")]
         public string ApplicationUserId                { get; set; }

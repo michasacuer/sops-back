@@ -774,7 +774,7 @@
             <summary>
             Zwraca liczność produktów i firm
             </summary>
-            <returns></returns>
+            <returns></returns>tam w d
         </member>
         <member name="M:SOPS.Controllers.StatisticController.GetAllList">
             <summary>

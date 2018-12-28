@@ -337,9 +337,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812281009507_init.cs" />
-    <Compile Include="Migrations\201812281009507_init.Designer.cs">
-      <DependentUpon>201812281009507_init.cs</DependentUpon>
+    <Compile Include="Migrations\201812281326204_init3.cs" />
+    <Compile Include="Migrations\201812281326204_init3.Designer.cs">
+      <DependentUpon>201812281326204_init3.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelHelpers\EmployeeHelper.cs" />
@@ -499,8 +499,8 @@
       <LastGenOutput>Product.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Resources</CustomToolNamespace>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812281009507_init.resx">
-      <DependentUpon>201812281009507_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812281326204_init3.resx">
+      <DependentUpon>201812281326204_init3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

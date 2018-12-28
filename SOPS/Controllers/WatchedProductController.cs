@@ -28,9 +28,15 @@ namespace SOPS.Controllers
         [Authorize]
         [HttpGet]
         [Route("get")]
-        public IEnumerable<WatchedProduct> GetWatchedProduct(string id) => id == null ?
-                db.WatchedProducts.Where(u => u.ApplicationUserId == UserHelper.GetCurrentUserId()).ToList() :
+        public IEnumerable<WatchedProduct> GetWatchedProduct(string id)
+        {
+            var userId = UserHelper.GetCurrentUserId();
+            var productsList = id == null ?
+                db.WatchedProducts.Where(u => u.ApplicationUserId == userId).ToList() :
                 db.WatchedProducts.Where(u => u.ApplicationUserId == id).ToList();
+
+            return productsList;
+        }
 
 
 
