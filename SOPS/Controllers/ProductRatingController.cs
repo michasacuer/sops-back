@@ -40,7 +40,8 @@ namespace SOPS.Controllers
             {
                 Rating = rateFromBody.Rating,
                 UserId = loggedUserId,
-                ProductId = id
+                ProductId = id,
+                Date = DateTime.Now
             });
 
             return Ok();

@@ -22,7 +22,7 @@ namespace SOPS.Migrations
         {
             if (System.Diagnostics.Debugger.IsAttached == false)
             {
-                // System.Diagnostics.Debugger.Launch();
+                //System.Diagnostics.Debugger.Launch();
             }
             // This method will be called after migrating to the latest version.
 
@@ -31,13 +31,13 @@ namespace SOPS.Migrations
             int uniqueAddressStreetCount = 2;
             int uniqueAddressCityCount = 5;
 
-            int userCount = 10;
+            int userCount = 100;
             int uniqueUserNameCount = 5;
             int uniqueUserSurnameCount = 10;
 
             int productCount = 30;
             int employeeCount = 3;
-            int productRatingCount = 5;
+            int productRatingCount = 1000;
             int productCommentCount = 10;
             int companyReportCount = 10;
             int watchedProductCount = 10;
@@ -186,7 +186,8 @@ namespace SOPS.Migrations
                 {
                     Rating = (float)random.NextDouble() * 10,
                     UserId = context.Users.ToList()[random.Next(context.Users.Count())].Id,
-                    ProductId = context.Products.ToList()[random.Next(context.Products.Count())].Id
+                    ProductId = context.Products.ToList()[random.Next(context.Products.Count())].Id,
+                    Date = new DateTime(2018, 12, random.Next(28) + 1)
                 };
                 if (!productRatings.Any(pr => pr.UserId.Equals(productRating.UserId) && pr.ProductId.Equals(productRating.ProductId)))
                 {
