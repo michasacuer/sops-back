@@ -75,9 +75,19 @@ namespace SOPS.Controllers
                 return BadRequest();
             }
 
-            if (!db.IsCurrentUserEmployedInCompanyOrAdministrator(existingProduct.Product.CompanyId))
+            var temp = existingProduct;
+            temp = db.ExistingProducts.Find(id);
+            db.Entry(temp).Reference(e => e.Product).Load();
+
+            if (!db.IsCurrentUserEmployedInCompanyOrAdministrator(temp.Product.CompanyId))
             {
                 return StatusCode(HttpStatusCode.Unauthorized);
+            }
+
+            var local = db.Set<ExistingProduct>().Local.FirstOrDefault(f => f.Id == existingProduct.Id);
+            if(local != null)
+            {
+                db.Entry(local).State = EntityState.Detached;
             }
 
             db.Entry(existingProduct).State = EntityState.Modified;

@@ -55,6 +55,7 @@ namespace SOPS.Controllers
             };
             shortUrl.GenerateShortUrl();
             db.ShortUrls.Add(shortUrl);
+            db.SaveChanges();
 
             return Ok(shortUrl);
         }

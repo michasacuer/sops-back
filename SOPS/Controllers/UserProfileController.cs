@@ -57,7 +57,7 @@ namespace SOPS.Controllers
                 Surname = applicationUser.Surname,
                 PhoneNumber = applicationUser.PhoneNumber,
                 Email = applicationUser.Email,
-                WatchedProducts = null,
+                WatchedProducts = applicationUser.WatchedProducts,
                 IsEmployee = asEmployee != null,
                 Company = employeeCompany,
             });
