@@ -20,8 +20,6 @@ namespace SOPS.Controllers
     public class ExistingProductController : ApiController
     {
         private ApplicationDbContext  db = new ApplicationDbContext();
-        public ApplicationRoleManager RoleManager => Request.GetOwinContext().GetUserManager<ApplicationRoleManager>();
-        public ApplicationUserManager UserManager => Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
 
         // GET: api/ExistingProducts
         /// <summary>
@@ -29,7 +27,7 @@ namespace SOPS.Controllers
         /// raczej do wywalenia - potencjalnie niebezpieczne
         /// </summary>
         /// <returns></returns>
-        public IQueryable<ExistingProduct> GetExistingProducts()
+        /*public IQueryable<ExistingProduct> GetExistingProducts()
         {
             return db.ExistingProducts;
         }
@@ -52,8 +50,8 @@ namespace SOPS.Controllers
 
             return Ok(existingProduct);
         }
-
-        // PUT: api/ExistingProducts/5
+        
+                     // PUT: api/ExistingProducts/5
         /// <summary>
         /// modyfikacja istniejacego produktu
         /// raczej do wywalenia - niebezpieczne, potrzebna autoryzacja
@@ -110,28 +108,41 @@ namespace SOPS.Controllers
 
             return StatusCode(HttpStatusCode.NoContent);
         }
+        */
 
         // POST: api/ExistingProducts
         /// <summary>
         /// dodaj existingproduct
         /// dodac viewmodel
         /// </summary>
-        /// <param name="existingProduct"></param>
+        /// <param name="id">product id</param>
         /// <returns></returns>
         [Authorize(Roles = "Employee, Administrator")]
         [ResponseType(typeof(ExistingProductViewModel))]
-        public IHttpActionResult PostExistingProduct(ExistingProduct existingProduct)
+        public IHttpActionResult PostExistingProduct(int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (!db.IsCurrentUserEmployedInCompanyOrAdministrator(existingProduct.Product.CompanyId))
+            var product = db.Products.Find(id);
+            if(product == null)
+            {
+                return NotFound();
+            }
+
+            if (!db.IsCurrentUserEmployedInCompanyOrAdministrator(product.CompanyId))
             {
                 return StatusCode(HttpStatusCode.Unauthorized);
             }
-            existingProduct.CreationDate = DateTime.Now;
+
+            var existingProduct = new ExistingProduct()
+            {
+                ProductId = id,
+                CreationDate = DateTime.Now.Date,
+                ExpirationDate = DateTime.Now.AddMonths(product.DefaultExpirationDateInMonths),
+            };
             existingProduct.GenerateSecret();
             db.ExistingProducts.Add(existingProduct);
             db.SaveChanges();
@@ -140,7 +151,7 @@ namespace SOPS.Controllers
             {
                 ProductId = existingProduct.ProductId,
                 CreationDate = existingProduct.CreationDate,
-                Secrete = existingProduct.Secret              
+                ExpirationDate = existingProduct.ExpirationDate
             });
         }
 
@@ -150,7 +161,7 @@ namespace SOPS.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [Authorize(Roles = "Employee, Administrator")]
+        /*[Authorize(Roles = "Employee, Administrator")]
         [ResponseType(typeof(ExistingProduct))]
         public IHttpActionResult DeleteExistingProduct(int id)
         {
@@ -171,7 +182,7 @@ namespace SOPS.Controllers
             db.SaveChanges();
 
             return Ok(existingProduct);
-        }
+        }*/
 
         protected override void Dispose(bool disposing)
         {
@@ -180,11 +191,6 @@ namespace SOPS.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
-        }
-
-        private bool ExistingProductExists(int id)
-        {
-            return db.ExistingProducts.Count(e => e.Id == id) > 0;
         }
     }
 }

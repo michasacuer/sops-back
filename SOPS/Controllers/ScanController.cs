@@ -45,7 +45,7 @@ namespace SOPS.Controllers
                 return StatusCode(HttpStatusCode.Unauthorized);
             }            
 
-            return Ok(db.Scans.Where(s => s.UserId == id).ToList());
+            return Ok(db.Scans.Where(s => s.UserId == id).Include(s=>s.ExistingProduct).ToList());
         }
 
         // POST: api/Scan
