@@ -80,7 +80,7 @@ namespace Codaxy.WkHtmlToPdf
 
             if (customPath != null)
             {
-                filePath = Path.Combine(customPath, @"wkhtmltopdf.exe");
+                filePath = Path.Combine(HttpRuntime.AppDomainAppPath, customPath, @"wkhtmltopdf.exe");
 
                 if (File.Exists(filePath))
                     return filePath;

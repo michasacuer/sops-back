@@ -56,6 +56,10 @@ namespace SOPS.Controllers
 
             var response = Request.CreateResponse();
             response.Content = new StreamContent(ms);
+            response.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment")
+            {
+                FileName = "Document.pdf"
+            };
             response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/pdf");
 
             return response;
@@ -94,6 +98,10 @@ namespace SOPS.Controllers
 
             var response = Request.CreateResponse();
             response.Content = new StreamContent(ms);
+            response.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment")
+            {
+                FileName = "Document.pdf"
+            };
             response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/pdf");
 
             return response;

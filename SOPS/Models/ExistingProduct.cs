@@ -19,12 +19,15 @@ namespace SOPS.Models
         public int    ProductId        { get; set; }
         public string Secret           { get; set; }
 
+
+        [Required]
         public virtual Product Product { get; set; }
         public virtual QR      QR      { get; set; }
 
+        private static Random random = new Random();
+
         public void GenerateSecret()
         {
-            var random = new Random();
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
             Secret = new string(Enumerable.Repeat(chars, 8)
               .Select(s => s[random.Next(s.Length)]).ToArray());

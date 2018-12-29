@@ -138,9 +138,9 @@ namespace SOPS.Migrations
                     LockoutEnabled = false,
                     AccessFailedCount = 0
                 };
-                manager.CreateAsync(user, user.UserName).Wait(); 
+                manager.CreateAsync(user, user.UserName).Wait();
 
-                if(i == 0)
+                if (i == 0)
                 {
                     manager.AddToRoleAsync(user.Id, "Administrator").Wait();
                 }
@@ -207,7 +207,7 @@ namespace SOPS.Migrations
                     ApplicationUserId = context.Users.ToList()[random.Next(context.Users.Count())].Id,
                     ProductId = context.Products.ToList()[random.Next(context.Products.Count())].Id
                 };
-                if (!context.WatchedProducts.Any(wp => wp.ApplicationUserId.Equals(watchedProduct.ApplicationUserId) && wp.ProductId.Equals(watchedProduct.ProductId)))
+                if (!context.WatchedProducts.Any(wp => wp.ApplicationUserId == watchedProduct.ApplicationUserId && wp.ProductId == watchedProduct.ProductId))
                 {
                     context.WatchedProducts.AddOrUpdate(watchedProduct);
                 }

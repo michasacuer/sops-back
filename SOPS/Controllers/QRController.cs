@@ -34,6 +34,8 @@ namespace SOPS.Controllers
                 return Request.CreateResponse(HttpStatusCode.NotFound);
             }
 
+            db.Entry(existingProduct).Reference(e => e.QR).Load();
+
             var qr = existingProduct.QR;
 
             if(qr == null)
