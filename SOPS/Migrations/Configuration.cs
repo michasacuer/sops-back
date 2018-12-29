@@ -27,7 +27,7 @@ namespace SOPS.Migrations
             // This method will be called after migrating to the latest version.
 
             // Generation configuration
-            int companyCount = 10;
+            int companyCount = 3;
             int uniqueAddressStreetCount = 2;
             int uniqueAddressCityCount = 5;
 
@@ -36,12 +36,12 @@ namespace SOPS.Migrations
             int uniqueUserSurnameCount = 10;
 
             int productCount = 30;
-            int employeeCount = 50;
-            int productRatingCount = 1000;
-            int productCommentCount = 1000;
+            int employeeCount = 100;
+            int productRatingCount = 400;
+            int productCommentCount = 200;
             int companyReportCount = 10;
-            int watchedProductCount = 500;
-            int existingProductCount = 3000;
+            int watchedProductCount = 70;
+            int existingProductCount = 700;
             int qrCodeCount = 20;
             int companyStatisticsCountPerCompany = 10;
 
@@ -171,7 +171,7 @@ namespace SOPS.Migrations
                     Name = "product" + i,
                     Barcode = random.Next(9999999).ToString() + random.Next(999999),
                     Description = "description" + i,
-                    CreationDate = new DateTime(random.Next(2016, 2018), random.Next(12) + 1, random.Next(25) + 1),
+                    CreationDate = new DateTime(random.Next(2018, 2019), random.Next(1, 13), random.Next(25) + 1),
                     CountryOfOrigin = "country" + random.Next(10),
                     SuggestedPrice = (decimal)random.Next(201),
                     CompanyId = context.Companies.ToList()[random.Next(context.Companies.Count())].Id
@@ -246,7 +246,7 @@ namespace SOPS.Migrations
                 ExistingProduct existingProduct = new ExistingProduct
                 {
                     ExpirationDate = new DateTime(random.Next(2018, 2030), random.Next(12) + 1, random.Next(25) + 1),
-                    CreationDate = new DateTime(random.Next(2017, 2018), random.Next(12) + 1, random.Next(25) + 1),
+                    CreationDate = new DateTime(random.Next(2018, 2019), random.Next(1, 13), random.Next(25) + 1),
                     ProductId = context.Products.ToList()[random.Next(context.Products.Count())].Id                   
                 };
                 existingProduct.GenerateSecret();
