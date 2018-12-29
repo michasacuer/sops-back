@@ -12,6 +12,7 @@ namespace SOPS.Models
         [Key]
         [ForeignKey("User"), DatabaseGenerated(DatabaseGeneratedOption.None)]
         public string UserId { get; set; }
+        public DateTime JoinDate { get; set; }
         public int CompanyId { get; set; }
 
         public virtual Company         Company { get; set; }

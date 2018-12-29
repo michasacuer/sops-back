@@ -275,10 +275,20 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Document\Controllers\DefaultController.cs" />
     <Compile Include="Areas\Document\DocumentAreaRegistration.cs" />
+    <Compile Include="Areas\Document\Resources\EmployeeReport.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EmployeeReport.resx</DependentUpon>
+    </Compile>
     <Compile Include="Areas\Document\Resources\Product.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Product.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Document\Resources\EmployeeReport.pl.Designer.cs">
+      <DependentUpon>EmployeeReport.pl.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Areas\Document\Resources\Product.pl.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -340,6 +350,10 @@
     <Compile Include="Migrations\201812281733469_init.cs" />
     <Compile Include="Migrations\201812281733469_init.Designer.cs">
       <DependentUpon>201812281733469_init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812281935013_mig1.cs" />
+    <Compile Include="Migrations\201812281935013_mig1.Designer.cs">
+      <DependentUpon>201812281935013_mig1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelHelpers\EmployeeHelper.cs" />
@@ -490,6 +504,15 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Areas\Document\Resources\EmployeeReport.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>EmployeeReport.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Areas\Document\Resources\EmployeeReport.pl.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>EmployeeReport.pl.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Resources</CustomToolNamespace>
+    </EmbeddedResource>
     <EmbeddedResource Include="Areas\Document\Resources\Product.pl.resx">
       <CustomToolNamespace>Resources</CustomToolNamespace>
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -502,6 +525,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812281733469_init.resx">
       <DependentUpon>201812281733469_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812281935013_mig1.resx">
+      <DependentUpon>201812281935013_mig1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

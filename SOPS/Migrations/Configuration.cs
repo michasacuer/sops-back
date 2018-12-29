@@ -31,17 +31,17 @@ namespace SOPS.Migrations
             int uniqueAddressStreetCount = 2;
             int uniqueAddressCityCount = 5;
 
-            int userCount = 100;
+            int userCount = 200;
             int uniqueUserNameCount = 5;
             int uniqueUserSurnameCount = 10;
 
             int productCount = 30;
-            int employeeCount = 3;
+            int employeeCount = 50;
             int productRatingCount = 1000;
-            int productCommentCount = 10;
+            int productCommentCount = 1000;
             int companyReportCount = 10;
-            int watchedProductCount = 10;
-            int existingProductCount = 30;
+            int watchedProductCount = 500;
+            int existingProductCount = 3000;
             int qrCodeCount = 20;
             int companyStatisticsCountPerCompany = 10;
 
@@ -153,6 +153,7 @@ namespace SOPS.Migrations
                 Employee employee = new Employee
                 {
                     UserId = context.Users.ToList()[random.Next(context.Users.Count())].Id,
+                    JoinDate = new DateTime(random.Next(2015, 2018), random.Next(12) + 1, random.Next(25) + 1),
                     CompanyId = context.Companies.ToList()[random.Next(context.Companies.Count())].Id
                 };
                 employees.Add(employee);

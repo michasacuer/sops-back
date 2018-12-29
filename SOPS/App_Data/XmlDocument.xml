@@ -4,6 +4,228 @@
         <name>SOPS</name>
     </assembly>
     <members>
+        <member name="T:SOPS.Areas.Document.Resources.EmployeeReport">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:SOPS.Areas.Document.Resources.EmployeeReport.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:SOPS.Areas.Document.Resources.EmployeeReport.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:SOPS.Areas.Document.Resources.EmployeeReport.CommentCount">
+            <summary>
+              Looks up a localized string similar to Liczba komentarzy.
+            </summary>
+        </member>
+        <member name="P:SOPS.Areas.Document.Resources.EmployeeReport.EmploteeCount">
+            <summary>
+              Looks up a localized string similar to Liczba pracowników.
+            </summary>
+        </member>
+        <member name="P:SOPS.Areas.Document.Resources.EmployeeReport.EmployeeCountYearChange">
+            <summary>
+              Looks up a localized string similar to Zmiana w ciągu roku.
+            </summary>
+        </member>
+        <member name="P:SOPS.Areas.Document.Resources.EmployeeReport.ExistingProductCount">
+            <summary>
+              Looks up a localized string similar to Liczba produktów w obiegu.
+            </summary>
+        </member>
+        <member name="P:SOPS.Areas.Document.Resources.EmployeeReport.ExistingProductSumPrice">
+            <summary>
+              Looks up a localized string similar to Łączy koszt produktów.
+            </summary>
+        </member>
+        <member name="P:SOPS.Areas.Document.Resources.EmployeeReport.ProductAveragePrice">
+            <summary>
+              Looks up a localized string similar to Średnia cena produktów.
+            </summary>
+        </member>
+        <member name="P:SOPS.Areas.Document.Resources.EmployeeReport.ProductAverageRating">
+            <summary>
+              Looks up a localized string similar to Średnia ocena produktów.
+            </summary>
+        </member>
+        <member name="P:SOPS.Areas.Document.Resources.EmployeeReport.ProductBestRated">
+            <summary>
+              Looks up a localized string similar to Najlepiej oceniony.
+            </summary>
+        </member>
+        <member name="P:SOPS.Areas.Document.Resources.EmployeeReport.ProductCount">
+            <summary>
+              Looks up a localized string similar to Całkowita liczba produktów.
+            </summary>
+        </member>
+        <member name="P:SOPS.Areas.Document.Resources.EmployeeReport.ProductMostCommented">
+            <summary>
+              Looks up a localized string similar to Najczęściej komentowany.
+            </summary>
+        </member>
+        <member name="P:SOPS.Areas.Document.Resources.EmployeeReport.RatingCount">
+            <summary>
+              Looks up a localized string similar to Liczba ocen.
+            </summary>
+        </member>
+        <member name="T:SOPS.Areas.Document.Resources.Product">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:SOPS.Areas.Document.Resources.Product.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:SOPS.Areas.Document.Resources.Product.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:SOPS.Areas.Document.Resources.Product.CompanyAddressStreet">
+            <summary>
+              Looks up a localized string similar to Street.
+            </summary>
+        </member>
+        <member name="P:SOPS.Areas.Document.Resources.Product.CompanyAddressZipCode">
+            <summary>
+              Looks up a localized string similar to ZIP code.
+            </summary>
+        </member>
+        <member name="P:SOPS.Areas.Document.Resources.Product.CompanyCity">
+            <summary>
+              Looks up a localized string similar to City.
+            </summary>
+        </member>
+        <member name="P:SOPS.Areas.Document.Resources.Product.CompanyData">
+            <summary>
+              Looks up a localized string similar to Producer data.
+            </summary>
+        </member>
+        <member name="P:SOPS.Areas.Document.Resources.Product.CompanyEmail">
+            <summary>
+              Looks up a localized string similar to E-mail.
+            </summary>
+        </member>
+        <member name="P:SOPS.Areas.Document.Resources.Product.CompanyName">
+            <summary>
+              Looks up a localized string similar to Name.
+            </summary>
+        </member>
+        <member name="P:SOPS.Areas.Document.Resources.Product.CompanyNIP">
+            <summary>
+              Looks up a localized string similar to NIP.
+            </summary>
+        </member>
+        <member name="P:SOPS.Areas.Document.Resources.Product.CompanyREGON">
+            <summary>
+              Looks up a localized string similar to REGON.
+            </summary>
+        </member>
+        <member name="P:SOPS.Areas.Document.Resources.Product.eCommentCount">
+            <summary>
+              Looks up a localized string similar to Liczba komentarzy.
+            </summary>
+        </member>
+        <member name="P:SOPS.Areas.Document.Resources.Product.eEmploteeCount">
+            <summary>
+              Looks up a localized string similar to Liczba pracowników.
+            </summary>
+        </member>
+        <member name="P:SOPS.Areas.Document.Resources.Product.eEmployeeCountYearChange">
+            <summary>
+              Looks up a localized string similar to Zmiana w ciągu roku.
+            </summary>
+        </member>
+        <member name="P:SOPS.Areas.Document.Resources.Product.eExistingProductCount">
+            <summary>
+              Looks up a localized string similar to Liczba produktów w obiegu.
+            </summary>
+        </member>
+        <member name="P:SOPS.Areas.Document.Resources.Product.eExistingProductSumPrice">
+            <summary>
+              Looks up a localized string similar to Łączy koszt produktów.
+            </summary>
+        </member>
+        <member name="P:SOPS.Areas.Document.Resources.Product.eProductAveragePrice">
+            <summary>
+              Looks up a localized string similar to Średnia cena produktów.
+            </summary>
+        </member>
+        <member name="P:SOPS.Areas.Document.Resources.Product.eProductAverageRating">
+            <summary>
+              Looks up a localized string similar to Średnia ocena produktów.
+            </summary>
+        </member>
+        <member name="P:SOPS.Areas.Document.Resources.Product.eProductBestRated">
+            <summary>
+              Looks up a localized string similar to Najlepiej oceniony.
+            </summary>
+        </member>
+        <member name="P:SOPS.Areas.Document.Resources.Product.eProductCount">
+            <summary>
+              Looks up a localized string similar to Całkowita liczba produktów.
+            </summary>
+        </member>
+        <member name="P:SOPS.Areas.Document.Resources.Product.eProductMostCommented">
+            <summary>
+              Looks up a localized string similar to Najczęściej komentowany.
+            </summary>
+        </member>
+        <member name="P:SOPS.Areas.Document.Resources.Product.eRatingCount">
+            <summary>
+              Looks up a localized string similar to Liczba ocen.
+            </summary>
+        </member>
+        <member name="P:SOPS.Areas.Document.Resources.Product.ExistingProductId">
+            <summary>
+              Looks up a localized string similar to Existing product identifier.
+            </summary>
+        </member>
+        <member name="P:SOPS.Areas.Document.Resources.Product.ProductCountryOfOrigin">
+            <summary>
+              Looks up a localized string similar to Country of orgin.
+            </summary>
+        </member>
+        <member name="P:SOPS.Areas.Document.Resources.Product.ProductDescription">
+            <summary>
+              Looks up a localized string similar to Description.
+            </summary>
+        </member>
+        <member name="P:SOPS.Areas.Document.Resources.Product.ProductExpirationDate">
+            <summary>
+              Looks up a localized string similar to Expiration date.
+            </summary>
+        </member>
+        <member name="P:SOPS.Areas.Document.Resources.Product.ProductId">
+            <summary>
+              Looks up a localized string similar to Product identifier.
+            </summary>
+        </member>
+        <member name="P:SOPS.Areas.Document.Resources.Product.ProductName">
+            <summary>
+              Looks up a localized string similar to Name.
+            </summary>
+        </member>
+        <member name="P:SOPS.Areas.Document.Resources.Product.QRContent">
+            <summary>
+              Looks up a localized string similar to QR code.
+            </summary>
+        </member>
+        <member name="P:SOPS.Areas.Document.Resources.Product.SuggestedPrice">
+            <summary>
+              Looks up a localized string similar to Suggested price.
+            </summary>
+        </member>
         <member name="M:SOPS.Areas.HelpPage.ApiDescriptionExtensions.GetFriendlyId(System.Web.Http.Description.ApiDescription)">
             <summary>
             Generates an URI-friendly ID for the <see cref="T:System.Web.Http.Description.ApiDescription"/>. E.g. "Get-Values-id_name" instead of "GetValues/{id}?name={name}"
@@ -817,102 +1039,6 @@
             </summary>
             <param name="id"></param>
             <returns></returns>
-        </member>
-        <member name="T:Resources.Product">
-            <summary>
-              A strongly-typed resource class, for looking up localized strings, etc.
-            </summary>
-        </member>
-        <member name="P:Resources.Product.ResourceManager">
-            <summary>
-              Returns the cached ResourceManager instance used by this class.
-            </summary>
-        </member>
-        <member name="P:Resources.Product.Culture">
-            <summary>
-              Overrides the current thread's CurrentUICulture property for all
-              resource lookups using this strongly typed resource class.
-            </summary>
-        </member>
-        <member name="P:Resources.Product.CompanyAddressStreet">
-            <summary>
-              Looks up a localized string similar to Street.
-            </summary>
-        </member>
-        <member name="P:Resources.Product.CompanyAddressZipCode">
-            <summary>
-              Looks up a localized string similar to ZIP code.
-            </summary>
-        </member>
-        <member name="P:Resources.Product.CompanyCity">
-            <summary>
-              Looks up a localized string similar to City.
-            </summary>
-        </member>
-        <member name="P:Resources.Product.CompanyData">
-            <summary>
-              Looks up a localized string similar to Producer data.
-            </summary>
-        </member>
-        <member name="P:Resources.Product.CompanyEmail">
-            <summary>
-              Looks up a localized string similar to E-mail.
-            </summary>
-        </member>
-        <member name="P:Resources.Product.CompanyName">
-            <summary>
-              Looks up a localized string similar to Name.
-            </summary>
-        </member>
-        <member name="P:Resources.Product.CompanyNIP">
-            <summary>
-              Looks up a localized string similar to NIP.
-            </summary>
-        </member>
-        <member name="P:Resources.Product.CompanyREGON">
-            <summary>
-              Looks up a localized string similar to REGON.
-            </summary>
-        </member>
-        <member name="P:Resources.Product.ExistingProductId">
-            <summary>
-              Looks up a localized string similar to Existing product identifier.
-            </summary>
-        </member>
-        <member name="P:Resources.Product.ProductCountryOfOrigin">
-            <summary>
-              Looks up a localized string similar to Country of orgin.
-            </summary>
-        </member>
-        <member name="P:Resources.Product.ProductDescription">
-            <summary>
-              Looks up a localized string similar to Description.
-            </summary>
-        </member>
-        <member name="P:Resources.Product.ProductExpirationDate">
-            <summary>
-              Looks up a localized string similar to Expiration date.
-            </summary>
-        </member>
-        <member name="P:Resources.Product.ProductId">
-            <summary>
-              Looks up a localized string similar to Product identifier.
-            </summary>
-        </member>
-        <member name="P:Resources.Product.ProductName">
-            <summary>
-              Looks up a localized string similar to Name.
-            </summary>
-        </member>
-        <member name="P:Resources.Product.QRContent">
-            <summary>
-              Looks up a localized string similar to QR code.
-            </summary>
-        </member>
-        <member name="P:Resources.Product.SuggestedPrice">
-            <summary>
-              Looks up a localized string similar to Suggested price.
-            </summary>
         </member>
     </members>
 </doc>

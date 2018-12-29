@@ -51,8 +51,16 @@ namespace SOPS.Areas.Document.Controllers
             {
                 return HttpNotFound();
             }
-            // db.Entry(existingProduct).Reference(e => e.Product).Load();
-            // db.Entry(existingProduct.Product).Reference(p => p.Company).Load();
+
+            db.Entry(company).Collection(c => c.Products).Load();
+            db.Entry(company).Collection(c => c.CompanyReports).Load();
+            db.Entry(company).Collection(c => c.Employees).Load();
+            foreach (var product in company.Products)
+            {
+                db.Entry(product).Collection(p => p.ExistingProducts).Load();
+                db.Entry(product).Collection(p => p.ProductRatings).Load();
+                db.Entry(product).Collection(p => p.ProductComments).Load();
+            }
 
             var vm = EmployeeReportViewModel.CreateViewModel(company, DateTime.Now);
 

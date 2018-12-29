@@ -1,5 +1,6 @@
 ﻿body
 {
+    font-family: 'Times New Roman';
 }
 
 header
@@ -30,4 +31,64 @@ hr
 {
     margin: 0px;
     border-top: 1px solid #aaa;
+}
+
+#report-container
+{
+    //border: 5px solid blue;
+    float:left;
+    width: 35%;
+}
+
+#report-container > .report-row 
+{
+}
+
+#report-container > .report-row > table
+{
+    width: 100%;
+}
+
+td
+{
+    font-size: 17px;
+    width: 70%;
+}
+
+td:last-child
+{
+    width: 30%;
+}
+
+#arrow-img 
+{
+    //border: 5px solid red;
+    float:right;
+    margin-top: 40px;
+    width: 65%;
+    opacity: 0.4;
+}
+
+#chart
+{
+    clear: both;
+    width: 100%;
+    height: 450px;
+}
+
+    #chart > #chart-img 
+    {
+        //border: 5px solid green;
+        max-height: 100%;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 10px;
+    }
+
+footer
+{
+    font-size:20px;
+    text-align:center;
+    margin:10px;
 }
