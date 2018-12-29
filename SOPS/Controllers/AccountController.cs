@@ -71,7 +71,7 @@ namespace SOPS.Controllers
 
         // POST api/Account/Logout
         /// <summary>
-        /// Wyloguj
+        /// Wyloguj. Nie działa
         /// </summary>
         [Route("Logout")]
         public IHttpActionResult Logout()
