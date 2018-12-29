@@ -710,7 +710,7 @@
         </member>
         <member name="M:SOPS.Controllers.AccountController.Logout">
             <summary>
-            Wyloguj
+            Wyloguj. Nie działa
             </summary>
         </member>
         <member name="M:SOPS.Controllers.AccountController.ChangePassword(SOPS.Models.ChangePasswordBindingModel)">
