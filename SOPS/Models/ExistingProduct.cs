@@ -12,17 +12,17 @@ namespace SOPS.Models
     public class ExistingProduct
     {
         [Key]
-        public int Id { get; set; }
+        public int      Id             { get; set; }
         public DateTime ExpirationDate { get; set; }
-        public DateTime CreationDate { get; set; }
+        public DateTime CreationDate   { get; set; }
         [Required]
-        public int ProductId { get; set; }
-        public string Secret { get; set; }
+        public int    ProductId        { get; set; }
+        public string Secret           { get; set; }
 
 
         [Required]
         public virtual Product Product { get; set; }
-        public virtual QR QR { get; set; }
+        public virtual QR      QR      { get; set; }
 
         private static Random random = new Random();
 

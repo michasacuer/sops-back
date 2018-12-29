@@ -14,10 +14,10 @@ using SOPS.Models;
 
 namespace SOPS.Controllers
 {
+    [RoutePrefix("api/ProductRating")]
     public class ProductRatingController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-        private string loggedUserId = UserHelper.GetCurrentUserId();
 
         // GET: api/ProductRating/id
         /// <summary>
@@ -34,7 +34,7 @@ namespace SOPS.Controllers
 
         // POST: api/ProductRating/id
         /// <summary>
-        /// wstaw produkt
+        /// wstaw ocene produktu
         /// </summary>
         /// <param name="id"></param>
         /// <param name="rateFromBody"></param>
@@ -44,16 +44,17 @@ namespace SOPS.Controllers
         [ResponseType(typeof(ProductRating))]
         public IHttpActionResult PostProductRating(int id, ProductRatingBindingModel rateFromBody)
         {
-            if (!db.Products.Any(p => p.Id == id) || loggedUserId == null)
+            if (!db.Products.Any(p => p.Id == id))
                 return NotFound();
 
             db.ProductRatings.Add(new ProductRating
             {
                 Rating = rateFromBody.Rating,
-                UserId = loggedUserId,
+                UserId = UserHelper.GetCurrentUserId(),
                 ProductId = id,
                 Date = DateTime.Now
             });
+            db.SaveChanges();
 
             return Ok();
         }
@@ -69,7 +70,7 @@ namespace SOPS.Controllers
         [ResponseType(typeof(ProductRatingViewModel))]
         public IHttpActionResult GetAvarage(int id)
         {
-            if (!db.Products.Any(p => p.Id == id))
+            if (!db.Products.Any(p => p.Id == id) || UserHelper.GetCurrentUserId() == null)
                 return NotFound();
 
             return Ok(new ProductRatingViewModel

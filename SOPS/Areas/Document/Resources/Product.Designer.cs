@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Resources {
+namespace SOPS.Areas.Document.Resources {
     using System;
     
     
@@ -129,6 +129,105 @@ namespace Resources {
         public static string CompanyREGON {
             get {
                 return ResourceManager.GetString("CompanyREGON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Liczba komentarzy.
+        /// </summary>
+        public static string eCommentCount {
+            get {
+                return ResourceManager.GetString("eCommentCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Liczba pracowników.
+        /// </summary>
+        public static string eEmploteeCount {
+            get {
+                return ResourceManager.GetString("eEmploteeCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zmiana w ciągu roku.
+        /// </summary>
+        public static string eEmployeeCountYearChange {
+            get {
+                return ResourceManager.GetString("eEmployeeCountYearChange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Liczba produktów w obiegu.
+        /// </summary>
+        public static string eExistingProductCount {
+            get {
+                return ResourceManager.GetString("eExistingProductCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Łączy koszt produktów.
+        /// </summary>
+        public static string eExistingProductSumPrice {
+            get {
+                return ResourceManager.GetString("eExistingProductSumPrice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Średnia cena produktów.
+        /// </summary>
+        public static string eProductAveragePrice {
+            get {
+                return ResourceManager.GetString("eProductAveragePrice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Średnia ocena produktów.
+        /// </summary>
+        public static string eProductAverageRating {
+            get {
+                return ResourceManager.GetString("eProductAverageRating", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Najlepiej oceniony.
+        /// </summary>
+        public static string eProductBestRated {
+            get {
+                return ResourceManager.GetString("eProductBestRated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Całkowita liczba produktów.
+        /// </summary>
+        public static string eProductCount {
+            get {
+                return ResourceManager.GetString("eProductCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Najczęściej komentowany.
+        /// </summary>
+        public static string eProductMostCommented {
+            get {
+                return ResourceManager.GetString("eProductMostCommented", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Liczba ocen.
+        /// </summary>
+        public static string eRatingCount {
+            get {
+                return ResourceManager.GetString("eRatingCount", resourceCulture);
             }
         }
         

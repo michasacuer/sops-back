@@ -15,24 +15,29 @@ using SOPS.ModelHelpers;
 
 namespace SOPS.Controllers
 {
+    [RoutePrefix("api/WatchedProduct")]
     public class WatchedProductController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-        private string loggedUserId = UserHelper.GetCurrentUserId();
 
-        // GET: api/WatchedProducts
+        // GET: api/WatchedProduct/get?id=42b8ccb0-4911-458f-a066-36b057954157
         /// <summary>
         /// daj wszystkie obserwowane produkty dla aktualnego uzytkownika
-        /// dac mozliwosc podawania oberjzenia obserwowanych produktow innych uzytkonikow
         /// </summary>
         /// <returns></returns>
         [Authorize]
         [HttpGet]
-        public IEnumerable<WatchedProduct> GetWatchedProduct()
+        [Route("get")]
+        public IEnumerable<WatchedProduct> GetWatchedProduct(string id)
         {
-            //we could use '=>' here, idk if necessery
-            return db.WatchedProducts.Where(u => u.ApplicationUserId == loggedUserId).ToList();
+            var userId = UserHelper.GetCurrentUserId();
+            var productsList = id == null ?
+                db.WatchedProducts.Where(u => u.ApplicationUserId == userId).ToList() :
+                db.WatchedProducts.Where(u => u.ApplicationUserId == id).ToList();
+
+            return productsList;
         }
+
 
 
         // POST: api/WatchedProduct/5
@@ -48,11 +53,12 @@ namespace SOPS.Controllers
         {
             //get product's id to add to user's watched products
             var product = db.Products.Find(id);
+            var userId = UserHelper.GetCurrentUserId();
 
-            if (loggedUserId == null || product == null)
+            if (userId == null || product == null)
                 return NotFound();
 
-            db.WatchedProducts.Add(new WatchedProduct { ProductId = id, ApplicationUserId = loggedUserId });
+            db.WatchedProducts.Add(new WatchedProduct { ProductId = id, ApplicationUserId = userId });
             db.SaveChanges();
 
             return Ok();
@@ -69,10 +75,12 @@ namespace SOPS.Controllers
         [ResponseType(typeof(WatchedProduct))]
         public IHttpActionResult DeleteWatchedProduct(int id)
         {
-            if (loggedUserId == null)
+            var userId = UserHelper.GetCurrentUserId();
+
+            if (userId == null)
                 return NotFound();
 
-            var product = db.WatchedProducts.SingleOrDefault(u => u.ApplicationUserId == loggedUserId && u.ProductId == id);
+            var product = db.WatchedProducts.SingleOrDefault(u => u.ApplicationUserId == userId && u.ProductId == id);
             if (product == null)
                 return NotFound();
 

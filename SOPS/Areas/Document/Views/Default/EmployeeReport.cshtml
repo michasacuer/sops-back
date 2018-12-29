@@ -1,19 +1,170 @@
 ﻿@model SOPS.Areas.Document.ViewModels.EmployeeReportViewModel
 
 @{
-    Layout = null;
+    ViewBag.Title = "Html";
 }
 
-<!DOCTYPE html>
+<link type="text/css" href="~/Areas/Document/Content/EmployeeReport.css" rel="stylesheet" />
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>EmployeeReport</title>
-</head>
-<body>
-    <div>
-        <h1>@Model.CompanyName</h1>
-    </div>
-</body>
-</html>
+<div>
+    <header>
+        <div id="company-name">
+            @Model.CompanyName
+        </div>
+        <div id="date-info">
+            @Model.DateTime.ToString("dd.MM.yy")
+        </div>
+        <div id="title">
+            Okresowy Raport o Działalności Firmy [nr.@Model.CompanyReportNumber]
+        </div>
+    </header>
+
+    <hr />
+
+    <main>
+        <div id="report-image">
+            <div id="report-container">
+                <div class="report-row">
+                    <table>
+                        <tr>
+                            <th colspan="2"><h2>Produkty</h2></th>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.ProductCount)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.ProductCount)
+                                (<span style="color:green;">
+                                    @(Model.ProductCountLastMonthDifference >= 0 ? "+" : "-")
+                                    @Model.ProductCountLastMonthDifference
+                                </span>)
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="report-row">
+                    <table>
+                        <tr>
+                            <th colspan="2"><h2>Egzemplarze produktów</h2></th>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.ExistingProductCount)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.ExistingProductCount)
+                                (<span style="color:green;">
+                                    @(Model.ExistingProductCountMonthDifference >= 0 ? "+" : "-")
+                                    @Model.ExistingProductCountMonthDifference
+                                </span>)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.ExistingProductSumPrice)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.ExistingProductSumPrice) PLN
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="report-row">
+                    <table>
+                        <tr>
+                            <th colspan="2"><h2>Pracownicy</h2></th>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.EmployeeCount)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.EmployeeCount)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.EmployeeCountYearChange)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.EmployeeCountYearChange)
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="report-row">
+                    <table>
+                        <tr>
+                            <th colspan="2"><h2>Komentarze</h2></th>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.CommentCount)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.CommentCount)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.ProductMostCommented)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.ProductMostCommented)
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="report-row">
+                    <table>
+                        <tr>
+                            <th colspan="2"><h2>Oceny</h2></th>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.RatingCount)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.RatingCount)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.ProductAverageRating)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.ProductAverageRating)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.ProductBestRated)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.ProductBestRated)
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div id="arrow-img">
+                <img src="https://cdn2.iconfinder.com/data/icons/wsd-business-2/64/wsd-business-01-512.png" />
+            </div>
+        </div>
+
+        <div id="chart">
+            <img id="chart-img" src="https://www.theatlas.com/i/atlas_H13grQLQ@2x.png" />
+        </div>
+    </main>
+
+    <hr style="margin-top:20px" />
+
+    <footer>&copy;System Oznaczania Produktów Spożywczych</footer>
+    <hr />
+</div>

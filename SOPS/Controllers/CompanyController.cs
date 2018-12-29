@@ -53,6 +53,7 @@ namespace SOPS.Controllers
         /// <param name="id">id firmy</param>
         /// <param name="company">nowe dane firmy</param>
         /// <returns></returns>
+        [Authorize(Roles = "Employee, Administrator")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutCompany(int id, Company company)
         {
@@ -64,6 +65,12 @@ namespace SOPS.Controllers
             if (id != company.Id)
             {
                 return BadRequest();
+            }
+
+            var local = db.Set<Company>().Local.FirstOrDefault(f => f.Id == company.Id);
+            if (local != null)
+            {
+                db.Entry(local).State = EntityState.Detached;
             }
 
             db.Entry(company).State = EntityState.Modified;
@@ -93,6 +100,7 @@ namespace SOPS.Controllers
         /// </summary>
         /// <param name="company"></param>
         /// <returns></returns>
+        [Authorize(Roles = "Employee, Administrator")]
         [ResponseType(typeof(Company))]
         public IHttpActionResult PostCompany(Company company)
         {
@@ -113,6 +121,7 @@ namespace SOPS.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        [Authorize(Roles = "Employee, Administrator")]
         [ResponseType(typeof(Company))]
         public IHttpActionResult DeleteCompany(int id)
         {
@@ -128,14 +137,17 @@ namespace SOPS.Controllers
             return Ok(company);
         }
 
-        // GET: api/Company/Profile/5
+        // GET: api/Company/profile/5
         /// <summary>
         /// pobierz profil firmy - dane firmy+produkty i jej pracownicy
         /// potrzebna autoryzacja
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [Route("Profile")]
+        //[Authorize]
+        [HttpGet]
+        [Route("Profile/{id:int}")]
+        [Authorize(Roles = "Employee, Administrator")]
         [ResponseType(typeof(Company))]
         public IHttpActionResult GetCompanyProfile(int id)
         {

@@ -19,7 +19,7 @@ namespace SOPS.Controllers
     [AllowCrossSiteJson]
     public class ExistingProductController : ApiController
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private ApplicationDbContext  db = new ApplicationDbContext();
         public ApplicationRoleManager RoleManager => Request.GetOwinContext().GetUserManager<ApplicationRoleManager>();
         public ApplicationUserManager UserManager => Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
 
@@ -75,9 +75,19 @@ namespace SOPS.Controllers
                 return BadRequest();
             }
 
-            if (!db.IsCurrentUserEmployedInCompanyOrAdministrator(existingProduct.Product.CompanyId))
+            var temp = existingProduct;
+            temp = db.ExistingProducts.Find(id);
+            db.Entry(temp).Reference(e => e.Product).Load();
+
+            if (!db.IsCurrentUserEmployedInCompanyOrAdministrator(temp.Product.CompanyId))
             {
                 return StatusCode(HttpStatusCode.Unauthorized);
+            }
+
+            var local = db.Set<ExistingProduct>().Local.FirstOrDefault(f => f.Id == existingProduct.Id);
+            if(local != null)
+            {
+                db.Entry(local).State = EntityState.Detached;
             }
 
             db.Entry(existingProduct).State = EntityState.Modified;
@@ -109,7 +119,7 @@ namespace SOPS.Controllers
         /// <param name="existingProduct"></param>
         /// <returns></returns>
         [Authorize(Roles = "Employee, Administrator")]
-        [ResponseType(typeof(ExistingProduct))]
+        [ResponseType(typeof(ExistingProductViewModel))]
         public IHttpActionResult PostExistingProduct(ExistingProduct existingProduct)
         {
             if (!ModelState.IsValid)
@@ -126,7 +136,12 @@ namespace SOPS.Controllers
             db.ExistingProducts.Add(existingProduct);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = existingProduct.Id }, existingProduct);
+            return Ok(new ExistingProductViewModel
+            {
+                ProductId = existingProduct.ProductId,
+                CreationDate = existingProduct.CreationDate,
+                Secrete = existingProduct.Secret              
+            });
         }
 
         // DELETE: api/ExistingProducts/5

@@ -89,6 +89,11 @@ namespace SOPS.Controllers
             {
                 return StatusCode(HttpStatusCode.Unauthorized);
             }
+            var local = db.Set<Product>().Local.FirstOrDefault(f => f.Id == product.Id);
+            if (local != null)
+            {
+                db.Entry(local).State = EntityState.Detached;
+            }
 
             db.Entry(product).State = EntityState.Modified;
 

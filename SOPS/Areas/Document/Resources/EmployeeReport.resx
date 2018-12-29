@@ -117,85 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CompanyAddressStreet" xml:space="preserve">
-    <value>Street</value>
-  </data>
-  <data name="CompanyAddressZipCode" xml:space="preserve">
-    <value>ZIP code</value>
-  </data>
-  <data name="CompanyEmail" xml:space="preserve">
-    <value>E-mail</value>
-  </data>
-  <data name="CompanyName" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="CompanyNIP" xml:space="preserve">
-    <value>NIP</value>
-  </data>
-  <data name="CompanyREGON" xml:space="preserve">
-    <value>REGON</value>
-  </data>
-  <data name="ExistingProductId" xml:space="preserve">
-    <value>Existing product identifier</value>
-  </data>
-  <data name="ProductDescription" xml:space="preserve">
-    <value>Description</value>
-  </data>
-  <data name="ProductExpirationDate" xml:space="preserve">
-    <value>Expiration date</value>
-  </data>
-  <data name="ProductId" xml:space="preserve">
-    <value>Product identifier</value>
-  </data>
-  <data name="ProductName" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="QRContent" xml:space="preserve">
-    <value>QR code</value>
-  </data>
-  <data name="CompanyCity" xml:space="preserve">
-    <value>City</value>
-  </data>
-  <data name="CompanyData" xml:space="preserve">
-    <value>Producer data</value>
-  </data>
-  <data name="ProductCountryOfOrigin" xml:space="preserve">
-    <value>Country of orgin</value>
-  </data>
-  <data name="SuggestedPrice" xml:space="preserve">
-    <value>Suggested price</value>
-  </data>
-  <data name="eCommentCount" xml:space="preserve">
+  <data name="CommentCount" xml:space="preserve">
     <value>Liczba komentarzy</value>
   </data>
-  <data name="eEmploteeCount" xml:space="preserve">
+  <data name="EmploteeCount" xml:space="preserve">
     <value>Liczba pracowników</value>
   </data>
-  <data name="eEmployeeCountYearChange" xml:space="preserve">
+  <data name="EmployeeCountYearChange" xml:space="preserve">
     <value>Zmiana w ciągu roku</value>
   </data>
-  <data name="eExistingProductCount" xml:space="preserve">
+  <data name="ExistingProductCount" xml:space="preserve">
     <value>Liczba produktów w obiegu</value>
   </data>
-  <data name="eExistingProductSumPrice" xml:space="preserve">
+  <data name="ExistingProductSumPrice" xml:space="preserve">
     <value>Łączy koszt produktów</value>
   </data>
-  <data name="eProductAveragePrice" xml:space="preserve">
+  <data name="ProductAveragePrice" xml:space="preserve">
     <value>Średnia cena produktów</value>
   </data>
-  <data name="eProductAverageRating" xml:space="preserve">
+  <data name="ProductAverageRating" xml:space="preserve">
     <value>Średnia ocena produktów</value>
   </data>
-  <data name="eProductBestRated" xml:space="preserve">
+  <data name="ProductBestRated" xml:space="preserve">
     <value>Najlepiej oceniony</value>
   </data>
-  <data name="eProductCount" xml:space="preserve">
+  <data name="ProductCount" xml:space="preserve">
     <value>Całkowita liczba produktów</value>
   </data>
-  <data name="eProductMostCommented" xml:space="preserve">
+  <data name="ProductMostCommented" xml:space="preserve">
     <value>Najczęściej komentowany</value>
   </data>
-  <data name="eRatingCount" xml:space="preserve">
+  <data name="RatingCount" xml:space="preserve">
     <value>Liczba ocen</value>
   </data>
 </root>

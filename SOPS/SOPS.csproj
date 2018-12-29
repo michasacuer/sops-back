@@ -275,10 +275,20 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Document\Controllers\DefaultController.cs" />
     <Compile Include="Areas\Document\DocumentAreaRegistration.cs" />
+    <Compile Include="Areas\Document\Resources\EmployeeReport.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EmployeeReport.resx</DependentUpon>
+    </Compile>
     <Compile Include="Areas\Document\Resources\Product.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Product.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Document\Resources\EmployeeReport.pl.Designer.cs">
+      <DependentUpon>EmployeeReport.pl.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Areas\Document\Resources\Product.pl.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -325,6 +335,7 @@
     <Compile Include="Controllers\MailController.cs" />
     <Compile Include="Controllers\ProductCommentController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\ProductIssueController.cs" />
     <Compile Include="Controllers\ProductRatingController.cs" />
     <Compile Include="Controllers\QRController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
@@ -336,9 +347,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812281244210_init.cs" />
-    <Compile Include="Migrations\201812281244210_init.Designer.cs">
-      <DependentUpon>201812281244210_init.cs</DependentUpon>
+    <Compile Include="Migrations\201812272352522_init.cs" />
+    <Compile Include="Migrations\201812272352522_init.Designer.cs">
+      <DependentUpon>201812272352522_init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812280147502_init2.cs" />
+    <Compile Include="Migrations\201812280147502_init2.Designer.cs">
+      <DependentUpon>201812280147502_init2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelHelpers\EmployeeHelper.cs" />
@@ -351,10 +366,13 @@
     <Compile Include="Models\CompanyStatistics.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\ExistingProduct.cs" />
+    <Compile Include="Models\ExistingProductViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductComment.cs" />
     <Compile Include="Models\ProductCommentBindingModel.cs" />
+    <Compile Include="Models\ProductIssue.cs" />
+    <Compile Include="Models\ProductIssueBindingModel.cs" />
     <Compile Include="Models\ProductRating.cs" />
     <Compile Include="Models\ProductRatingBindingModel.cs" />
     <Compile Include="Models\ProductRatingViewModel.cs" />
@@ -364,6 +382,7 @@
     <Compile Include="Models\ScanBindingModel.cs" />
     <Compile Include="Models\StatisticGetAllCountViewModel.cs" />
     <Compile Include="Models\ShortUrl.cs" />
+    <Compile Include="Models\StatisticGetAllListViewModel.cs" />
     <Compile Include="Models\UserProfileBindingModels.cs" />
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Models\WatchedProduct.cs" />
@@ -374,9 +393,6 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\wkhtmltopdf.exe" />
-    <Content Include="App_Data\wkhtmltox.dll" />
-    <Content Include="App_Data\XmlDocument.xml" />
     <Content Include="Areas\Document\Content\Site.css" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap-grid.css" />
@@ -487,6 +503,15 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Areas\Document\Resources\EmployeeReport.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>EmployeeReport.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Areas\Document\Resources\EmployeeReport.pl.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>EmployeeReport.pl.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Resources</CustomToolNamespace>
+    </EmbeddedResource>
     <EmbeddedResource Include="Areas\Document\Resources\Product.pl.resx">
       <CustomToolNamespace>Resources</CustomToolNamespace>
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -497,8 +522,11 @@
       <LastGenOutput>Product.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Resources</CustomToolNamespace>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812281244210_init.resx">
-      <DependentUpon>201812281244210_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812272352522_init.resx">
+      <DependentUpon>201812272352522_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812280147502_init2.resx">
+      <DependentUpon>201812280147502_init2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

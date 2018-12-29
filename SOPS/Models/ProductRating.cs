@@ -18,11 +18,11 @@ namespace SOPS.Models
         [Column(Order = 2)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [ForeignKey("Product")]
-        public int ProductId { get; set; }
-        public float Rating { get; set; }
-        public DateTime Date { get; set; }
+        public int      ProductId { get; set; }
+        public float    Rating    { get; set; }
+        public DateTime Date      { get; set; }
 
         public virtual ApplicationUser User { get; set; }
-        public virtual Product Product { get; set; }
+        public virtual Product Product      { get; set; }
     }
 }
