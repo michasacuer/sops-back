@@ -347,6 +347,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812291559349_ini23.cs" />
+    <Compile Include="Migrations\201812291559349_ini23.Designer.cs">
+      <DependentUpon>201812291559349_ini23.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelHelpers\EmployeeHelper.cs" />
     <Compile Include="ModelHelpers\CompanyStatisticsHelper.cs" />
@@ -513,6 +517,9 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Product.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Resources</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812291559349_ini23.resx">
+      <DependentUpon>201812291559349_ini23.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
