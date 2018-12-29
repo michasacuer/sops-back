@@ -14,7 +14,7 @@ namespace SOPS.Models
         public string   UserId            { get; set; }
         public DateTime Date              { get; set; }
 
-        public virtual ExistingProduct GetExistingProduct { get; set; }
+        public virtual ExistingProduct ExistingProduct { get; set; }
         public virtual ApplicationUser User               { get; set; }
     }
 }
