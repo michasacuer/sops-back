@@ -336,13 +336,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812272352522_init.cs" />
-    <Compile Include="Migrations\201812272352522_init.Designer.cs">
-      <DependentUpon>201812272352522_init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812280147502_init2.cs" />
-    <Compile Include="Migrations\201812280147502_init2.Designer.cs">
-      <DependentUpon>201812280147502_init2.cs</DependentUpon>
+    <Compile Include="Migrations\201812281244210_init.cs" />
+    <Compile Include="Migrations\201812281244210_init.Designer.cs">
+      <DependentUpon>201812281244210_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelHelpers\EmployeeHelper.cs" />
@@ -378,6 +374,9 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\wkhtmltopdf.exe" />
+    <Content Include="App_Data\wkhtmltox.dll" />
+    <Content Include="App_Data\XmlDocument.xml" />
     <Content Include="Areas\Document\Content\Site.css" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap-grid.css" />
@@ -427,6 +426,7 @@
     <Content Include="Scripts\bootstrap.js.map" />
     <Content Include="Scripts\bootstrap.min.js.map" />
     <Content Include="Areas\Document\Views\Default\EmployeeReport.cshtml" />
+    <None Include="Properties\PublishProfiles\SOPS - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -454,7 +454,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Areas\Document\Models\" />
     <Folder Include="Areas\Document\Views\Document\" />
   </ItemGroup>
@@ -498,11 +497,8 @@
       <LastGenOutput>Product.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Resources</CustomToolNamespace>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812272352522_init.resx">
-      <DependentUpon>201812272352522_init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812280147502_init2.resx">
-      <DependentUpon>201812280147502_init2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812281244210_init.resx">
+      <DependentUpon>201812281244210_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

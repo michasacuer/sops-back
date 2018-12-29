@@ -16,7 +16,12 @@ namespace SOPS
             Configuration.LazyLoadingEnabled = false;
         }
 
-        public static ApplicationDbContext Create()
+        /*protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            // modelBuilder.Entity<ExistingProduct>().HasOptional(e => e.QR);
+        }*/
+
+            public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
         }

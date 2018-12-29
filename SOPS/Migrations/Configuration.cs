@@ -37,7 +37,7 @@ namespace SOPS.Migrations
 
             int productCount = 30;
             int employeeCount = 3;
-            int productRatingCount = 1000;
+            int productRatingCount = 100;
             int productCommentCount = 10;
             int companyReportCount = 10;
             int watchedProductCount = 10;
@@ -138,9 +138,9 @@ namespace SOPS.Migrations
                     LockoutEnabled = false,
                     AccessFailedCount = 0
                 };
-                manager.CreateAsync(user, user.UserName).Wait(); 
+                manager.CreateAsync(user, user.UserName).Wait();
 
-                if(i == 0)
+                if (i == 0)
                 {
                     manager.AddToRoleAsync(user.Id, "Administrator").Wait();
                 }
@@ -205,7 +205,7 @@ namespace SOPS.Migrations
                     ApplicationUserId = context.Users.ToList()[random.Next(context.Users.Count())].Id,
                     ProductId = context.Products.ToList()[random.Next(context.Products.Count())].Id
                 };
-                if (!context.WatchedProducts.Any(wp => wp.ApplicationUserId.Equals(watchedProduct.ApplicationUserId) && wp.ProductId.Equals(watchedProduct.ProductId)))
+                if (!context.WatchedProducts.Any(wp => wp.ApplicationUserId == watchedProduct.ApplicationUserId && wp.ProductId == watchedProduct.ProductId))
                 {
                     context.WatchedProducts.AddOrUpdate(watchedProduct);
                 }
@@ -243,7 +243,7 @@ namespace SOPS.Migrations
                 {
                     ExpirationDate = new DateTime(random.Next(2018, 2030), random.Next(12) + 1, random.Next(25) + 1),
                     CreationDate = new DateTime(random.Next(2018, 2030), random.Next(12) + 1, random.Next(25) + 1),
-                    ProductId = context.Products.ToList()[random.Next(context.Products.Count())].Id                   
+                    ProductId = context.Products.ToList()[random.Next(context.Products.Count())].Id
                 };
                 existingProduct.GenerateSecret();
                 context.ExistingProducts.AddOrUpdate(existingProduct);
