@@ -27,6 +27,41 @@ namespace SOPS.Controllers
             return db.ApplicationUsers;
         }*/
 
+        /// <summary>
+        /// get current user profile
+        /// </summary>
+        /// <returns></returns>
+        [Route("Current")]
+        [ResponseType(typeof(UserProfileViewModel))]
+        public IHttpActionResult GetCurrentProfile()
+        {
+            var currentUser = UserHelper.GetCurrentUser();
+            if (currentUser == null)
+            {
+                return StatusCode(HttpStatusCode.Unauthorized);
+            }
+
+            var asEmployee = db.Employees.Find(UserHelper.GetCurrentUserId());
+            Company employeeCompany = null;
+            if (asEmployee != null)
+            {
+                employeeCompany = asEmployee.Company;
+            }
+
+            return Ok(new UserProfileViewModel()
+            {
+                Id = currentUser.Id,
+                UserName = currentUser.UserName,
+                Name = currentUser.UserName,
+                Surname = currentUser.Surname,
+                PhoneNumber = currentUser.PhoneNumber,
+                Email = currentUser.Email,
+                WatchedProducts = currentUser.WatchedProducts,
+                IsEmployee = asEmployee != null,
+                Company = employeeCompany,
+            });
+        }
+
         // GET: api/User/Profile/5
         /// <summary>
         /// daj profil uzytkownika imie, nazwisko, numer, mail itd
@@ -53,7 +88,9 @@ namespace SOPS.Controllers
 
             return Ok(new UserProfileViewModel()
             {
-                Name = applicationUser.UserName,
+                Id = applicationUser.Id,
+                UserName = applicationUser.UserName,
+                Name = applicationUser.Name,
                 Surname = applicationUser.Surname,
                 PhoneNumber = applicationUser.PhoneNumber,
                 Email = applicationUser.Email,
