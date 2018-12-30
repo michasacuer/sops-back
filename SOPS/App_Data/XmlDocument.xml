@@ -980,6 +980,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:SOPS.Controllers.UserProfileController.GetCurrentProfile">
+            <summary>
+            get current user profile
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:SOPS.Controllers.UserProfileController.GetUserProfile(System.String)">
             <summary>
             daj profil uzytkownika imie, nazwisko, numer, mail itd

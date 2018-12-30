@@ -52,7 +52,7 @@ namespace SOPS.Controllers
                 Rating = rateFromBody.Rating,
                 UserId = UserHelper.GetCurrentUserId(),
                 ProductId = id,
-                Date = DateTime.Now
+                Added = DateTime.Now
             });
             db.SaveChanges();
 

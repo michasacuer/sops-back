@@ -124,8 +124,8 @@ namespace SOPS.Controllers
             var minValue = DateTime.Now.AddDays(-20);
             var maxValue = DateTime.Now;
 
-            var ratings = db.ProductRatings.Where(r => r.ProductId == productId && r.Date > minValue && r.Date <= maxValue).ToList();
-            var avgs = ratings.GroupBy(r => r.Date.Date).OrderBy(r=>r.Key).Select(g => new
+            var ratings = db.ProductRatings.Where(r => r.ProductId == productId && r.Added > minValue && r.Added <= maxValue).ToList();
+            var avgs = ratings.GroupBy(r => r.Added.Date).OrderBy(r=>r.Key).Select(g => new
             {
                 Day = g.Key,
                 Avg = g.Average(r => r.Rating)

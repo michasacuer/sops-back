@@ -32,14 +32,27 @@ namespace SOPS
         }
 
         protected void Application_AcquireRequestState(object sender, EventArgs e)
-        {
-            string culture = "en-US";
+        {            
             if (Request.UserLanguages != null)
             {
-                culture = Request.UserLanguages[0];
+                foreach (var culture in Request.UserLanguages)
+                {
+                    try
+                    {
+                        Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo(culture);
+                        Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(culture);
+                        return;
+                    }
+                    catch (CultureNotFoundException err)
+                    {
+
+                    }
+                }
             }
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo(culture);
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(culture);
+
+            string defaultCulture = "en-US";
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo(defaultCulture);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(defaultCulture);
         }
 
         protected void Application_EndRequest()

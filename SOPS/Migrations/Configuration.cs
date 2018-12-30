@@ -31,18 +31,18 @@ namespace SOPS.Migrations
             int uniqueAddressStreetCount = 2;
             int uniqueAddressCityCount = 5;
 
-            int userCount = 200;
+            int userCount = 10;
             int uniqueUserNameCount = 5;
             int uniqueUserSurnameCount = 10;
 
-            int productCount = 30;
-            int employeeCount = 100;
-            int productRatingCount = 400;
-            int productCommentCount = 200;
+            int productCount = 10;
+            int employeeCount = 10;
+            int productRatingCount = 10;
+            int productCommentCount = 10;
             int companyReportCount = 10;
-            int watchedProductCount = 70;
-            int existingProductCount = 700;
-            int qrCodeCount = 20;
+            int watchedProductCount = 10;
+            int existingProductCount = 10;
+            int qrCodeCount = 10;
             int companyStatisticsCountPerCompany = 10;
 
             Random random = new Random();
@@ -189,7 +189,7 @@ namespace SOPS.Migrations
                     Rating = (float)random.NextDouble() * 10,
                     UserId = context.Users.ToList()[random.Next(context.Users.Count())].Id,
                     ProductId = context.Products.ToList()[random.Next(context.Products.Count())].Id,
-                    Date = new DateTime(2018, 12, random.Next(28) + 1)
+                    Added = new DateTime(2018, 12, random.Next(28) + 1)
                 };
                 if (!productRatings.Any(pr => pr.UserId.Equals(productRating.UserId) && pr.ProductId.Equals(productRating.ProductId)))
                 {
