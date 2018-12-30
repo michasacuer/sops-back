@@ -10,12 +10,14 @@ namespace SOPS.Models
     public class WatchedProduct
     {
         [Key]
+        [Column(Order = 0)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [ForeignKey("ApplicationUser")]
         public string ApplicationUserId                { get; set; }
         public virtual ApplicationUser ApplicationUser { get; set; }
 
         [Key]
+        [Column(Order = 1)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [ForeignKey("Product")]
         public int ProductId           { get; set; }
