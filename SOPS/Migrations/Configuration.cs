@@ -22,7 +22,7 @@ namespace SOPS.Migrations
         {
             if (System.Diagnostics.Debugger.IsAttached == false)
             {
-                //System.Diagnostics.Debugger.Launch();
+                // System.Diagnostics.Debugger.Launch();
             }
             // This method will be called after migrating to the latest version.
 
@@ -200,6 +200,7 @@ namespace SOPS.Migrations
             context.SaveChanges();
 
             // WatchedProduct
+            var watchedProductList = new List<WatchedProduct>(watchedProductCount);
             for (int i = 0; i < watchedProductCount; i++)
             {
                 WatchedProduct watchedProduct = new WatchedProduct
@@ -207,11 +208,12 @@ namespace SOPS.Migrations
                     ApplicationUserId = context.Users.ToList()[random.Next(context.Users.Count())].Id,
                     ProductId = context.Products.ToList()[random.Next(context.Products.Count())].Id
                 };
-                if (!context.WatchedProducts.Any(wp => wp.ApplicationUserId == watchedProduct.ApplicationUserId && wp.ProductId == watchedProduct.ProductId))
+                if (watchedProductList.Any(wp => wp.ApplicationUserId == watchedProduct.ApplicationUserId && wp.ProductId == watchedProduct.ProductId) == false)
                 {
-                    context.WatchedProducts.AddOrUpdate(watchedProduct);
+                    watchedProductList.Add(watchedProduct);
                 }
             }
+            context.WatchedProducts.AddRange(watchedProductList);
             context.SaveChanges();
 
             // ProductComment

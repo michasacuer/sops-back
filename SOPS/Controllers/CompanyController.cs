@@ -109,6 +109,11 @@ namespace SOPS.Controllers
                 return BadRequest(ModelState);
             }
 
+            if (company == null)
+            {
+                return BadRequest("company not specified in request body");
+            }
+
             db.Companies.Add(company);
             db.SaveChanges();
 

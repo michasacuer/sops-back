@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Security.Claims;
 using System.Security.Cryptography;
@@ -357,6 +358,83 @@ namespace SOPS.Controllers
             {
                 return GetErrorResult(result);
             }
+
+            return Ok();
+        }
+
+        // POST: api/Account/Delete
+        /// <summary>
+        /// Usuwanie konta
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        // [Route("Delete")]
+        public IHttpActionResult DeleteAccount()
+        {
+            IdentityResult result = null;
+
+            var userId = User.Identity.GetUserId<string>();
+            if (userId == null)
+            {
+                return BadRequest();
+            }
+
+            var db = new ApplicationDbContext();
+
+            //using (var transaction = db.Database.BeginTransaction())
+            //{
+                foreach (var role in UserManager.GetRoles(userId))
+                {
+                    result = UserManager.RemoveFromRole(userId, role);
+                    if (result.Succeeded == false)
+                    {
+                        return InternalServerError();
+                    }
+                }
+
+                var employee = db.Employees.Find(userId);
+                var productComment = db.ProductComments.Where(pc => pc.ApplicationUserId == userId).ToList();
+                var productIssue = db.ProductIssues.Where(pi => pi.ApplicationUserId == userId).ToList();
+                var productRating = db.ProductRatings.Where(pr => pr.UserId == userId).ToList();
+                var scan = db.Scans.Where(s => s.UserId == userId).ToList();
+                var watchedProduct = db.WatchedProducts.Where(wp => wp.ApplicationUserId == userId).ToList();
+
+                if (employee != null)
+                {
+                    db.Employees.Remove(employee);
+                }
+                if (productComment.Any())
+                {
+                    db.ProductComments.RemoveRange(productComment);
+                }
+                if (productIssue.Any())
+                {
+                    db.ProductIssues.RemoveRange(productIssue);
+                }
+                if (productRating.Any())
+                {
+                    db.ProductRatings.RemoveRange(productRating);
+                }
+                if (scan.Any())
+                {
+                    db.Scans.RemoveRange(scan);
+                }
+                if (watchedProduct.Any())
+                {
+                    db.WatchedProducts.RemoveRange(watchedProduct);
+                }
+                db.SaveChanges();
+
+                result = UserManager.Delete(UserManager.FindById(userId));
+                if (result.Succeeded == false)
+                {
+                    //transaction.Rollback();
+                    return InternalServerError();
+                }
+
+                db.SaveChanges();
+                //transaction.Commit();
+            //}
 
             return Ok();
         }

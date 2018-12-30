@@ -20,29 +20,54 @@ namespace SOPS.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: api/WatchedProduct/get?id=42b8ccb0-4911-458f-a066-36b057954157
+        // GET: api/WatchedProduct
         /// <summary>
-        /// daj wszystkie obserwowane produkty dla aktualnego uzytkownika
+        /// Zwraca produkty obserwowane przez aktualnego użytkownika [autoryzacja wymagana]
         /// </summary>
         /// <returns></returns>
         [Authorize]
         [HttpGet]
-        [Route("get")]
-        public IEnumerable<WatchedProduct> GetWatchedProduct(string id)
+        public IEnumerable<WatchedProduct> GetWatchedProduct()
         {
             var userId = UserHelper.GetCurrentUserId();
-            var productsList = id == null ?
-                db.WatchedProducts.Where(u => u.ApplicationUserId == userId).ToList() :
-                db.WatchedProducts.Where(u => u.ApplicationUserId == id).ToList();
+            var productsList = db.WatchedProducts.Where(u => u.ApplicationUserId == userId).ToList();
 
             return productsList;
         }
 
+        // GET: api/WatchedProduct/{id}
+        /// <summary>
+        /// Zwraca produkty obserwowane przez użytkownika o danym id
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public IHttpActionResult GetWatchedProduct(string id)
+        {
+            var userId = id;
+            if (userId == null)
+            {
+                return BadRequest();
+            }
 
+            if (db.Users.Find(userId) == null)
+            {
+                return BadRequest();
+            }
+
+            var productsList = db.WatchedProducts.Where(wp => wp.ApplicationUserId == userId).ToList();
+
+            return Ok(productsList);
+            /*
+            var userId = UserHelper.GetCurrentUserId();
+            var productsList = id == null ?
+                db.WatchedProducts.Where(u => u.ApplicationUserId == userId).ToList() :
+                db.WatchedProducts.Where(u => u.ApplicationUserId == id).ToList();
+            */
+        }
 
         // POST: api/WatchedProduct/5
         /// <summary>
-        /// dodaj obserwowany produkt (dla aktualnego uzytkownika)
+        /// Dodaj produkt do obserwowanych aktualnego uzytkownika [autoryzacja wymagana]
         /// </summary>
         /// <param name="id">id produktu</param>
         /// <returns></returns>
@@ -51,12 +76,17 @@ namespace SOPS.Controllers
         [ResponseType(typeof(WatchedProduct))]
         public IHttpActionResult PostWatchedProduct(int id)
         {
-            //get product's id to add to user's watched products
+            // get product to add to user's watched products
             var product = db.Products.Find(id);
             var userId = UserHelper.GetCurrentUserId();
 
             if (userId == null || product == null)
                 return NotFound();
+
+            if (db.WatchedProducts.Find(userId, id) != null)
+            {
+                return BadRequest("user already wathes the product");
+            }
 
             db.WatchedProducts.Add(new WatchedProduct { ProductId = id, ApplicationUserId = userId });
             db.SaveChanges();
@@ -66,7 +96,7 @@ namespace SOPS.Controllers
 
         // DELETE: api/WatchedProduct/5
         /// <summary>
-        /// usun obserwowany produkt
+        /// Usun obserwowany produkt aktualnemu użytkownikowi [autoryzacja wymagana]
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -80,7 +110,7 @@ namespace SOPS.Controllers
             if (userId == null)
                 return NotFound();
 
-            var product = db.WatchedProducts.SingleOrDefault(u => u.ApplicationUserId == userId && u.ProductId == id);
+            var product = db.WatchedProducts.SingleOrDefault(wp => wp.ApplicationUserId == userId && wp.ProductId == id);
             if (product == null)
                 return NotFound();
 

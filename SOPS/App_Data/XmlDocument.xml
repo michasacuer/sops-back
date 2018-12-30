@@ -734,6 +734,13 @@
             <param name="model"></param>
             <returns></returns>
         </member>
+        <member name="M:SOPS.Controllers.AccountController.DeleteAccount">
+            <summary>
+            Usuwanie konta
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
         <member name="M:SOPS.Controllers.CompanyController.GetCompanies">
             <summary>
             pobierz wszystkie firmy
@@ -1002,22 +1009,28 @@
             <param name="userProfile"></param>
             <returns></returns>
         </member>
+        <member name="M:SOPS.Controllers.WatchedProductController.GetWatchedProduct">
+            <summary>
+            Zwraca produkty obserwowane przez aktualnego użytkownika [autoryzacja wymagana]
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:SOPS.Controllers.WatchedProductController.GetWatchedProduct(System.String)">
             <summary>
-            daj wszystkie obserwowane produkty dla aktualnego uzytkownika
+            Zwraca produkty obserwowane przez użytkownika o danym id
             </summary>
             <returns></returns>
         </member>
         <member name="M:SOPS.Controllers.WatchedProductController.PostWatchedProduct(System.Int32)">
             <summary>
-            dodaj obserwowany produkt (dla aktualnego uzytkownika)
+            Dodaj produkt do obserwowanych aktualnego uzytkownika [autoryzacja wymagana]
             </summary>
             <param name="id">id produktu</param>
             <returns></returns>
         </member>
         <member name="M:SOPS.Controllers.WatchedProductController.DeleteWatchedProduct(System.Int32)">
             <summary>
-            usun obserwowany produkt
+            Usun obserwowany produkt aktualnemu użytkownikowi [autoryzacja wymagana]
             </summary>
             <param name="id"></param>
             <returns></returns>
