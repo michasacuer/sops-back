@@ -39,6 +39,11 @@ namespace SOPS.Controllers
                 return Request.CreateResponse(HttpStatusCode.NotFound);
             }
 
+            var plotController = new PlotController();
+            plotController.ControllerContext = ControllerContext;
+
+            plotController.GetCompanyStatistics(id, )
+
             var baseUrl = Request.RequestUri.GetLeftPart(UriPartial.Authority);
             var relativeUrl = Url.Route("Document_default",
                 new { id, controller = "Default", action = "EmployeeReport" });
