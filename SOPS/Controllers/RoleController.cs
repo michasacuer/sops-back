@@ -68,7 +68,8 @@ namespace SOPS.Controllers
                 db.Employees.Add(new Employee
                 {
                     UserId = roleBindingModel.UserId,
-                    CompanyId = roleBindingModel.OptionalCompanyId
+                    CompanyId = roleBindingModel.OptionalCompanyId,
+                    JoinDate = DateTime.Now
                 });
                 db.SaveChanges();
             } 

@@ -27,16 +27,16 @@ namespace SOPS.Migrations
             // This method will be called after migrating to the latest version.
 
             // Generation configuration
-            int companyCount = 3;
+            int companyCount = 1;
             int uniqueAddressStreetCount = 2;
             int uniqueAddressCityCount = 5;
 
-            int userCount = 200;
+            int userCount = 50;
             int uniqueUserNameCount = 5;
             int uniqueUserSurnameCount = 10;
 
-            int productCount = 30;
-            int employeeCount = 100;
+            int productCount = 70;
+            int employeeCount = 50;
             int productRatingCount = 400;
             int productCommentCount = 200;
             int companyReportCount = 10;

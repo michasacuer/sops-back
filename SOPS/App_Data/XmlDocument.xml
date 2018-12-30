@@ -734,6 +734,13 @@
             <param name="model"></param>
             <returns></returns>
         </member>
+        <member name="M:SOPS.Controllers.AccountController.PostDeleteUser">
+            <summary>
+            Usuwanie konta
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
         <member name="M:SOPS.Controllers.CompanyController.GetCompanies">
             <summary>
             pobierz wszystkie firmy
