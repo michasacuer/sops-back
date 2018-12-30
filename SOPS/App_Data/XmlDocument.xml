@@ -734,7 +734,7 @@
             <param name="model"></param>
             <returns></returns>
         </member>
-        <member name="M:SOPS.Controllers.AccountController.DeleteDeleteUser">
+        <member name="M:SOPS.Controllers.AccountController.DeleteAccount">
             <summary>
             Usuwanie konta
             </summary>
