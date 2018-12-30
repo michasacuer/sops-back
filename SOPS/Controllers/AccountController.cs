@@ -369,7 +369,7 @@ namespace SOPS.Controllers
         /// <param name="model"></param>
         /// <returns></returns>
         [Route("Delete")]
-        public IHttpActionResult PostDeleteUser()
+        public IHttpActionResult DeleteDeleteUser()
         {
             IdentityResult result = null;
 
