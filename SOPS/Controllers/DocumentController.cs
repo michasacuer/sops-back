@@ -3,16 +3,25 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Reflection;
+using System.Security.Claims;
+using System.Security.Principal;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
 using System.Web.Http.Routing;
 using Codaxy.WkHtmlToPdf;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using SOPS.Models;
 using TheArtOfDev.HtmlRenderer.PdfSharp;
 
@@ -22,6 +31,7 @@ namespace SOPS.Controllers
     public class DocumentController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        public ApplicationUserManager UserManager => Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
 
         // Get: api/Document/report
         /// <summary>
@@ -31,7 +41,7 @@ namespace SOPS.Controllers
         /// <param name="id">id firmy</param>
         /// <returns></returns>
         [Route("report/{id}")]
-        public HttpResponseMessage GetReport(int id)
+        public async Task<HttpResponseMessage> GetReport(int id)
         {
             Company company = db.Companies.Find(id);
             if (company == null)
@@ -42,7 +52,16 @@ namespace SOPS.Controllers
             var plotController = new PlotController();
             plotController.ControllerContext = ControllerContext;
 
-            plotController.GetCompanyStatistics(id, )
+            var user = db.Users.Where(u => u.UserName == "user0").ToList().SingleOrDefault();
+            var identity = UserManager.ClaimsIdentityFactory.CreateAsync(UserManager, user, "").Result;
+            var principal = new ClaimsPrincipal(identity);
+            HttpContext.Current.User = principal;
+
+            var chart = plotController.GetCompanyStatistics(id, 960, 450);
+            var chartStream = await chart.Content.ReadAsStreamAsync();
+            var chartImage = Bitmap.FromStream(chartStream);
+            var chartLocation = System.AppContext.BaseDirectory + "Areas\\Document\\Views\\Default\\Chart.jpg";
+            chartImage.Save(chartLocation, ImageFormat.Jpeg);
 
             var baseUrl = Request.RequestUri.GetLeftPart(UriPartial.Authority);
             var relativeUrl = Url.Route("Document_default",

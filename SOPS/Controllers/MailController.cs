@@ -69,7 +69,7 @@ namespace SOPS.Controllers
             var controller = new DocumentController();
             controller.ControllerContext = ControllerContext;
 
-            Stream stream = await controller.GetReport(59).Content.ReadAsStreamAsync();
+            Stream stream = await controller.GetReport(59).Result.Content.ReadAsStreamAsync();
             var attachmentName = "Raport(" + dateTime.ToString("dd.MM.yy") + ").pdf";
             mail.Attachments.Add(new Attachment(stream, attachmentName, "application/pdf"));
 
