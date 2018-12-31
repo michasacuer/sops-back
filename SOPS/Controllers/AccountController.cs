@@ -29,6 +29,9 @@ namespace SOPS.Controllers
 
         public AccountController()
         {
+            //var user = DBNull.
+            //new ClaimsPrincipal(user.);
+           // var user = HttpContext.Current.User;
         }
 
         public AccountController(ApplicationUserManager userManager,
@@ -64,6 +67,7 @@ namespace SOPS.Controllers
 
             return new UserInfoViewModel
             {
+                Id = User.Identity.GetUserId(),
                 Email = User.Identity.GetUserName(),
                 HasRegistered = externalLogin == null,
                 LoginProvider = externalLogin != null ? externalLogin.LoginProvider : null
