@@ -14,6 +14,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
+using SOPS.ModelHelpers;
 using SOPS.Models;
 using SOPS.Providers;
 using SOPS.Results;
@@ -65,10 +66,33 @@ namespace SOPS.Controllers
         {
             ExternalLoginData externalLogin = ExternalLoginData.FromIdentity(User.Identity as ClaimsIdentity);
 
+            var currentUserId = UserHelper.GetCurrentUserId();
+            var isAdministrator = UserHelper.IsCurrentUserInRole("Administrator");
+            var isEmployee = UserHelper.IsCurrentUserInRole("Employee");
+            int companyId = 0;
+
+            if(isEmployee)
+            {
+                using(var db = new ApplicationDbContext())
+                {
+                    var employee = db.Employees.Find(currentUserId);
+                    if(employee != null)
+                    {
+                        companyId = employee.CompanyId;
+                    }
+                    else
+                    {
+                        isEmployee = false;
+                    }
+                }
+            }
+
             return new UserInfoViewModel
             {
                 Id = User.Identity.GetUserId(),
                 Email = User.Identity.GetUserName(),
+                Role = isAdministrator ? "Administrator" : isEmployee ? "Employee" : "User",
+                CompanyId = companyId,
                 HasRegistered = externalLogin == null,
                 LoginProvider = externalLogin != null ? externalLogin.LoginProvider : null
             };
