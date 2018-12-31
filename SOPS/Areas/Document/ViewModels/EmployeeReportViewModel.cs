@@ -48,6 +48,8 @@ namespace SOPS.Areas.Document.ViewModels
         [Display(Name = nameof(Resources.EmployeeReport.ProductAverageRating), ResourceType = typeof(Resources.EmployeeReport))]
         public string ProductAverageRating { get; set; }
 
+        public string ChartLocation { get; set; }
+
         public static EmployeeReportViewModel CreateViewModel(Company company, DateTime dateTime)
         {
             var products = company.Products;
@@ -136,6 +138,7 @@ namespace SOPS.Areas.Document.ViewModels
                 ProductAverageRating = productAvgRating.ToString().Substring(0, 3),
                 ProductBestRated = bestRatedStr,
                 RatingCount = ratingCount,
+                ChartLocation = System.AppContext.BaseDirectory + "Areas\\Document\\Views\\Default\\Chart.jpg"
             };
 
             return vm;
