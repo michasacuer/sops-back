@@ -347,9 +347,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812300034115_init.cs" />
-    <Compile Include="Migrations\201812300034115_init.Designer.cs">
-      <DependentUpon>201812300034115_init.cs</DependentUpon>
+    <Compile Include="Migrations\201812302339022_penis.cs" />
+    <Compile Include="Migrations\201812302339022_penis.Designer.cs">
+      <DependentUpon>201812302339022_penis.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelHelpers\EmployeeHelper.cs" />
@@ -518,6 +518,9 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Product.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Resources</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812302339022_penis.resx">
+      <DependentUpon>201812302339022_penis.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
