@@ -889,6 +889,12 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="M:SOPS.Controllers.ProductController.GetNewest">
+            <summary>
+            pobierz produkt który został dodany jako ostatni
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:SOPS.Controllers.ProductController.PutProduct(System.Int32,SOPS.Models.Product)">
             <summary>
             modyfikacja produktu
