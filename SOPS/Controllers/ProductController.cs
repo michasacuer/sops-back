@@ -135,6 +135,12 @@ namespace SOPS.Controllers
                 return StatusCode(HttpStatusCode.Unauthorized);
             }
 
+            var company = db.Companies.Find(product.CompanyId);
+            if(company == null)
+            {
+                return BadRequest("company not found");
+            }
+
             db.Products.Add(product);
             db.SaveChanges();
 
