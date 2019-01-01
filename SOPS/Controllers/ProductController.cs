@@ -151,7 +151,7 @@ namespace SOPS.Controllers
         [ResponseType(typeof(Product))]
         public IHttpActionResult DeleteProduct(int id)
         {
-            Product product = db.Products.Find(id);
+            Product product = db.Products.Include(p => p.ExistingProducts.Select(e => e.QR)).SingleOrDefault(p => p.Id == id);
             if (product == null)
             {
                 return NotFound();
