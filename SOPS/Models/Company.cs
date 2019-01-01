@@ -19,6 +19,7 @@ namespace SOPS.Models
         public string Email          { get; set; }
         public string NIP            { get; set; }
         public string REGON          { get; set; }
+        public DateTime JoinDate     { get; set; }
 
         public virtual List<Product>       Products       { get; set; }
         public virtual List<CompanyReport> CompanyReports { get; set; }
