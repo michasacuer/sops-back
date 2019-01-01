@@ -17,7 +17,6 @@ using SOPS.Models;
 namespace SOPS.Controllers
 {
     [RoutePrefix("api/Product")]
-    [AllowCrossSiteJson]
     public class ProductController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -136,6 +135,12 @@ namespace SOPS.Controllers
                 return StatusCode(HttpStatusCode.Unauthorized);
             }
 
+            var company = db.Companies.Find(product.CompanyId);
+            if(company == null)
+            {
+                return BadRequest("company not found");
+            }
+
             db.Products.Add(product);
             db.SaveChanges();
 
@@ -152,7 +157,7 @@ namespace SOPS.Controllers
         [ResponseType(typeof(Product))]
         public IHttpActionResult DeleteProduct(int id)
         {
-            Product product = db.Products.Find(id);
+            Product product = db.Products.Include(p => p.ExistingProducts.Select(e => e.QR)).SingleOrDefault(p => p.Id == id);
             if (product == null)
             {
                 return NotFound();
