@@ -754,6 +754,12 @@
             <param name="id">id firmy</param>
             <returns></returns>
         </member>
+        <member name="M:SOPS.Controllers.CompanyController.GetNewest">
+            <summary>
+            pobierz firmę która została dodana jako ostatnia
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:SOPS.Controllers.CompanyController.PutCompany(System.Int32,SOPS.Models.Company)">
             <summary>
             zmodyfikuj firme - trzeba dodac autoryzacje

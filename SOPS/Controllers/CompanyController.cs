@@ -46,6 +46,22 @@ namespace SOPS.Controllers
             return Ok(company);
         }
 
+
+        // GET: api/Companies/Newest
+        /// <summary>
+        /// pobierz firmę która została dodana jako ostatnia
+        /// </summary>
+        /// <returns></returns>
+        [Route("Newest")]
+        [ResponseType(typeof(Company))]
+        public IHttpActionResult GetNewest()
+        {
+            var newestCompanyDate = db.Companies.Min(c => c.JoinDate);
+            var newestCompany = db.Companies.First(c => c.JoinDate == newestCompanyDate);
+
+            return Ok(newestCompany);
+        }
+
         // PUT: api/Companies/5
         /// <summary>
         /// zmodyfikuj firme - trzeba dodac autoryzacje
