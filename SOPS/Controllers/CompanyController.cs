@@ -56,7 +56,7 @@ namespace SOPS.Controllers
         [ResponseType(typeof(Company))]
         public IHttpActionResult GetNewest()
         {
-            var newestCompanyDate = db.Companies.Min(c => c.JoinDate);
+            var newestCompanyDate = db.Companies.Max(c => c.JoinDate);
             var newestCompany = db.Companies.First(c => c.JoinDate == newestCompanyDate);
 
             return Ok(newestCompany);

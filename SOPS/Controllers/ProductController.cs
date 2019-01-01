@@ -72,7 +72,7 @@ namespace SOPS.Controllers
         [ResponseType(typeof(Product))]
         public IHttpActionResult GetNewest()
         {
-            var newestProductDate = db.Products.Min(p => p.CreationDate);
+            var newestProductDate = db.Products.Max(p => p.CreationDate);
             var newestProduct = db.Products.First(p => p.CreationDate == newestProductDate);
 
             return Ok(newestProduct);
