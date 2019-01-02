@@ -45,6 +45,26 @@ namespace SOPS.Controllers
             return db.Products;
         }
 
+        /// <summary>
+        /// daj produkty dla firmy o podanym id
+        /// </summary>
+        /// <returns></returns>
+        public IHttpActionResult GetProducts(int companyId)
+        {
+            var company = db.Companies.Find(companyId);
+            if (company == null)
+            {
+                return NotFound();
+            }
+            var companyProducts = db.Products.Where(p => p.CompanyId == companyId).ToList();
+            foreach(var product in companyProducts) // zamiast viewmodela
+            {
+                product.Company = null;
+            }
+
+            return Ok(companyProducts);
+        }
+
         // GET: api/Products/5
         /// <summary>
         /// pobierz produkt o podanym id
@@ -136,7 +156,7 @@ namespace SOPS.Controllers
             }
 
             var company = db.Companies.Find(product.CompanyId);
-            if(company == null)
+            if (company == null)
             {
                 return BadRequest("company not found");
             }

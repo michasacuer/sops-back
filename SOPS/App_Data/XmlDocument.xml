@@ -882,6 +882,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:SOPS.Controllers.ProductController.GetProducts(System.Int32)">
+            <summary>
+            daj produkty dla firmy o podanym id
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:SOPS.Controllers.ProductController.GetProduct(System.Int32)">
             <summary>
             pobierz produkt o podanym id

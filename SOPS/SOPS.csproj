@@ -347,9 +347,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812302119157_init.cs" />
-    <Compile Include="Migrations\201812302119157_init.Designer.cs">
-      <DependentUpon>201812302119157_init.cs</DependentUpon>
+    <Compile Include="Migrations\201901012311376_init.cs" />
+    <Compile Include="Migrations\201901012311376_init.Designer.cs">
+      <DependentUpon>201901012311376_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelHelpers\EmployeeHelper.cs" />
@@ -360,6 +360,7 @@
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\CompanyReport.cs" />
     <Compile Include="Models\CompanyStatistics.cs" />
+    <Compile Include="Models\ProductViewModels.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\ExistingProduct.cs" />
     <Compile Include="Models\ExistingProductViewModel.cs" />
@@ -518,6 +519,9 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Product.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Resources</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901012311376_init.resx">
+      <DependentUpon>201901012311376_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
