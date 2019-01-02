@@ -70,7 +70,7 @@ namespace SOPS.Controllers
         [ResponseType(typeof(ProductRatingViewModel))]
         public IHttpActionResult GetAvarage(int id)
         {
-            if (!db.Products.Any(p => p.Id == id) || UserHelper.GetCurrentUserId() == null)
+            if (!db.Products.Any(p => p.Id == id))
                 return NotFound();
 
             var response = new ProductRatingViewModel();
