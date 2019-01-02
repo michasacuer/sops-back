@@ -73,11 +73,19 @@ namespace SOPS.Controllers
             if (!db.Products.Any(p => p.Id == id) || UserHelper.GetCurrentUserId() == null)
                 return NotFound();
 
-            return Ok(new ProductRatingViewModel
+            var response = new ProductRatingViewModel();
+
+            response.ProductId = id;
+            try
             {
-                ProductId = id,
-                AvarageRating = db.ProductRatings.Where(p => p.ProductId == id).Average(p => p.Rating)
-            });               
+                response.AvarageRating = db.ProductRatings.Where(p => p.ProductId == id).Average(p => p.Rating);
+            }
+            catch
+            {
+                response.AvarageRating = 0;
+            }
+
+            return Ok(response);               
         }
 
         protected override void Dispose(bool disposing)
