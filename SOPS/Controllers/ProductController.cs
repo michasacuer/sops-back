@@ -83,6 +83,21 @@ namespace SOPS.Controllers
             return Ok(product);
         }
 
+        // GET: api/Products/Newest
+        /// <summary>
+        /// pobierz produkt który został dodany jako ostatni
+        /// </summary>
+        /// <returns></returns>
+        [Route("Newest")]
+        [ResponseType(typeof(Product))]
+        public IHttpActionResult GetNewest()
+        {
+            var newestProductDate = db.Products.Max(p => p.CreationDate);
+            var newestProduct = db.Products.First(p => p.CreationDate == newestProductDate);
+
+            return Ok(newestProduct);
+        }
+
         // PUT: api/Products/5
         /// <summary>
         /// modyfikacja produktu

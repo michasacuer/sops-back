@@ -100,7 +100,8 @@ namespace SOPS.Migrations
                     AddressCity = "addressCity" + random.Next(uniqueAddressCityCount),
                     Email = "companyName" + i + "@mail.com",
                     NIP = String.Join("", nipDigits),
-                    REGON = random.Next(999999999).ToString()
+                    REGON = random.Next(999999999).ToString(),
+                    JoinDate = new DateTime(random.Next(2015, 2017), random.Next(12) + 1, random.Next(25) + 1)
                 };
                 context.Companies.AddOrUpdate(c => c.Name, company);
             }

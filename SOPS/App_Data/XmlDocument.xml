@@ -754,6 +754,12 @@
             <param name="id">id firmy</param>
             <returns></returns>
         </member>
+        <member name="M:SOPS.Controllers.CompanyController.GetNewest">
+            <summary>
+            pobierz firmę która została dodana jako ostatnia
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:SOPS.Controllers.CompanyController.PutCompany(System.Int32,SOPS.Models.Company)">
             <summary>
             zmodyfikuj firme - trzeba dodac autoryzacje
@@ -893,6 +899,12 @@
             pobierz produkt o podanym id
             </summary>
             <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SOPS.Controllers.ProductController.GetNewest">
+            <summary>
+            pobierz produkt który został dodany jako ostatni
+            </summary>
             <returns></returns>
         </member>
         <member name="M:SOPS.Controllers.ProductController.PutProduct(System.Int32,SOPS.Models.Product)">

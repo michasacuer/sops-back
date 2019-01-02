@@ -70,14 +70,22 @@ namespace SOPS.Controllers
         [ResponseType(typeof(ProductRatingViewModel))]
         public IHttpActionResult GetAvarage(int id)
         {
-            if (!db.Products.Any(p => p.Id == id) || UserHelper.GetCurrentUserId() == null)
+            if (!db.Products.Any(p => p.Id == id))
                 return NotFound();
 
-            return Ok(new ProductRatingViewModel
+            var response = new ProductRatingViewModel();
+
+            response.ProductId = id;
+            try
             {
-                ProductId = id,
-                AvarageRating = db.ProductRatings.Where(p => p.ProductId == id).Average(p => p.Rating)
-            });               
+                response.AvarageRating = db.ProductRatings.Where(p => p.ProductId == id).Average(p => p.Rating);
+            }
+            catch
+            {
+                response.AvarageRating = 0;
+            }
+
+            return Ok(response);               
         }
 
         protected override void Dispose(bool disposing)
