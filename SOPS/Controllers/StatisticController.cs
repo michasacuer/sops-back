@@ -46,7 +46,7 @@ namespace SOPS.Controllers
             });
         }
 
-        // GET: api/Statistics/LastMonthCount
+        // GET: api/Statistic/LastMonthCount
         /// <summary>
         /// Zwraca liczbę firm i produktów na początku ostatniego miesiąca
         /// </summary>

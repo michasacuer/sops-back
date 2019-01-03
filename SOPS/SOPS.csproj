@@ -348,9 +348,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201901031657534_mig1.cs" />
-    <Compile Include="Migrations\201901031657534_mig1.Designer.cs">
-      <DependentUpon>201901031657534_mig1.cs</DependentUpon>
+    <Compile Include="Migrations\201901031802364_init.cs" />
+    <Compile Include="Migrations\201901031802364_init.Designer.cs">
+      <DependentUpon>201901031802364_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelHelpers\EmployeeHelper.cs" />
@@ -455,7 +455,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -523,8 +525,8 @@
       <LastGenOutput>Product.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Resources</CustomToolNamespace>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901031657534_mig1.resx">
-      <DependentUpon>201901031657534_mig1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201901031802364_init.resx">
+      <DependentUpon>201901031802364_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
