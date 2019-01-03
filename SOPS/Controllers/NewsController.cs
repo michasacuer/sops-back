@@ -26,7 +26,7 @@ namespace SOPS.Controllers
                 {
                     Header = product.Name + " registered",
                     EventDate = product.CreationDate,
-                    IconName = "layers",
+                    IconName = "scanner",
                     Content = "Company " + companies.First(c => c.Id == product.CompanyId).Name + " has registered a product named " + product.Name + ". From now on the product is available to search, rate, and discuss. Our users can also look for that product details."
                 };
 

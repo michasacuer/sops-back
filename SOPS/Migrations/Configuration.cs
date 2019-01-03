@@ -70,6 +70,8 @@ namespace SOPS.Migrations
             context.SaveChanges();
             ((DbSet<IdentityRole>)context.Roles).RemoveRange(context.Roles);
             context.SaveChanges();
+            context.Statistics.RemoveRange(context.Statistics);
+            context.SaveChanges();
 
             // UserRoles
             context.Roles.Add(new IdentityRole("User"));
@@ -290,6 +292,18 @@ namespace SOPS.Migrations
                 }
             }
             context.CompanyStatistics.AddRange(companyStatistics);
+            context.SaveChanges();
+
+            // Statistics
+            var currentMonth = DateTime.Now.Month;
+            var currentYear = DateTime.Now.Year;
+            var currentMonthBeginning = new DateTime(currentYear, currentMonth, 1);
+
+            context.Statistics.Add(new Statistics
+            {
+                LastMonthCompanyCount = context.Companies.Where(c => c.JoinDate < currentMonthBeginning).ToList().Count(),
+                LastMonthProductCount = context.Products.Where(p => p.CreationDate < currentMonthBeginning).ToList().Count()
+            });
             context.SaveChanges();
         }
     }

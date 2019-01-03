@@ -348,6 +348,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901031657534_mig1.cs" />
+    <Compile Include="Migrations\201901031657534_mig1.Designer.cs">
+      <DependentUpon>201901031657534_mig1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelHelpers\EmployeeHelper.cs" />
     <Compile Include="ModelHelpers\CompanyStatisticsHelper.cs" />
@@ -378,6 +382,7 @@
     <Compile Include="Models\StatisticGetAllCountViewModel.cs" />
     <Compile Include="Models\ShortUrl.cs" />
     <Compile Include="Models\StatisticGetAllListViewModel.cs" />
+    <Compile Include="Models\Statistics.cs" />
     <Compile Include="Models\UserProfileBindingModels.cs" />
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Models\WatchedProduct.cs" />
@@ -517,6 +522,9 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Product.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Resources</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901031657534_mig1.resx">
+      <DependentUpon>201901031657534_mig1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

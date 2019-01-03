@@ -1012,6 +1012,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:SOPS.Controllers.StatisticController.GetLastMonthCount">
+            <summary>
+            Zwraca liczbę firm i produktów na początku ostatniego miesiąca
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:SOPS.Controllers.UserProfileController.GetCurrentProfile">
             <summary>
             get current user profile
