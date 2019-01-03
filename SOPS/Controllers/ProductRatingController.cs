@@ -32,6 +32,20 @@ namespace SOPS.Controllers
             return db.ProductRatings.Where(pc => pc.ProductId == id);
         }
 
+        // GET: api/ProductRating/id
+        /// <summary>
+        /// pobierz oceny uzytkownika
+        /// </summary>
+        /// <param name="id">id produktu</param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("Profile")]
+        public IQueryable<ProductRating> GetProductRating(string id)
+        {
+            return db.ProductRatings.Where(pr => pr.UserId == id);
+        }
+
+
         // POST: api/ProductRating/id
         /// <summary>
         /// wstaw ocene produktu
