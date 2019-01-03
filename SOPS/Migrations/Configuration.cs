@@ -185,9 +185,10 @@ namespace SOPS.Migrations
             List<ProductRating> productRatings = new List<ProductRating>(productRatingCount);
             for (int i = 0; i < productRatingCount; i++)
             {
+                int[] rateArray = new[] { 1, 2, 3, 4, 5 };
                 ProductRating productRating = new ProductRating
                 {
-                    Rating = (float)random.NextDouble() * 10,
+                    Rating = random.Next(1, rateArray.Length),
                     UserId = context.Users.ToList()[random.Next(context.Users.Count())].Id,
                     ProductId = context.Products.ToList()[random.Next(context.Products.Count())].Id,
                     Added = new DateTime(2018, 12, random.Next(28) + 1)

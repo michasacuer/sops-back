@@ -102,6 +102,30 @@ namespace SOPS.Controllers
             return Ok(response);               
         }
 
+        //DELETE
+        [Authorize]
+        [Route("{userId}/{productid:int}")]
+        [HttpDelete]
+        [ResponseType(typeof(ProductRating))]
+        public IHttpActionResult DeleteRating(string userId, int productId)
+        {
+            if (!(UserHelper.GetCurrentUserId() == userId))
+                return NotFound();
+
+            try
+            {
+                var rate = db.ProductRatings.First(pr => pr.UserId == userId && pr.ProductId == productId);
+                db.ProductRatings.Remove(rate);
+                db.SaveChanges();
+            }
+            catch
+            {
+                return NotFound();
+            }
+
+            return Ok();
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
