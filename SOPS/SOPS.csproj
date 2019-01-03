@@ -331,6 +331,7 @@
     <Compile Include="Controllers\DocumentController.cs" />
     <Compile Include="Controllers\ExistingProductController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\PlotController.cs" />
     <Compile Include="Controllers\MailController.cs" />
     <Compile Include="Controllers\ProductCommentController.cs" />
@@ -347,10 +348,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201901012311376_init.cs" />
-    <Compile Include="Migrations\201901012311376_init.Designer.cs">
-      <DependentUpon>201901012311376_init.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelHelpers\EmployeeHelper.cs" />
     <Compile Include="ModelHelpers\CompanyStatisticsHelper.cs" />
@@ -360,6 +357,7 @@
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\CompanyReport.cs" />
     <Compile Include="Models\CompanyStatistics.cs" />
+    <Compile Include="Models\News.cs" />
     <Compile Include="Models\ProductViewModels.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\ExistingProduct.cs" />

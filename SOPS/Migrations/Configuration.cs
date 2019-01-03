@@ -172,7 +172,7 @@ namespace SOPS.Migrations
                     Name = "product" + i,
                     Barcode = random.Next(9999999).ToString() + random.Next(999999),
                     Description = "description" + i,
-                    CreationDate = new DateTime(random.Next(2018, 2019), random.Next(1, 13), random.Next(25) + 1),
+                    CreationDate = new DateTime(random.Next(2015, 2017), random.Next(12) + 1, random.Next(25) + 1),//new DateTime(random.Next(2018, 2019), random.Next(1, 13), random.Next(25) + 1),
                     CountryOfOrigin = "country" + random.Next(10),
                     SuggestedPrice = (decimal)random.Next(201),
                     CompanyId = context.Companies.ToList()[random.Next(context.Companies.Count())].Id
