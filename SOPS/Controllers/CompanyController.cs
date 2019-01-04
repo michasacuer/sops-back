@@ -18,7 +18,7 @@ namespace SOPS.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: api/Companies
+        // GET: api/Company
         /// <summary>
         /// pobierz wszystkie firmy
         /// </summary>
@@ -27,6 +27,19 @@ namespace SOPS.Controllers
         {
             return db.Companies.ToList();
         }
+
+        //GET:api/Company/Products
+        /// <summary>
+        /// pobierz wszystkie firmy z produktami
+        /// </summary>
+        /// <returns></returns>
+        [Route("Products")]
+        public IEnumerable<Company> GetCompaniesWithProducts()
+        {
+            return db.Companies.Include(p => p.Products).ToList();
+        }
+
+
 
         // GET: api/Companies/5
         /// <summary>

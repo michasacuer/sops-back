@@ -747,6 +747,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:SOPS.Controllers.CompanyController.GetCompaniesWithProducts">
+            <summary>
+            pobierz wszystkie firmy z produktami
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:SOPS.Controllers.CompanyController.GetCompany(System.Int32)">
             <summary>
             pobierz firme
