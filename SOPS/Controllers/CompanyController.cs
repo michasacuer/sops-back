@@ -39,7 +39,15 @@ namespace SOPS.Controllers
             return db.Companies.Include(p => p.Products).ToList();
         }
 
+        //GET: api/company/Profile?id=stringid
+        [Route("Profile")]
+        [ResponseType(typeof(Employee))]
+        public IHttpActionResult GetEmployeeCompany(string userId)
+        {
+            var employee = db.Employees.Include(e => e.Company.Products).SingleOrDefault(e => e.UserId == userId);
 
+            return Ok(employee.Company);
+        }
 
         // GET: api/Companies/5
         /// <summary>
