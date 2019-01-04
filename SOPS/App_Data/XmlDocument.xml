@@ -929,6 +929,13 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="M:SOPS.Controllers.ProductPictureController.GetProductPicture(System.Int32)">
+            <summary>
+            daj obrazek dla produktu o podanym id
+            </summary>
+            <param name="id">id produktu</param>
+            <returns></returns>
+        </member>
         <member name="M:SOPS.Controllers.ProductRatingController.GetProductRating(System.Int32)">
             <summary>
             pobierz oceny dla produktu

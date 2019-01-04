@@ -336,6 +336,7 @@
     <Compile Include="Controllers\ProductCommentController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ProductIssueController.cs" />
+    <Compile Include="Controllers\ProductPictureController.cs" />
     <Compile Include="Controllers\ProductRatingController.cs" />
     <Compile Include="Controllers\QRController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
@@ -347,9 +348,17 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201901012311376_init.cs" />
-    <Compile Include="Migrations\201901012311376_init.Designer.cs">
-      <DependentUpon>201901012311376_init.cs</DependentUpon>
+    <Compile Include="Migrations\201901030038037_init.cs" />
+    <Compile Include="Migrations\201901030038037_init.Designer.cs">
+      <DependentUpon>201901030038037_init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901030455004_init3.cs" />
+    <Compile Include="Migrations\201901030455004_init3.Designer.cs">
+      <DependentUpon>201901030455004_init3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901030613292_init4.cs" />
+    <Compile Include="Migrations\201901030613292_init4.Designer.cs">
+      <DependentUpon>201901030613292_init4.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelHelpers\EmployeeHelper.cs" />
@@ -360,6 +369,7 @@
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\CompanyReport.cs" />
     <Compile Include="Models\CompanyStatistics.cs" />
+    <Compile Include="Models\ProductPicture.cs" />
     <Compile Include="Models\ProductViewModels.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\ExistingProduct.cs" />
@@ -377,6 +387,7 @@
     <Compile Include="Models\RoleBindingModels.cs" />
     <Compile Include="Models\Scan.cs" />
     <Compile Include="Models\ScanBindingModel.cs" />
+    <Compile Include="Models\ScanViewModels.cs" />
     <Compile Include="Models\StatisticGetAllCountViewModel.cs" />
     <Compile Include="Models\ShortUrl.cs" />
     <Compile Include="Models\StatisticGetAllListViewModel.cs" />
@@ -390,6 +401,37 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\products\p1.PNG" />
+    <Content Include="App_Data\products\p10.PNG" />
+    <Content Include="App_Data\products\p11.PNG" />
+    <Content Include="App_Data\products\p12.PNG" />
+    <Content Include="App_Data\products\p13.PNG" />
+    <Content Include="App_Data\products\p14.PNG" />
+    <Content Include="App_Data\products\p15.PNG" />
+    <Content Include="App_Data\products\p16.PNG" />
+    <Content Include="App_Data\products\p17.PNG" />
+    <Content Include="App_Data\products\p18.PNG" />
+    <Content Include="App_Data\products\p19.PNG" />
+    <Content Include="App_Data\products\p2.PNG" />
+    <Content Include="App_Data\products\p20.PNG" />
+    <Content Include="App_Data\products\p21.PNG" />
+    <Content Include="App_Data\products\p22.PNG" />
+    <Content Include="App_Data\products\p23.PNG" />
+    <Content Include="App_Data\products\p24.PNG" />
+    <Content Include="App_Data\products\p25.PNG" />
+    <Content Include="App_Data\products\p26.PNG" />
+    <Content Include="App_Data\products\p27.PNG" />
+    <Content Include="App_Data\products\p28.PNG" />
+    <Content Include="App_Data\products\p3.PNG" />
+    <Content Include="App_Data\products\p4.PNG" />
+    <Content Include="App_Data\products\p5.PNG" />
+    <Content Include="App_Data\products\p6.PNG" />
+    <Content Include="App_Data\products\p7.PNG" />
+    <Content Include="App_Data\products\p8.PNG" />
+    <Content Include="App_Data\products\p9.PNG" />
+    <Content Include="App_Data\wkhtmltopdf.exe" />
+    <Content Include="App_Data\wkhtmltox.dll" />
+    <Content Include="App_Data\XmlDocument.xml" />
     <Content Include="Areas\Document\Content\EmployeeReport.css" />
     <Content Include="Areas\Document\Content\Site.css" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
@@ -440,6 +482,9 @@
     <Content Include="Scripts\bootstrap.js.map" />
     <Content Include="Scripts\bootstrap.min.js.map" />
     <Content Include="Areas\Document\Views\Default\EmployeeReport.cshtml" />
+    <Content Include="wkhtmltopdf.exe" />
+    <Content Include="wkhtmltox.dll" />
+    <Content Include="XmlDocument.xml" />
     <None Include="Properties\PublishProfiles\SOPS - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -519,6 +564,15 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Product.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Resources</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901030038037_init.resx">
+      <DependentUpon>201901030038037_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901030455004_init3.resx">
+      <DependentUpon>201901030455004_init3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901030613292_init4.resx">
+      <DependentUpon>201901030613292_init4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

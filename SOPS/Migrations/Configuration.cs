@@ -8,6 +8,7 @@ namespace SOPS.Migrations
     using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
+    using System.IO;
     using System.Linq;
     using System.Web;
 
@@ -44,31 +45,48 @@ namespace SOPS.Migrations
             int existingProductCount = 10;
             int qrCodeCount = 10;
             int companyStatisticsCountPerCompany = 10;
+            int scanCount = 20;
 
             Random random = new Random();
 
             // delete everything
             context.CompanyStatistics.RemoveRange(context.CompanyStatistics);
             context.SaveChanges();
+
             context.QRs.RemoveRange(context.QRs);
             context.SaveChanges();
+
             context.ProductComments.RemoveRange(context.ProductComments);
             context.SaveChanges();
+
             context.ExistingProducts.RemoveRange(context.ExistingProducts);
             context.SaveChanges();
+
             context.ProductRatings.RemoveRange(context.ProductRatings);
             context.SaveChanges();
+
             context.Employees.RemoveRange(context.Employees);
             context.SaveChanges();
+
             context.WatchedProducts.RemoveRange(context.WatchedProducts);
             context.SaveChanges();
+
             ((DbSet<ApplicationUser>)context.Users).RemoveRange(context.Users);
             context.SaveChanges();
+
             context.Companies.RemoveRange(context.Companies);
             context.SaveChanges();
+
+            context.ProductPictures.RemoveRange(context.ProductPictures);
+            context.SaveChanges();
+
             context.Products.RemoveRange(context.Products);
             context.SaveChanges();
+
             ((DbSet<IdentityRole>)context.Roles).RemoveRange(context.Roles);
+            context.SaveChanges();
+
+            context.Scans.RemoveRange(context.Scans);
             context.SaveChanges();
 
             // UserRoles
@@ -165,6 +183,7 @@ namespace SOPS.Migrations
             context.SaveChanges();
 
             // Product
+            var products = new List<Product>(productCount);
             for (int i = 0; i < productCount; i++)
             {
                 Product product = new Product
@@ -177,8 +196,43 @@ namespace SOPS.Migrations
                     SuggestedPrice = (decimal)random.Next(201),
                     CompanyId = context.Companies.ToList()[random.Next(context.Companies.Count())].Id
                 };
-                context.Products.AddOrUpdate(p => p.Name, product);
+                products.Add(product);
             }
+            context.Products.AddRange(products);
+            context.SaveChanges();
+
+            // Product picture
+            string[] filePaths;
+            try
+            {
+                string appDataPath = AppDomain.CurrentDomain.BaseDirectory + "/App_Data";
+                var picturesPath = Path.Combine(appDataPath, "products");
+                filePaths = Directory.GetFiles(picturesPath);
+            }
+            catch(Exception e)
+            {
+                string appDataPath = AppDomain.CurrentDomain.BaseDirectory + "/.../App_Data";
+                var picturesPath = Path.Combine(appDataPath, "products");
+                filePaths = Directory.GetFiles(picturesPath);
+            }
+            var pictures = new List<byte[]>();
+            foreach(var path in filePaths)
+            {
+                var bytes = File.ReadAllBytes(path);
+                pictures.Add(bytes);
+            }
+
+            var productPictures = new List<ProductPicture>(productCount);
+            for(int i = 0; i < productCount; ++i)
+            {
+                var productPicture = new ProductPicture()
+                {
+                    ProductId = products[i].Id,
+                    Content = pictures[random.Next(pictures.Count)]
+                };
+                productPictures.Add(productPicture);
+            }
+            context.ProductPictures.AddRange(productPictures);
             context.SaveChanges();
 
             // ProductRating
@@ -290,6 +344,25 @@ namespace SOPS.Migrations
                 }
             }
             context.CompanyStatistics.AddRange(companyStatistics);
+            context.SaveChanges();
+
+            // Scans
+            var scans = new List<Scan>(scanCount);
+            for(int i = 0; i < scanCount; ++i)
+            {
+                var scan = new Scan()
+                {
+                    UserId = context.Users.ToList()[random.Next(context.Users.Count())].Id,
+                    ExistingProductId = context.ExistingProducts.ToList()[random.Next(context.ExistingProducts.Count())].Id,
+                    Date = DateTime.Now.AddDays(-i).Date,
+                };
+                if(scans.Any(s => s.UserId == scan.UserId && s.ExistingProductId == scan.ExistingProductId))
+                {
+                    continue;
+                }
+                scans.Add(scan);
+            }
+            context.Scans.AddRange(scans);
             context.SaveChanges();
         }
     }
