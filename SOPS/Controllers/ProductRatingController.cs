@@ -32,6 +32,20 @@ namespace SOPS.Controllers
             return db.ProductRatings.Where(pc => pc.ProductId == id);
         }
 
+        // GET: api/ProductRating/id
+        /// <summary>
+        /// pobierz oceny uzytkownika
+        /// </summary>
+        /// <param name="id">id produktu</param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("Profile")]
+        public IQueryable<ProductRating> GetProductRating(string id)
+        {
+            return db.ProductRatings.Where(pr => pr.UserId == id);
+        }
+
+
         // POST: api/ProductRating/id
         /// <summary>
         /// wstaw ocene produktu
@@ -86,6 +100,30 @@ namespace SOPS.Controllers
             }
 
             return Ok(response);               
+        }
+
+        //DELETE
+        [Authorize]
+        [Route("{userId}/{productid:int}")]
+        [HttpDelete]
+        [ResponseType(typeof(ProductRating))]
+        public IHttpActionResult DeleteRating(string userId, int productId)
+        {
+            if (!(UserHelper.GetCurrentUserId() == userId))
+                return NotFound();
+
+            try
+            {
+                var rate = db.ProductRatings.First(pr => pr.UserId == userId && pr.ProductId == productId);
+                db.ProductRatings.Remove(rate);
+                db.SaveChanges();
+            }
+            catch
+            {
+                return NotFound();
+            }
+
+            return Ok();
         }
 
         protected override void Dispose(bool disposing)

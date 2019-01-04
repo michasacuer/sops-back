@@ -45,5 +45,22 @@ namespace SOPS.Controllers
                 Products = db.Products.ToList()
             });
         }
+
+        // GET: api/Statistic/LastMonthCount
+        /// <summary>
+        /// Zwraca liczbę firm i produktów na początku ostatniego miesiąca
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("LastMonthCount")]
+        [ResponseType(typeof(Statistics))]
+        public IHttpActionResult GetLastMonthCount()
+        {
+            var statistics = db.Statistics.First();
+            return Ok(new Statistics {
+                LastMonthCompanyCount = statistics.LastMonthCompanyCount,
+                LastMonthProductCount = statistics.LastMonthProductCount
+            });
+        }
     }
 }

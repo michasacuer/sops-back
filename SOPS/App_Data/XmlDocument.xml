@@ -747,6 +747,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:SOPS.Controllers.CompanyController.GetCompaniesWithProducts">
+            <summary>
+            pobierz wszystkie firmy z produktami
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:SOPS.Controllers.CompanyController.GetCompany(System.Int32)">
             <summary>
             pobierz firme
@@ -943,6 +949,13 @@
             <param name="id">id produktu</param>
             <returns></returns>
         </member>
+        <member name="M:SOPS.Controllers.ProductRatingController.GetProductRating(System.String)">
+            <summary>
+            pobierz oceny uzytkownika
+            </summary>
+            <param name="id">id produktu</param>
+            <returns></returns>
+        </member>
         <member name="M:SOPS.Controllers.ProductRatingController.PostProductRating(System.Int32,SOPS.Models.ProductRatingBindingModel)">
             <summary>
             wstaw ocene produktu
@@ -1009,6 +1022,12 @@
         <member name="M:SOPS.Controllers.StatisticController.GetAllList">
             <summary>
             Zwraca liste produktów i firm
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SOPS.Controllers.StatisticController.GetLastMonthCount">
+            <summary>
+            Zwraca liczbę firm i produktów na początku ostatniego miesiąca
             </summary>
             <returns></returns>
         </member>

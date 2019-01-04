@@ -331,6 +331,7 @@
     <Compile Include="Controllers\DocumentController.cs" />
     <Compile Include="Controllers\ExistingProductController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\PlotController.cs" />
     <Compile Include="Controllers\MailController.cs" />
     <Compile Include="Controllers\ProductCommentController.cs" />
@@ -369,7 +370,7 @@
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\CompanyReport.cs" />
     <Compile Include="Models\CompanyStatistics.cs" />
-    <Compile Include="Models\ProductPicture.cs" />
+    <Compile Include="Models\News.cs" />
     <Compile Include="Models\ProductViewModels.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\ExistingProduct.cs" />
@@ -391,6 +392,7 @@
     <Compile Include="Models\StatisticGetAllCountViewModel.cs" />
     <Compile Include="Models\ShortUrl.cs" />
     <Compile Include="Models\StatisticGetAllListViewModel.cs" />
+    <Compile Include="Models\Statistics.cs" />
     <Compile Include="Models\UserProfileBindingModels.cs" />
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Models\WatchedProduct.cs" />
@@ -497,7 +499,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

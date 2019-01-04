@@ -18,7 +18,7 @@ namespace SOPS.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: api/Companies
+        // GET: api/Company
         /// <summary>
         /// pobierz wszystkie firmy
         /// </summary>
@@ -26,6 +26,27 @@ namespace SOPS.Controllers
         public IEnumerable<Company> GetCompanies()
         {
             return db.Companies.ToList();
+        }
+
+        //GET:api/Company/Products
+        /// <summary>
+        /// pobierz wszystkie firmy z produktami
+        /// </summary>
+        /// <returns></returns>
+        [Route("Products")]
+        public IEnumerable<Company> GetCompaniesWithProducts()
+        {
+            return db.Companies.Include(p => p.Products).ToList();
+        }
+
+        //GET: api/company/Profile?id=stringid
+        [Route("Profile")]
+        [ResponseType(typeof(Employee))]
+        public IHttpActionResult GetEmployeeCompany(string userId)
+        {
+            var employee = db.Employees.Include(e => e.Company.Products).SingleOrDefault(e => e.UserId == userId);
+
+            return Ok(employee.Company);
         }
 
         // GET: api/Companies/5

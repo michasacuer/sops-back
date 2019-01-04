@@ -85,6 +85,8 @@ namespace SOPS.Migrations
 
             ((DbSet<IdentityRole>)context.Roles).RemoveRange(context.Roles);
             context.SaveChanges();
+            context.Statistics.RemoveRange(context.Statistics);
+            context.SaveChanges();
 
             context.Scans.RemoveRange(context.Scans);
             context.SaveChanges();
@@ -191,7 +193,7 @@ namespace SOPS.Migrations
                     Name = "product" + i,
                     Barcode = random.Next(9999999).ToString() + random.Next(999999),
                     Description = "description" + i,
-                    CreationDate = new DateTime(random.Next(2018, 2019), random.Next(1, 13), random.Next(25) + 1),
+                    CreationDate = new DateTime(random.Next(2015, 2017), random.Next(12) + 1, random.Next(25) + 1),//new DateTime(random.Next(2018, 2019), random.Next(1, 13), random.Next(25) + 1),
                     CountryOfOrigin = "country" + random.Next(10),
                     SuggestedPrice = (decimal)random.Next(201),
                     CompanyId = context.Companies.ToList()[random.Next(context.Companies.Count())].Id
@@ -239,9 +241,10 @@ namespace SOPS.Migrations
             List<ProductRating> productRatings = new List<ProductRating>(productRatingCount);
             for (int i = 0; i < productRatingCount; i++)
             {
+                int[] rateArray = new[] { 1, 2, 3, 4, 5 };
                 ProductRating productRating = new ProductRating
                 {
-                    Rating = (float)random.NextDouble() * 10,
+                    Rating = random.Next(1, rateArray.Length),
                     UserId = context.Users.ToList()[random.Next(context.Users.Count())].Id,
                     ProductId = context.Products.ToList()[random.Next(context.Products.Count())].Id,
                     Added = new DateTime(2018, 12, random.Next(28) + 1)
@@ -344,6 +347,18 @@ namespace SOPS.Migrations
                 }
             }
             context.CompanyStatistics.AddRange(companyStatistics);
+            context.SaveChanges();
+
+            // Statistics
+            var currentMonth = DateTime.Now.Month;
+            var currentYear = DateTime.Now.Year;
+            var currentMonthBeginning = new DateTime(currentYear, currentMonth, 1);
+
+            context.Statistics.Add(new Statistics
+            {
+                LastMonthCompanyCount = context.Companies.Where(c => c.JoinDate < currentMonthBeginning).ToList().Count(),
+                LastMonthProductCount = context.Products.Where(p => p.CreationDate < currentMonthBeginning).ToList().Count()
+            });
             context.SaveChanges();
 
             // Scans
