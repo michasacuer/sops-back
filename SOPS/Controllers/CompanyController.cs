@@ -207,6 +207,43 @@ namespace SOPS.Controllers
             return Ok(company);
         }
 
+        // POST: api/Company/DeleteRequest
+        /// <summary>
+        /// zapisuje w bazie żądanie użytkownika o usunięcie firmy
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="companyId"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("DeleteRequest")]
+        [Authorize(Roles = "Employee")]
+        public IHttpActionResult PostDeleteRequest(string userId, int companyId)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (db.Users.Any(u => u.Id == userId) == false)
+            {
+                return BadRequest("user doesn't exist");
+            }
+
+            if (db.Companies.Any(c => c.Id == companyId) == false)
+            {
+                return BadRequest("company doesn't exist");
+            }
+
+            db.CompanyDeleteRequests.Add(new CompanyDeleteRequest
+            {
+                UserId = userId,
+                CompanyId = companyId
+            });
+            db.SaveChanges();
+
+            return Ok();
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

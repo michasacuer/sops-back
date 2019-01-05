@@ -796,6 +796,14 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="M:SOPS.Controllers.CompanyController.PostDeleteRequest(System.String,System.Int32)">
+            <summary>
+            zapisuje w bazie żądanie użytkownika o usunięcie firmy
+            </summary>
+            <param name="userId"></param>
+            <param name="companyId"></param>
+            <returns></returns>
+        </member>
         <member name="M:SOPS.Controllers.DocumentController.GetReport(System.Int32)">
             <summary>
             wygeneruj raport pdf
