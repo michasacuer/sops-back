@@ -95,7 +95,7 @@ namespace SOPS.Controllers
                 Name = currentUser.Name,
                 Surname = currentUser.Surname,
                 PhoneNumber = currentUser.PhoneNumber,
-                Email = User.Identity.GetUserName(),
+                Email = currentUser.Email,
                 Role = isAdministrator ? "Administrator" : isEmployee ? "Employee" : "User",
                 CompanyId = companyId,
                 HasRegistered = externalLogin == null,

@@ -73,6 +73,11 @@ namespace SOPS.Controllers
                 });
                 db.SaveChanges();
             } 
+            else if (roleBindingModel.Role == "User" && (userRoles.Any(r => r == "Employee")))
+            {
+                db.Employees.Remove(db.Employees.Find(roleBindingModel.UserId));
+                db.SaveChanges();
+            }
             else
             {
                 return StatusCode(HttpStatusCode.Unauthorized);

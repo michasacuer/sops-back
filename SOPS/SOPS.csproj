@@ -348,9 +348,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201901031802364_init.cs" />
-    <Compile Include="Migrations\201901031802364_init.Designer.cs">
-      <DependentUpon>201901031802364_init.cs</DependentUpon>
+    <Compile Include="Migrations\201901042320527_init.cs" />
+    <Compile Include="Migrations\201901042320527_init.Designer.cs">
+      <DependentUpon>201901042320527_init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901050314107_mig1.cs" />
+    <Compile Include="Migrations\201901050314107_mig1.Designer.cs">
+      <DependentUpon>201901050314107_mig1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelHelpers\EmployeeHelper.cs" />
@@ -359,6 +363,7 @@
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Company.cs" />
+    <Compile Include="Models\CompanyDeleteRequest.cs" />
     <Compile Include="Models\CompanyReport.cs" />
     <Compile Include="Models\CompanyStatistics.cs" />
     <Compile Include="Models\News.cs" />
@@ -525,8 +530,11 @@
       <LastGenOutput>Product.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Resources</CustomToolNamespace>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901031802364_init.resx">
-      <DependentUpon>201901031802364_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201901042320527_init.resx">
+      <DependentUpon>201901042320527_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901050314107_mig1.resx">
+      <DependentUpon>201901050314107_mig1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
