@@ -349,17 +349,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201901030038037_init.cs" />
-    <Compile Include="Migrations\201901030038037_init.Designer.cs">
-      <DependentUpon>201901030038037_init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901030455004_init3.cs" />
-    <Compile Include="Migrations\201901030455004_init3.Designer.cs">
-      <DependentUpon>201901030455004_init3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901030613292_init4.cs" />
-    <Compile Include="Migrations\201901030613292_init4.Designer.cs">
-      <DependentUpon>201901030613292_init4.cs</DependentUpon>
+    <Compile Include="Migrations\201901041353081_ini.cs" />
+    <Compile Include="Migrations\201901041353081_ini.Designer.cs">
+      <DependentUpon>201901041353081_ini.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelHelpers\EmployeeHelper.cs" />
@@ -371,6 +363,7 @@
     <Compile Include="Models\CompanyReport.cs" />
     <Compile Include="Models\CompanyStatistics.cs" />
     <Compile Include="Models\News.cs" />
+    <Compile Include="Models\ProductPicture.cs" />
     <Compile Include="Models\ProductViewModels.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\ExistingProduct.cs" />
@@ -569,14 +562,8 @@
       <LastGenOutput>Product.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Resources</CustomToolNamespace>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901030038037_init.resx">
-      <DependentUpon>201901030038037_init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901030455004_init3.resx">
-      <DependentUpon>201901030455004_init3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901030613292_init4.resx">
-      <DependentUpon>201901030613292_init4.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201901041353081_ini.resx">
+      <DependentUpon>201901041353081_ini.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

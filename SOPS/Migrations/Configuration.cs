@@ -36,13 +36,13 @@ namespace SOPS.Migrations
             int uniqueUserNameCount = 5;
             int uniqueUserSurnameCount = 10;
 
-            int productCount = 10;
+            int productCount = 20;
             int employeeCount = 10;
             int productRatingCount = 10;
             int productCommentCount = 10;
             int companyReportCount = 10;
-            int watchedProductCount = 10;
-            int existingProductCount = 10;
+            int watchedProductCount = 20;
+            int existingProductCount = 40;
             int qrCodeCount = 10;
             int companyStatisticsCountPerCompany = 10;
             int scanCount = 20;
@@ -147,16 +147,26 @@ namespace SOPS.Migrations
                 }
                 ApplicationUser user = new ApplicationUser
                 {
-                    UserName = "user" + i,
                     Name = "name" + random.Next(uniqueUserNameCount),
+
                     Surname = "surname" + random.Next(uniqueUserSurnameCount),
+
                     Email = "user" + i + "@email.com",
+
+                    UserName = "user" + i + "@email.com",
+
                     EmailConfirmed = true,
+
                     PasswordHash = ("user" + i).GetHashCode().ToString(),
+
                     SecurityStamp = "?",
+
                     PhoneNumber = String.Join("", phoneNumber.ToArray()),
+
                     TwoFactorEnabled = false,
+
                     LockoutEnabled = false,
+
                     AccessFailedCount = 0
                 };
                 manager.CreateAsync(user, user.UserName).Wait();

@@ -40,5 +40,6 @@ namespace SOPS
         public DbSet<ShortUrl>          ShortUrls         { get; set; }
         public DbSet<Scan>              Scans             { get; set; }
         public DbSet<Statistics>        Statistics        { get; set; }
+        public DbSet<ProductPicture>    ProductPictures   { get; set; }
     }
 }

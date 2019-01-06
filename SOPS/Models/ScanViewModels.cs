@@ -8,6 +8,9 @@ namespace SOPS.Models
 {
     public class ScanViewModel
     {
+        // Watched product
+        public bool IsWatched { get; set; }
+
         // Scan
         public DateTime ScanDate { get; set; }
 

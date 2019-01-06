@@ -53,9 +53,11 @@ namespace SOPS.Controllers
                 var existingProduct = scan.ExistingProduct;
                 var product = existingProduct.Product;
                 var company = product.Company;
+                var watchedProduct = db.WatchedProducts.Find(currentUserId, product.Id);
 
                 scanViewModels.Add(new ScanViewModel()
                 {
+                    IsWatched = watchedProduct != null,
                     ProductId = product.Id,
                     ScanDate = scan.Date,
                     ExistingProductCreationDate = existingProduct.CreationDate,
