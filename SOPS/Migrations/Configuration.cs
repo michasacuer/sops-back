@@ -147,14 +147,11 @@ namespace SOPS.Migrations
                 }
                 ApplicationUser user = new ApplicationUser
                 {
-                    Name = "name" + random.Next(uniqueUserNameCount),
-
+                    Name = "name" + i,
                     Surname = "surname" + random.Next(uniqueUserSurnameCount),
 
                     Email = "user" + i + "@email.com",
-
                     UserName = "user" + i + "@email.com",
-
                     EmailConfirmed = true,
 
                     PasswordHash = ("user" + i).GetHashCode().ToString(),
@@ -169,7 +166,7 @@ namespace SOPS.Migrations
 
                     AccessFailedCount = 0
                 };
-                manager.CreateAsync(user, user.UserName).Wait();
+                manager.CreateAsync(user, user.Name).Wait();
 
                 if (i == 0)
                 {

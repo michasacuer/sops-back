@@ -105,7 +105,7 @@ namespace SOPS.Controllers
             });
         }
 
-        // PUT: api/User/Profile/asdasd
+        // PUT: api/User/Profile?id=asd
         /// <summary>
         /// zmodyfikuj profil uzytkownika (oczywisciej est autoryzacja)
         /// </summary>

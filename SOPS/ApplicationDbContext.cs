@@ -41,5 +41,6 @@ namespace SOPS
         public DbSet<Scan>              Scans             { get; set; }
         public DbSet<Statistics>        Statistics        { get; set; }
         public DbSet<ProductPicture>    ProductPictures   { get; set; }
+        public DbSet<CompanyDeleteRequest> CompanyDeleteRequests { get; set; }
     }
 }

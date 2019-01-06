@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Mail;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
@@ -67,6 +68,7 @@ namespace SOPS.Controllers
             ExternalLoginData externalLogin = ExternalLoginData.FromIdentity(User.Identity as ClaimsIdentity);
 
             var currentUserId = UserHelper.GetCurrentUserId();
+            var currentUser = UserManager.FindById(currentUserId);
             var isAdministrator = UserHelper.IsCurrentUserInRole("Administrator");
             var isEmployee = UserHelper.IsCurrentUserInRole("Employee");
             int companyId = 0;
@@ -90,7 +92,10 @@ namespace SOPS.Controllers
             return new UserInfoViewModel
             {
                 Id = User.Identity.GetUserId(),
-                Email = User.Identity.GetUserName(),
+                Name = currentUser.Name,
+                Surname = currentUser.Surname,
+                PhoneNumber = currentUser.PhoneNumber,
+                Email = currentUser.Email,
                 Role = isAdministrator ? "Administrator" : isEmployee ? "Employee" : "User",
                 CompanyId = companyId,
                 HasRegistered = externalLogin == null,
@@ -378,7 +383,9 @@ namespace SOPS.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+            var userName = new MailAddress(model.Email).User;
+
+            var user = new ApplicationUser() { UserName = model.Email, Name = userName, Email = model.Email };
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 
