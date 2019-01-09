@@ -207,7 +207,7 @@ namespace SOPS.Controllers
             return Ok(company);
         }
 
-        // POST: api/Company/DeleteRequest
+        // POST: api/Company/DeleteRequest  
         /// <summary>
         /// zapisuje w bazie żądanie użytkownika o usunięcie firmy
         /// </summary>
