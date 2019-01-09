@@ -31,7 +31,7 @@ namespace SOPS.Controllers
         /// <param name="id">id uzytkownika</param>
         /// <returns></returns>
         [Authorize]
-        [ResponseType(typeof(Scan))]
+        [ResponseType(typeof(List<ScanViewModel>))]
         public IHttpActionResult GetScans(string id) // user id
         {
             var currentUserId = UserHelper.GetCurrentUserId();
@@ -43,9 +43,44 @@ namespace SOPS.Controllers
             if(id != currentUserId && !UserHelper.IsCurrentUserInRole("Administrator"))
             {
                 return StatusCode(HttpStatusCode.Unauthorized);
-            }            
+            }
 
-            return Ok(db.Scans.Where(s => s.UserId == id).Include(s=>s.ExistingProduct).ToList());
+            var userScans = db.Scans.Where(s => s.UserId == id).Include(s => s.ExistingProduct).Include(s => s.ExistingProduct.Product).Include(s => s.ExistingProduct.Product.Company).ToList();
+
+            var scanViewModels = new List<ScanViewModel>();
+            foreach(var scan in userScans)
+            {
+                var existingProduct = scan.ExistingProduct;
+                var product = existingProduct.Product;
+                var company = product.Company;
+                var watchedProduct = db.WatchedProducts.Find(currentUserId, product.Id);
+
+                scanViewModels.Add(new ScanViewModel()
+                {
+                    IsWatched = watchedProduct != null,
+                    ProductId = product.Id,
+                    ScanDate = scan.Date,
+                    ExistingProductCreationDate = existingProduct.CreationDate,
+                    ExistingProductExpirationDate = existingProduct.ExpirationDate,
+                    ProductName = product.Name,
+                    ProductBarcode = product.Barcode,
+                    ProductCountryOfOrigin = product.CountryOfOrigin,
+                    ProductCreationDate = product.CreationDate,
+                    ProductDefaultExpirationDateInMonths = product.DefaultExpirationDateInMonths,
+                    ProductDescription = product.Description,
+                    ProductSuggestedPrice = product.SuggestedPrice,
+                    CompanyAddressCity = company.AddressCity,
+                    CompanyAddressStreet = company.AddressStreet,
+                    CompanyAddressZipCode = company.AddressZipCode,
+                    CompanyEmail = company.Email,
+                    CompanyJoinDate = company.JoinDate,
+                    CompanyName = company.Name,
+                    CompanyNIP = company.NIP,
+                    CompanyREGON = company.REGON,
+                });
+            }
+
+            return Ok(scanViewModels);
         }
 
         // POST: api/Scan

@@ -39,10 +39,10 @@ namespace SOPS.Controllers
         /// </summary>
         /// <returns></returns>
         // GET: api/Products
-        public IQueryable<Product> GetProducts()
+        public IEnumerable<Product> GetProducts()
         {
             //db.Configuration.LazyLoadingEnabled = false;
-            return db.Products;
+            return db.Products.Include(p => p.ProductRatings).Include(p => p.ProductComments).ToList();
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace SOPS.Controllers
             {
                 return NotFound();
             }
-            var companyProducts = db.Products.Where(p => p.CompanyId == companyId).ToList();
+            var companyProducts = db.Products.Where(p => p.CompanyId == companyId).Include(p => p.ProductRatings).Include(p => p.ProductComments).ToList();
             foreach(var product in companyProducts) // zamiast viewmodela
             {
                 product.Company = null;
@@ -74,7 +74,7 @@ namespace SOPS.Controllers
         [ResponseType(typeof(Product))]
         public IHttpActionResult GetProduct(int id)
         {
-            Product product = db.Products.Find(id);
+            Product product = db.Products.Include(p => p.ProductRatings).Include(p => p.ProductComments).SingleOrDefault(p => p.Id == id);
             if (product == null)
             {
                 return NotFound();
