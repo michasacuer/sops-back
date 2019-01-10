@@ -52,7 +52,7 @@ namespace SOPS.Controllers
             var plotController = new PlotController();
             plotController.ControllerContext = ControllerContext;
 
-            var user = db.Users.Where(u => u.UserName == "user0").ToList().SingleOrDefault();
+            var user = db.Users.Where(u => u.UserName == "user0@email.com").ToList().SingleOrDefault();
             var identity = UserManager.ClaimsIdentityFactory.CreateAsync(UserManager, user, "").Result;
             var principal = new ClaimsPrincipal(identity);
             HttpContext.Current.User = principal;
