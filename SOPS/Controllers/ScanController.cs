@@ -54,12 +54,13 @@ namespace SOPS.Controllers
                 var product = existingProduct.Product;
                 var company = product.Company;
                 var watchedProduct = db.WatchedProducts.Find(currentUserId, product.Id);
-
+                
                 scanViewModels.Add(new ScanViewModel()
                 {
                     IsWatched = watchedProduct != null,
                     ProductId = product.Id,
                     ScanDate = scan.Date,
+                    ExistingProductId = existingProduct.Id,
                     ExistingProductCreationDate = existingProduct.CreationDate,
                     ExistingProductExpirationDate = existingProduct.ExpirationDate,
                     ProductName = product.Name,
@@ -120,7 +121,29 @@ namespace SOPS.Controllers
             db.SaveChanges();
 
             return Ok(scan);
-        }        
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id">existing product id</param>
+        /// <returns></returns>
+
+        public IHttpActionResult DeleteScan(int id)
+        {
+            var currentUserId = UserHelper.GetCurrentUserId();
+            var scan = db.Scans.Find(id, currentUserId);
+
+            if(scan == null)
+            {
+                return NotFound();
+            }
+
+            db.Scans.Remove(scan);           
+            db.SaveChanges();
+
+            return Ok(scan);
+        }
 
         protected override void Dispose(bool disposing)
         {

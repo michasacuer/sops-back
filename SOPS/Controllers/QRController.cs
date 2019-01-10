@@ -46,6 +46,7 @@ namespace SOPS.Controllers
                     ExistingProduct = existingProduct
                 };
                 db.Entry(existingProduct).Reference(e => e.Product).Load();
+                db.Entry(existingProduct.Product).Reference(p => p.Company).Load();
                 qr.UpdateQR();
                 db.QRs.Add(qr);
                 db.SaveChanges();

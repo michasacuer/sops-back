@@ -942,6 +942,14 @@
             <param name="id">id produktu</param>
             <returns></returns>
         </member>
+        <member name="M:SOPS.Controllers.ProductPictureController.PostProduct(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="id">product id</param>
+            <param name="content">bytes of photo</param>
+            <returns></returns>
+        </member>
         <member name="M:SOPS.Controllers.ProductRatingController.GetProductRating(System.Int32)">
             <summary>
             pobierz oceny dla produktu

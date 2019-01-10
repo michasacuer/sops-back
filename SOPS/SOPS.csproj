@@ -349,9 +349,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201901041353081_ini.cs" />
-    <Compile Include="Migrations\201901041353081_ini.Designer.cs">
-      <DependentUpon>201901041353081_ini.cs</DependentUpon>
+    <Compile Include="Migrations\201901060617452_init.cs" />
+    <Compile Include="Migrations\201901060617452_init.Designer.cs">
+      <DependentUpon>201901060617452_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelHelpers\EmployeeHelper.cs" />
@@ -378,6 +378,7 @@
     <Compile Include="Models\ProductRatingBindingModel.cs" />
     <Compile Include="Models\ProductRatingViewModel.cs" />
     <Compile Include="Models\QR.cs" />
+    <Compile Include="Models\QrViewModels.cs" />
     <Compile Include="Models\RoleBindingModels.cs" />
     <Compile Include="Models\Scan.cs" />
     <Compile Include="Models\ScanBindingModel.cs" />
@@ -481,6 +482,7 @@
     <Content Include="wkhtmltox.dll" />
     <Content Include="XmlDocument.xml" />
     <None Include="Properties\PublishProfiles\SOPS - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\sops2 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -562,8 +564,8 @@
       <LastGenOutput>Product.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Resources</CustomToolNamespace>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901041353081_ini.resx">
-      <DependentUpon>201901041353081_ini.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201901060617452_init.resx">
+      <DependentUpon>201901060617452_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

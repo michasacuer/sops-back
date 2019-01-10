@@ -28,16 +28,16 @@ namespace SOPS.Migrations
             // This method will be called after migrating to the latest version.
 
             // Generation configuration
-            int companyCount = 20;
+            int companyCount = 3;
             int uniqueAddressStreetCount = 2;
             int uniqueAddressCityCount = 5;
 
-            int userCount = 10;
+            int userCount = 5;
             int uniqueUserNameCount = 5;
             int uniqueUserSurnameCount = 10;
 
             int productCount = 20;
-            int employeeCount = 10;
+            int employeeCount = 5;
             int productRatingCount = 10;
             int productCommentCount = 10;
             int companyReportCount = 10;
@@ -147,7 +147,7 @@ namespace SOPS.Migrations
                 }
                 ApplicationUser user = new ApplicationUser
                 {
-                    Name = "name" + random.Next(uniqueUserNameCount),
+                    Name = "name" + i,
 
                     Surname = "surname" + random.Next(uniqueUserSurnameCount),
 
@@ -169,7 +169,7 @@ namespace SOPS.Migrations
 
                     AccessFailedCount = 0
                 };
-                manager.CreateAsync(user, user.UserName).Wait();
+                manager.CreateAsync(user, user.Name).Wait();
 
                 if (i == 0)
                 {
