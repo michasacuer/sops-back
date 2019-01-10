@@ -55,22 +55,23 @@ namespace SOPS.Controllers
         /// <returns></returns>
         [Authorize]
         [HttpPost]
-        [ResponseType(typeof(ProductRating))]
         public IHttpActionResult PostProductRating(int id, ProductRatingBindingModel rateFromBody)
         {
             if (!db.Products.Any(p => p.Id == id))
                 return NotFound();
 
-            db.ProductRatings.Add(new ProductRating
+            var productRating = new ProductRating
             {
                 Rating = rateFromBody.Rating,
                 UserId = UserHelper.GetCurrentUserId(),
                 ProductId = id,
                 Added = DateTime.Now
-            });
+            };
+
+            db.ProductRatings.Add(productRating);
             db.SaveChanges();
 
-            return Ok();
+            return Ok(productRating);
         }
 
         // GET: api/ProductRating/Avarage/id

@@ -49,16 +49,18 @@ namespace SOPS.Controllers
             if (!db.Products.Any(p => p.Id == id) || commentFromBody == null || userId == null)
                 return NotFound();
 
-            db.ProductComments.Add(new ProductComment
+            var productComment = new ProductComment
             {
                 Comment = commentFromBody.Comment,
                 ApplicationUserId = userId,
                 ProductId = id,
                 Date = DateTime.Now
-            });
+            };
+
+            db.ProductComments.Add(productComment);
             db.SaveChanges();
 
-            return Ok();
+            return Ok(productComment);
         }
 
         // DELETE: api/ProductComment/5
