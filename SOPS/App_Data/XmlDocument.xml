@@ -1015,6 +1015,13 @@
             <param name="scanBindingModel"></param>
             <returns></returns>
         </member>
+        <member name="M:SOPS.Controllers.ScanController.DeleteScan(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="id">existing product id</param>
+            <returns></returns>
+        </member>
         <member name="M:SOPS.Controllers.ShortUrlController.GetShortUrl(System.String)">
             <summary>
             daj docelowy link dla skroconego linku
