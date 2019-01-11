@@ -379,6 +379,7 @@
     <Compile Include="Models\ProductRatingBindingModel.cs" />
     <Compile Include="Models\ProductRatingViewModel.cs" />
     <Compile Include="Models\QR.cs" />
+    <Compile Include="Models\QrViewModels.cs" />
     <Compile Include="Models\RoleBindingModels.cs" />
     <Compile Include="Models\Scan.cs" />
     <Compile Include="Models\ScanBindingModel.cs" />
@@ -482,6 +483,7 @@
     <Content Include="wkhtmltox.dll" />
     <Content Include="XmlDocument.xml" />
     <None Include="Properties\PublishProfiles\SOPS - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\sops2 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

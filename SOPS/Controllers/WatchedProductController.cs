@@ -30,7 +30,7 @@ namespace SOPS.Controllers
         public IEnumerable<WatchedProduct> GetWatchedProduct()
         {
             var userId = UserHelper.GetCurrentUserId();
-            var productsList = db.WatchedProducts.Include(wp=>wp.Product).Where(u => u.ApplicationUserId == userId).ToList();
+            var productsList = db.WatchedProducts.Include(wp=>wp.Product).Include(wp =>wp.Product.Company).Where(u => u.ApplicationUserId == userId).ToList();
 
             return productsList;
         }

@@ -15,6 +15,7 @@ namespace SOPS.Models
         public DateTime ScanDate { get; set; }
 
         // Existing product
+        public int ExistingProductId { get; set; }
         public DateTime ExistingProductExpirationDate { get; set; }
         public DateTime ExistingProductCreationDate { get; set; }
 
