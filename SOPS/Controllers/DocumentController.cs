@@ -32,7 +32,6 @@ namespace SOPS.Controllers
     public class DocumentController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-        public ApplicationUserManager UserManager => Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
 
         // Get: api/Document/report
         /// <summary>
@@ -53,12 +52,6 @@ namespace SOPS.Controllers
             var plotController = new PlotController();
             plotController.ControllerContext = ControllerContext;
 
-            /*
-            var user = db.Users.Where(u => u.UserName == "user0@email.com").ToList().SingleOrDefault();
-            var identity = UserManager.ClaimsIdentityFactory.CreateAsync(UserManager, user, "").Result;
-            var principal = new ClaimsPrincipal(identity);
-            HttpContext.Current.User = principal;
-            */
             var store = new UserStore<ApplicationUser>(db);
             var manager = new ApplicationUserManager(store);
             manager.Find("", "");

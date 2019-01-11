@@ -84,7 +84,7 @@ namespace SOPS.Areas.Document.ViewModels
             string bestRatedStr = "";
             if (company.Products.Any())
             {
-                // bestRatedStr = company.Products.Find(p => p.Id == bestRated)?.Name;
+               //  bestRatedStr = company.Products.Find(p => p.Id == bestRated).Name;
             }
 
             //var productComments = new List<ProductComment>();

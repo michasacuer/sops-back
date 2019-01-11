@@ -81,7 +81,7 @@ namespace SOPS.Controllers
                     MailMessage mail = new MailMessage();
                     mail.From = new MailAddress("sops@antoniuk.pl", "SOPS");
 
-                    mail.To.Add(new MailAddress(userEmployee.User.Email));
+                    mail.To.Add(new MailAddress("pawel@antoniuk.pl"));
 
                     var dateTime = DateTime.Now;
 
