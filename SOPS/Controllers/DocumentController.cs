@@ -21,6 +21,7 @@ using System.Web.Http.Description;
 using System.Web.Http.Routing;
 using Codaxy.WkHtmlToPdf;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using SOPS.Models;
 using TheArtOfDev.HtmlRenderer.PdfSharp;
@@ -52,8 +53,17 @@ namespace SOPS.Controllers
             var plotController = new PlotController();
             plotController.ControllerContext = ControllerContext;
 
+            /*
             var user = db.Users.Where(u => u.UserName == "user0@email.com").ToList().SingleOrDefault();
             var identity = UserManager.ClaimsIdentityFactory.CreateAsync(UserManager, user, "").Result;
+            var principal = new ClaimsPrincipal(identity);
+            HttpContext.Current.User = principal;
+            */
+            var store = new UserStore<ApplicationUser>(db);
+            var manager = new ApplicationUserManager(store);
+            manager.Find("", "");
+            var user = db.Users.Where(u => u.UserName == "user0@email.com").ToList().SingleOrDefault();
+            var identity = manager.ClaimsIdentityFactory.CreateAsync(manager, user, "").Result;
             var principal = new ClaimsPrincipal(identity);
             HttpContext.Current.User = principal;
 
