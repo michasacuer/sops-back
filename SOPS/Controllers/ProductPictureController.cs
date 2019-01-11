@@ -11,6 +11,7 @@ using System.Net.Http.Headers;
 using System.Web.Http;
 using System.Web.Http.Description;
 using SOPS;
+using SOPS.ModelHelpers;
 using SOPS.Models;
 
 namespace SOPS.Controllers
@@ -41,9 +42,55 @@ namespace SOPS.Controllers
             return response;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id">product id</param>
+        /// <param name="content">bytes of photo</param>
+        /// <returns></returns>
+        [Authorize(Roles = "Employee, Administrator")]
+        public IHttpActionResult PostProduct(int id)
+        {
+            var content = Request.Content.ReadAsByteArrayAsync().Result;
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var product = db.Products.Find(id);
+            if(product == null)
+            {
+                return StatusCode(HttpStatusCode.NotFound);
+            }
+
+            if (!db.IsCurrentUserEmployedInCompanyOrAdministrator(product.CompanyId))
+            {
+                return StatusCode(HttpStatusCode.Unauthorized);
+            }
+
+            var productPicture = db.ProductPictures.Find(product.Id);
+            if(productPicture == null)
+            {
+                db.ProductPictures.Add(new ProductPicture()
+                {
+                    ProductId = product.Id,
+                    Content = content
+                });
+            }
+            else
+            {
+                productPicture.Content = content;
+                db.Entry(productPicture).State = EntityState.Modified;
+            }
+
+            db.SaveChanges();
+
+            return Ok();
+        }
+
         // PUT: api/ProductPictures/5
         // [Authorize(Roles = "Administrator,Employee")]
-        [ResponseType(typeof(void))]
+        //[ResponseType(typeof(void))]
         /* public IHttpActionResult PutProductPicture(int id, ProductPicture productPicture)
         {
             if (!ModelState.IsValid)
