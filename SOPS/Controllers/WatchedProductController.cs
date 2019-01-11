@@ -67,6 +67,32 @@ namespace SOPS.Controllers
             */
         }
 
+        // GET api/WatchedProduct/Check
+        /// <summary>
+        /// Sprawdza czy produkt o danym id jest obserowany przez aktualnego użytkownika [autoryzacja wymagana]
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Authorize]
+        [Route("Check")]
+        public IHttpActionResult GetCheck(int id)
+        {
+            var userId = UserHelper.GetCurrentUserId();
+
+            var product = db.Products.Find(id);
+
+            if (product == null)
+            {
+                return BadRequest();
+            }
+
+            var isWatched = db.WatchedProducts.Any(wp => wp.ProductId == product.Id &&
+                                                   wp.ApplicationUserId == userId);
+
+            return Ok(new { isWatched });
+        }
+
         // POST: api/WatchedProduct/5
         /// <summary>
         /// Dodaj produkt do obserwowanych aktualnego uzytkownika [autoryzacja wymagana]

@@ -1073,6 +1073,13 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:SOPS.Controllers.WatchedProductController.GetCheck(System.Int32)">
+            <summary>
+            Sprawdza czy produkt o danym id jest obserowany przez aktualnego użytkownika [autoryzacja wymagana]
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="M:SOPS.Controllers.WatchedProductController.PostWatchedProduct(System.Int32)">
             <summary>
             Dodaj produkt do obserwowanych aktualnego uzytkownika [autoryzacja wymagana]
