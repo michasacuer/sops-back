@@ -16,10 +16,39 @@ using SOPS.Models;
 
 namespace SOPS.Controllers
 {
-    [AllowCrossSiteJson]
+    [RoutePrefix("api/ExistingProduct")]
     public class ExistingProductController : ApiController
     {
         private ApplicationDbContext  db = new ApplicationDbContext();
+
+        //GET: api/ExistingProduct/ForProduct?id={productId}
+        /// <summary>
+        /// daj wszystkie istniejące produkty dla produktu o danym id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("ForProduct")]
+        [Authorize(Roles = "Employee, Administrator")]
+        public IHttpActionResult GetExistingProductForProduct(int id)
+        {
+            var product = db.Products.Find(id);
+
+            if (product == null)
+            {
+                return BadRequest();
+            }
+
+            var existingProducts = db.ExistingProducts.Where(ep => ep.ProductId == product.Id).ToList();
+
+            return Ok(existingProducts.ConvertAll(ep => new ExistingProductViewModel
+            {
+                Id = ep.Id,
+                ProductId = ep.ProductId,
+                CreationDate = ep.CreationDate,
+                ExpirationDate = ep.ExpirationDate
+            }).ToList());
+        }
 
         // GET: api/ExistingProducts
         /// <summary>
@@ -50,8 +79,10 @@ namespace SOPS.Controllers
 
             return Ok(existingProduct);
         }
-        
-                     // PUT: api/ExistingProducts/5
+        */
+
+        /*
+        // PUT: api/ExistingProducts/5
         /// <summary>
         /// modyfikacja istniejacego produktu
         /// raczej do wywalenia - niebezpieczne, potrzebna autoryzacja
@@ -149,6 +180,7 @@ namespace SOPS.Controllers
 
             return Ok(new ExistingProductViewModel
             {
+                Id = existingProduct.Id,
                 ProductId = existingProduct.ProductId,
                 CreationDate = existingProduct.CreationDate,
                 ExpirationDate = existingProduct.ExpirationDate

@@ -820,6 +820,13 @@
             <param name="id">id existingproduct</param>
             <returns></returns>
         </member>
+        <member name="M:SOPS.Controllers.ExistingProductController.GetExistingProductForProduct(System.Int32)">
+            <summary>
+            daj wszystkie istniejące produkty dla produktu o danym id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="M:SOPS.Controllers.ExistingProductController.PostExistingProduct(System.Int32)">
             <summary>
             dodaj existingproduct
