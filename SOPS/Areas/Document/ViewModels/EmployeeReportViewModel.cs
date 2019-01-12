@@ -81,10 +81,21 @@ namespace SOPS.Areas.Document.ViewModels
                 productAvgRating += rating.Rating;
             }
             productAvgRating /= productRatings.Count();
+
+            string productAvgRatingStr = productAvgRating.ToString();
+            if (productAvgRatingStr.Length > 3)
+            {
+                productAvgRatingStr = productAvgRatingStr.Substring(0, 3);
+            }
+
             string bestRatedStr = "";
             if (company.Products.Any())
             {
-               //  bestRatedStr = company.Products.Find(p => p.Id == bestRated).Name;
+                var bestRatedProduct = company.Products.Find(p => p.Id == bestRated);
+                if (bestRatedProduct != null)
+                {
+                    bestRatedStr = bestRatedProduct.Name;
+                }
             }
 
             //var productComments = new List<ProductComment>();
@@ -135,8 +146,8 @@ namespace SOPS.Areas.Document.ViewModels
                 EmployeeCountYearChange = employeeYearChange,
                 CommentCount = totalComments,
                 ProductMostCommented = mostCommented,
-                ProductAverageRating = productAvgRating.ToString().Substring(0, 3),
-                ProductBestRated = bestRatedStr,
+                ProductAverageRating = "",//productAvgRatingStr,
+                ProductBestRated = "",//bestRatedStr,
                 RatingCount = ratingCount,
                 ChartLocation = System.AppContext.BaseDirectory + "Areas\\Document\\Views\\Default\\Chart.jpg"
             };

@@ -52,6 +52,7 @@ namespace SOPS.Controllers
             var plotController = new PlotController();
             plotController.ControllerContext = ControllerContext;
 
+            /*
             var store = new UserStore<ApplicationUser>(db);
             var manager = new ApplicationUserManager(store);
             manager.Find("", "");
@@ -59,8 +60,9 @@ namespace SOPS.Controllers
             var identity = manager.ClaimsIdentityFactory.CreateAsync(manager, user, "").Result;
             var principal = new ClaimsPrincipal(identity);
             HttpContext.Current.User = principal;
+            */
 
-            var chart = plotController.GetCompanyStatistics(id, 960, 450);
+            var chart = plotController.GetCompanyStatisticsForMmail(id, 960, 450);
             var chartStream = await chart.Content.ReadAsStreamAsync();
             var chartImage = Bitmap.FromStream(chartStream);
             var chartLocation = System.AppContext.BaseDirectory + "Areas\\Document\\Views\\Default\\Chart.jpg";

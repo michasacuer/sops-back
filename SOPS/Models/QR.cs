@@ -77,7 +77,7 @@ namespace SOPS.Models
             var qrCodeData = qrGenerator.CreateQrCode(code, QRCodeGenerator.ECCLevel.Q);
             var qrCode = new QRCode(qrCodeData);
             var ms = new MemoryStream();
-            qrCode.GetGraphic(10).Save(ms, ImageFormat.Png);
+            qrCode.GetGraphic(5).Save(ms, ImageFormat.Png);
             Content = ms.ToArray();
             Version = 1;
         }
