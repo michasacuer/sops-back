@@ -50,7 +50,7 @@ namespace SOPS.Controllers
                 {
                     Id = user.Id,
                     UserName = user.UserName,
-                    Name = user.UserName,
+                    Name = user.Name,
                     Surname = user.Surname,
                     PhoneNumber = user.PhoneNumber,
                     Email = user.Email,
