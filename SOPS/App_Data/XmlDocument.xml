@@ -1061,6 +1061,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:SOPS.Controllers.UserProfileController.GetUserProfiles">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:SOPS.Controllers.UserProfileController.GetCurrentProfile">
             <summary>
             get current user profile

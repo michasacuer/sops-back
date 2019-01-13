@@ -27,10 +27,40 @@ namespace SOPS.Controllers
         public ApplicationUserManager UserManager => Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
 
         // GET: api/User
-        /*public IQueryable<ApplicationUser> GetApplicationUsers()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        [Route("")]
+        public IEnumerable<UserProfileViewModel> GetUserProfiles()
         {
-            return db.ApplicationUsers;
-        }*/
+            var users = db.Users.ToList();
+            var profiles = new List<UserProfileViewModel>();
+            foreach(var user in users)
+            {
+                var asEmployee = db.Employees.Find(user.Id);
+                Company employeeCompany = null;
+                if (asEmployee != null)
+                {
+                    db.Entry(asEmployee).Reference(e => e.Company).Load();
+                    employeeCompany = asEmployee.Company;
+                }
+
+                profiles.Add(new UserProfileViewModel()
+                {
+                    Id = user.Id,
+                    UserName = user.UserName,
+                    Name = user.UserName,
+                    Surname = user.Surname,
+                    PhoneNumber = user.PhoneNumber,
+                    Email = user.Email,
+                    WatchedProducts = user.WatchedProducts,
+                    IsEmployee = asEmployee != null,
+                    Company = employeeCompany,
+                });
+            }
+            return profiles;
+        }
 
         /// <summary>
         /// get current user profile
