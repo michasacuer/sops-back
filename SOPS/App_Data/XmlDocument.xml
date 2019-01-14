@@ -979,6 +979,14 @@
             <param name="id">id produktu</param>
             <returns></returns>
         </member>
+        <member name="M:SOPS.Controllers.ProductRatingController.GetProductRating(System.String,System.Int32)">
+            <summary>
+            Dawaj ocene którą dany użytkownik postawił dla danego produktu
+            </summary>
+            <param name="userId"></param>
+            <param name="productId"></param>
+            <returns></returns>
+        </member>
         <member name="M:SOPS.Controllers.ProductRatingController.PostProductRating(System.Int32,SOPS.Models.ProductRatingBindingModel)">
             <summary>
             wstaw ocene produktu

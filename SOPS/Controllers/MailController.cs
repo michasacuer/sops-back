@@ -76,12 +76,13 @@ namespace SOPS.Controllers
 
             foreach (var userEmployee in userEmployees)
             {
-                if (userEmployee.User.EmailConfirmed)
+                // if (userEmployee.User.EmailConfirmed)
+                if (true)
                 {
                     MailMessage mail = new MailMessage();
                     mail.From = new MailAddress("sops@antoniuk.pl", "SOPS");
 
-                    mail.To.Add(new MailAddress("sops@antoniuk.pl"));
+                    mail.To.Add(new MailAddress(userEmployee.User.Email));
 
                     var dateTime = DateTime.Now;
 
