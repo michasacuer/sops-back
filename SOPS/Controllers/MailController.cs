@@ -39,7 +39,7 @@ namespace SOPS.Controllers
         public void PostScheduleSending()
         {
             IsSendingActivated = true;
-            AddTask("send_mail", 60);
+            AddTask("send_mail", 300);
         }
 
         // POST: api/Mail/deactivate
