@@ -69,7 +69,7 @@ namespace SOPS.Controllers
                 {
                     UserId = roleBindingModel.UserId,
                     CompanyId = roleBindingModel.OptionalCompanyId,
-                    JoinDate = DateTime.Now
+                    JoinDate = DateTime.Now.Date
                 });
                 db.SaveChanges();
             } 

@@ -83,7 +83,7 @@ namespace SOPS.Controllers
 
                     mail.To.Add(new MailAddress("sops@antoniuk.pl"));
 
-                    var dateTime = DateTime.Now;
+                    var dateTime = DateTime.Now.Date;
 
                     mail.Subject = "Okresowy raport";
                     mail.Body = "W załączniku znajduje się automatycznie wygenerowany raport dotyczący działalności firmy, której otrzymujący wiadomość jest pracownikiem.\n\n" +

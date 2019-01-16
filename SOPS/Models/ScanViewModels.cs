@@ -13,6 +13,8 @@ namespace SOPS.Models
 
         // Scan
         public DateTime ScanDate { get; set; }
+        public double ScanLocationLongitude { get; set; }
+        public double ScanLocationLatitude { get; set; }
 
         // Existing product
         public int ExistingProductId { get; set; }

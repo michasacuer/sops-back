@@ -20,6 +20,8 @@ namespace SOPS.Models
         [Column(Order = 2)]
         public string UserId { get; set; }
         public DateTime Date { get; set; }
+        public double LocationLongitude { get; set; }
+        public double LocationLatitude { get; set; }
 
         public virtual ExistingProduct ExistingProduct { get; set; }
         public virtual ApplicationUser User { get; set; }

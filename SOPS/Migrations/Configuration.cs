@@ -26,6 +26,7 @@ namespace SOPS.Migrations
                 // System.Diagnostics.Debugger.Launch();
             }
             // This method will be called after migrating to the latest version.
+            context.Configuration.LazyLoadingEnabled = true;
 
             // Generation configuration
             int companyCount = 3;
@@ -43,7 +44,7 @@ namespace SOPS.Migrations
             int companyReportCount = 10;
             int watchedProductCount = 20;
             int existingProductCount = 40;
-            int qrCodeCount = 10;
+            //int qrCodeCount = 10;
             int companyStatisticsCountPerCompany = 10;
             int scanCount = 20;
 
@@ -74,10 +75,12 @@ namespace SOPS.Migrations
             ((DbSet<ApplicationUser>)context.Users).RemoveRange(context.Users);
             context.SaveChanges();
 
-            context.Companies.RemoveRange(context.Companies);
-            context.SaveChanges();
 
             context.ProductPictures.RemoveRange(context.ProductPictures);
+            context.SaveChanges();
+
+
+            context.Companies.RemoveRange(context.Companies);
             context.SaveChanges();
 
             context.Products.RemoveRange(context.Products);
@@ -322,7 +325,7 @@ namespace SOPS.Migrations
             context.SaveChanges();
 
             // QR
-            List<QR> qrs = new List<QR>(qrCodeCount);
+            /*List<QR> qrs = new List<QR>(qrCodeCount);
             for (int i = 0; i < qrCodeCount; i++)
             {
                 QR qr = new QR
@@ -336,7 +339,7 @@ namespace SOPS.Migrations
             }
             var distinctQrs = qrs.Distinct(new QREqualityComparer()).ToArray();
             context.QRs.AddOrUpdate(q => q.ExistingProductId, distinctQrs);
-            context.SaveChanges();
+            context.SaveChanges();*/
 
             // CompanyStatistics
             var companyStatistics = new List<CompanyStatistics>(companyCount * companyStatisticsCountPerCompany);

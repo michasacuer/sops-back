@@ -54,12 +54,14 @@ namespace SOPS.Controllers
                 var product = existingProduct.Product;
                 var company = product.Company;
                 var watchedProduct = db.WatchedProducts.Find(currentUserId, product.Id);
-                
+
                 scanViewModels.Add(new ScanViewModel()
                 {
                     IsWatched = watchedProduct != null,
                     ProductId = product.Id,
                     ScanDate = scan.Date,
+                    ScanLocationLatitude = scan.LocationLatitude,
+                    ScanLocationLongitude = scan.LocationLongitude,
                     ExistingProductId = existingProduct.Id,
                     ExistingProductCreationDate = existingProduct.CreationDate,
                     ExistingProductExpirationDate = existingProduct.ExpirationDate,
@@ -113,8 +115,10 @@ namespace SOPS.Controllers
             var scan = new Scan()
             {
                 UserId = currentUserId,
-                Date = DateTime.Now,
-                ExistingProductId = scanBindingModel.ExistingProductId,                
+                Date = DateTime.Now.Date,
+                ExistingProductId = scanBindingModel.ExistingProductId,       
+                LocationLatitude = scanBindingModel.LocationLatitude,
+                LocationLongitude = scanBindingModel.LocationLongitude
             };
 
             db.Scans.Add(scan);

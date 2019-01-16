@@ -172,7 +172,7 @@ namespace SOPS.Controllers
             {
                 ProductId = id,
                 CreationDate = DateTime.Now.Date,
-                ExpirationDate = DateTime.Now.AddMonths(product.DefaultExpirationDateInMonths),
+                ExpirationDate = DateTime.Now.AddMonths(product.DefaultExpirationDateInMonths).Date,
             };
             existingProduct.GenerateSecret();
             db.ExistingProducts.Add(existingProduct);

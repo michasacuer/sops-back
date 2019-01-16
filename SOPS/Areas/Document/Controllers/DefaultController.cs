@@ -62,7 +62,7 @@ namespace SOPS.Areas.Document.Controllers
                 db.Entry(product).Collection(p => p.ProductComments).Load();
             }
 
-            var vm = EmployeeReportViewModel.CreateViewModel(company, DateTime.Now);
+            var vm = EmployeeReportViewModel.CreateViewModel(company, DateTime.Now.Date);
 
             return View(vm);
         }
