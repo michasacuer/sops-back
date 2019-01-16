@@ -45,6 +45,34 @@ namespace SOPS.Controllers
             return db.ProductRatings.Where(pr => pr.UserId == id);
         }
 
+        // GET: api/ProductRating/{userId}/{productId}
+        /// <summary>
+        /// Dawaj ocene którą dany użytkownik postawił dla danego produktu
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="productId"></param>
+        /// <returns></returns>
+        [Authorize]
+        [Route("{userId}/{productid:int}")]
+        [HttpGet]
+        [ResponseType(typeof(ProductRating))]
+        public IHttpActionResult GetProductRating(string userId, int productId)
+        {
+            if (!(UserHelper.GetCurrentUserId() == userId))
+                return NotFound();
+
+            ProductRating rate;
+            try
+            {
+                rate = db.ProductRatings.First(pr => pr.UserId == userId && pr.ProductId == productId);
+            }
+            catch
+            {
+                return NotFound();
+            }
+
+            return Ok(rate);
+        }
 
         // POST: api/ProductRating/id
         /// <summary>
@@ -69,7 +97,14 @@ namespace SOPS.Controllers
             };
 
             db.ProductRatings.Add(productRating);
-            db.SaveChanges();
+            try
+            {
+                db.SaveChanges();
+            }
+            catch(Exception)
+            {
+                return BadRequest("ocena już wystawiona");
+            }
 
             return Ok(productRating);
         }

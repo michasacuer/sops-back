@@ -39,7 +39,7 @@ namespace SOPS.Controllers
         public void PostScheduleSending()
         {
             IsSendingActivated = true;
-            AddTask("send_mail", 60);
+            AddTask("send_mail", 300);
         }
 
         // POST: api/Mail/deactivate
@@ -76,12 +76,13 @@ namespace SOPS.Controllers
 
             foreach (var userEmployee in userEmployees)
             {
-                if (userEmployee.User.EmailConfirmed)
+                // if (userEmployee.User.EmailConfirmed)
+                if (true)
                 {
                     MailMessage mail = new MailMessage();
                     mail.From = new MailAddress("sops@antoniuk.pl", "SOPS");
 
-                    mail.To.Add(new MailAddress("sops@antoniuk.pl"));
+                    mail.To.Add(new MailAddress(userEmployee.User.Email));
 
                     var dateTime = DateTime.Now.Date;
 
